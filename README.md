@@ -34,3 +34,6 @@ Some principal references are :
 8. Fast private set intersection from homomorphic encryption; H Chen, K Laine, P Rindal  
    https://eprint.iacr.org/2017/299.pdf
    
+9. PSI from PaXoS: Fast, Malicious Private Set Intersection; Benny Pinkas, Mike Rosulek, Ni Trieu, Avishay Yanai   
+   https://eprint.iacr.org/2020/193.pdf   
+   
