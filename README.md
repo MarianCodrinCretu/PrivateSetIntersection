@@ -6,4 +6,31 @@ Stefania Andries  (stefania.andries@yahoo.com)
 Andrei Miron  (danielandrei161@gmail.com)  
 Marian Cretu  (cretu.marian.5000@gmail.com)  
 
-Private Set Intersection is a project proposed by Lecturer Sorin Iftene, Ph.D., and coordinated by Professor Adrian Iftene, Ph.D. Its main scope is to implement a cryptographic technique that computes the intersection of two encrypted datasets without revealing any data, excepting the intersection content. 
+Private Set Intersection is a project proposed by Lecturer Sorin Iftene, Ph.D., and coordinated by Professor Adrian Iftene, Ph.D. Its main scope is to implement a cryptographic technique that computes the intersection of two encrypted datasets without revealing any data, excepting the intersection content.  
+  
+Some principal references are :  
+
+1. Practical Private Set Intersection Protocols with Linear Computational and Bandwidth Complexity , Emiliano De Cristofaro and Gene Tsudik  
+   https://eprint.iacr.org/2009/491.pdf  
+
+2. Efficient Robust Private Set Intersection; Dana Dachman-Soled1, Tal Malkin1, Mariana Raykova1, and Moti Yung  
+   https://user.eng.umd.edu/~danadach/MyPapers/set-int.pdf  
+   
+3. Private set intersection: Are garbled circuits better than custom protocols? ; Yan Huang,  David Evans, Jonathan Katz  
+   https://www.cs.umd.edu/~jkatz/papers/psi.pdf  
+   
+4. Phasing: Private set intersection using permutation-based hashing; B Pinkas, T Schneider, G Segev, M Zohner  
+   https://eprint.iacr.org/2015/634.pdf
+   
+5. Linear-complexity private set intersection protocols secure in malicious model ; E De Cristofaro, J Kim, G Tsudik   
+   https://eprint.iacr.org/2010/469.pdf
+   
+6. When private set intersection meets big data: an efficient and scalable protocol; C Dong, L Chen, Z Wen   
+   https://eprint.iacr.org/2013/515.pdf
+   
+7. Faster private set intersection based on {OT} extension; B Pinkas, T Schneider, M Zohner  
+   https://eprint.iacr.org/2014/447.pdf
+   
+8. Fast private set intersection from homomorphic encryption; H Chen, K Laine, P Rindal  
+   https://eprint.iacr.org/2017/299.pdf
+   
