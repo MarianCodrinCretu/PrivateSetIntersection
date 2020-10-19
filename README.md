@@ -6,7 +6,9 @@ Stefania Andries  (stefania.andries@yahoo.com)
 Andrei Miron  (danielandrei161@gmail.com)  
 Marian Cretu  (cretu.marian.5000@gmail.com)  
 
-Private Set Intersection is a project proposed by Lecturer Sorin Iftene, Ph.D., and coordinated by Professor Adrian Iftene, Ph.D. Its main scope is to implement a cryptographic technique that computes the intersection of two encrypted datasets without revealing any data, excepting the intersection content.  
+Private Set Intersection is a project proposed by Lecturer Sorin Iftene, Ph.D., and coordinated by Professor Adrian Iftene, Ph.D. Its main scope is to implement a cryptographic technique that computes the intersection of two encrypted datasets without revealing any data, excepting the intersection content. 
+
+State Of The Art: https://docs.google.com/document/d/1Zi2NblKOI0O3unUj4rF7oKjWpidPeSE0rB6vA3jFTFk/edit
   
 Some principal references are :  
 
