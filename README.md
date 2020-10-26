@@ -8,7 +8,11 @@ Marian Cretu  (cretu.marian.5000@gmail.com)
 
 Private Set Intersection is a project proposed by Lecturer Sorin Iftene, Ph.D., and coordinated by Professor Adrian Iftene, Ph.D. Its main scope is to implement a cryptographic technique that computes the intersection of two datasets without revealing any data, excepting the intersection content. 
 
+Our critical reference is: https://eprint.iacr.org/2020/729?fbclid=IwAR1Co-HI0YgoJk0ZCxHXOsk6K4PffelpMrDkxS8gbxlskpD3WrCcEa7G-mE  
+
+
 State Of The Art: https://docs.google.com/document/d/1Zi2NblKOI0O3unUj4rF7oKjWpidPeSE0rB6vA3jFTFk/edit  
+Requirement Analysis: https://docs.google.com/document/d/1wVYjDQQS1WrIopLbKzLIPCgfIb7AxVo4ck2RPJt7msc/edit  
 JIRA Dashboard: https://privatesetintersection.atlassian.net/secure/RapidBoard.jspa?projectKey=PSI&rapidView=2
   
 Some principal references are :  
