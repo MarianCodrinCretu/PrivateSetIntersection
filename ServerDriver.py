@@ -4,7 +4,7 @@ import time
 from CommunicationService.SocketPool import SocketPool
 from CommunicationService.TransferProtocol import TransferProtocol
 
-transferProtocol = TransferProtocol(SocketPool(20), {'Server IP': Constants.SENDER_ADDRESS, 'Server Port': Constants.SENDER_PORT})
+transferProtocol = TransferProtocol(SocketPool(20), {'Server IP': Constants.SENDER_ADDRESS, 'Server Port': Constants.SENDER_PORT, 'Client IP':Constants.RECEIVER_ADDRESS, 'Client Port':Constants.RECEIVER_PORT})
 
 print(transferProtocol.receiveNegotiateParameters())
 
