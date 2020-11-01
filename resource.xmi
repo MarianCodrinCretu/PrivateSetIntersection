@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ecore:EPackage xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" nsPrefix="cryptoEcore" nsURI="http://cryptoEcore/1.0" name="crypto_ecor" xmi:version="2.0">
+  <eClassifiers xsi:type="ecore:EClass" name="Entity">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" name="lambda"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" name="sigma"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" name="m"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" name="w"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" name="l1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" name="l2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" eSuperTypes="#//Entity" name="Receiver">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" name="ip"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" name="port"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" name="mapper"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" name="transfProt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray" name="data"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" eSuperTypes="#//Entity" name="Sender">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" name="ip"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" name="port"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" name="mapper"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" name="transfProt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray" name="data"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AlgoDecoder"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DataEngineering"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ClientInterface">
+    <eStructuralFeatures xsi:type="ecore:EReference" upperBound="-1" eType="#//Receiver" name="receiver" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" upperBound="-1" eType="#//DataEngineering" name="dataEngineering" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" upperBound="-1" eType="#//AlgoDecoder" name="algoDecoder" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ServerInterface">
+    <eStructuralFeatures xsi:type="ecore:EReference" upperBound="-1" eType="#//Sender" name="Sender" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" upperBound="-1" eType="#//DataEngineering" name="dataEngineering" containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>
