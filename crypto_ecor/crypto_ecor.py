@@ -4,7 +4,6 @@ import pyecore.ecore as Ecore
 from pyecore.ecore import *
 
 
-# Package description
 name = 'crypto_ecor'
 nsURI = 'http://cryptoEcore/1.0'
 nsPrefix = 'cryptoEcore'
@@ -47,6 +46,24 @@ class Entity(EObject, metaclass=MetaEClass):
 
         if l2 is not None:
             self.l2 = l2
+
+
+class Mapping(EObject, metaclass=MetaEClass):
+
+    def __init__(self, **kwargs):
+        if kwargs:
+            raise AttributeError('unexpected arguments: {}'.format(kwargs))
+
+        super().__init__()
+
+
+class TransferProtocol(EObject, metaclass=MetaEClass):
+
+    def __init__(self, **kwargs):
+        if kwargs:
+            raise AttributeError('unexpected arguments: {}'.format(kwargs))
+
+        super().__init__()
 
 
 class AlgoDecoder(EObject, metaclass=MetaEClass):
@@ -111,8 +128,8 @@ class Receiver(Entity):
 
     ip = EAttribute(eType=EString, derived=False, changeable=True)
     port = EAttribute(eType=EInt, derived=False, changeable=True)
-    mapper = EAttribute(eType=EInt, derived=False, changeable=True)
-    transfProt = EAttribute(eType=EInt, derived=False, changeable=True)
+    mapper = EAttribute(eType=Mapping, derived=False, changeable=True)
+    transfProt = EAttribute(eType=TransferProtocol, derived=False, changeable=True)
     data = EAttribute(eType=EByteArray, derived=False, changeable=True)
 
     def __init__(self, *, ip=None, port=None, mapper=None, transfProt=None, data=None, **kwargs):
@@ -139,8 +156,8 @@ class Sender(Entity):
 
     ip = EAttribute(eType=EString, derived=False, changeable=True)
     port = EAttribute(eType=EInt, derived=False, changeable=True)
-    mapper = EAttribute(eType=EInt, derived=False, changeable=True)
-    transfProt = EAttribute(eType=EInt, derived=False, changeable=True)
+    mapper = EAttribute(eType=Mapping, derived=False, changeable=True)
+    transfProt = EAttribute(eType=TransferProtocol, derived=False, changeable=True)
     data = EAttribute(eType=EByteArray, derived=False, changeable=True)
 
     def __init__(self, *, ip=None, port=None, mapper=None, transfProt=None, data=None, **kwargs):

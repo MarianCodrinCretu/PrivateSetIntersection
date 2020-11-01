@@ -1,13 +1,13 @@
 
 from .crypto_ecor import getEClassifier, eClassifiers
 from .crypto_ecor import name, nsURI, nsPrefix, eClass
-from .crypto_ecor import Entity, Receiver, Sender, AlgoDecoder, DataEngineering, ClientInterface, ServerInterface
+from .crypto_ecor import Entity, Receiver, Sender, Mapping, TransferProtocol, AlgoDecoder, DataEngineering, ClientInterface, ServerInterface
 
 
 from . import crypto_ecor
 
-__all__ = ['Entity', 'Receiver', 'Sender', 'AlgoDecoder',
-           'DataEngineering', 'ClientInterface', 'ServerInterface']
+__all__ = ['Entity', 'Receiver', 'Sender', 'Mapping', 'TransferProtocol',
+           'AlgoDecoder', 'DataEngineering', 'ClientInterface', 'ServerInterface']
 
 eSubpackages = []
 eSuperPackage = None

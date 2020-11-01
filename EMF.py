@@ -4,6 +4,10 @@ from pyecore.resources import ResourceSet, URI
 from pyecoregen.ecore import EcoreGenerator
 
 
+# Empty classes for entity objects
+Mapping = EClass('Mapping')
+TransferProtocol = EClass('TransferProtocol')
+
 # Entity class definition
 Entity = EClass('Entity')
 attribute_list = [EAttribute('lambda', EInt), EAttribute('sigma', EInt), EAttribute('m', EInt),
@@ -13,8 +17,8 @@ for i in attribute_list:
 
 # Receiver class definition
 Receiver = EClass('Receiver', superclass=Entity)
-attribute_list = [EAttribute('ip', EString), EAttribute('port', EInt), EAttribute('mapper', EInt),
-                  EAttribute('transfProt', EInt), EAttribute('data', EByteArray)]
+attribute_list = [EAttribute('ip', EString), EAttribute('port', EInt), EAttribute('mapper', Mapping),
+                  EAttribute('transfProt', TransferProtocol), EAttribute('data', EByteArray)]
 
 for i in attribute_list:
     Receiver.eStructuralFeatures.append(i)
@@ -22,8 +26,8 @@ for i in attribute_list:
 
 # Sender class definition
 Sender = EClass('Sender', superclass=Entity)
-attribute_list = [EAttribute('ip', EString), EAttribute('port', EInt), EAttribute('mapper', EInt),
-                  EAttribute('transfProt', EInt), EAttribute('data', EByteArray)]
+attribute_list = [EAttribute('ip', EString), EAttribute('port', EInt), EAttribute('mapper', Mapping),
+                  EAttribute('transfProt', TransferProtocol), EAttribute('data', EByteArray)]
 
 for i in attribute_list:
     Sender.eStructuralFeatures.append(i)
@@ -49,7 +53,8 @@ ServerInterface.eStructuralFeatures.append(EReference('dataEngineering', eType=D
 # Add all the concepts to an EPackage
 cwd = os.getcwd()
 ecore_schema = EPackage('crypto_ecor', nsURI='http://cryptoEcore/1.0', nsPrefix='cryptoEcore')
-ecore_schema.eClassifiers.extend([Entity, Receiver, Sender, AlgoDecoder, DataEngineering, ClientInterface, ServerInterface])
+ecore_schema.eClassifiers.extend([Entity, Receiver, Sender, Mapping, TransferProtocol, AlgoDecoder,
+                                  DataEngineering, ClientInterface, ServerInterface])
 
 rset = ResourceSet()
 resource = rset.create_resource(URI(os.path.join(cwd, 'resource.xmi')))  # This will create an XMI resource
