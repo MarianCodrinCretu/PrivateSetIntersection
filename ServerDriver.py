@@ -1,10 +1,20 @@
 import Constants
 import time
 
+from CommunicationService.ComReceive import ComReceive
+from CommunicationService.ComSend import ComSend
 from CommunicationService.SocketPool import SocketPool
 from CommunicationService.TransferProtocol import TransferProtocol
 
-transferProtocol = TransferProtocol(SocketPool(20), {'Server IP': Constants.SENDER_ADDRESS, 'Server Port': Constants.SENDER_PORT, 'Client IP':Constants.RECEIVER_ADDRESS, 'Client Port':Constants.RECEIVER_PORT})
+comSend = ComSend(SocketPool(20))
+comReceive = ComReceive(SocketPool(20))
+
+transferProtocol = TransferProtocol({'Server IP': Constants.SENDER_ADDRESS, 'Server Port': Constants.SENDER_PORT, 'Client IP':Constants.RECEIVER_ADDRESS, 'Client Port':Constants.RECEIVER_PORT}
+                                    , comSend, comReceive)
+
+print(transferProtocol.receiveInitiateConnection())
+
+transferProtocol.sendConfirmationInitiateConnection()
 
 print(transferProtocol.receiveNegotiateParameters())
 
