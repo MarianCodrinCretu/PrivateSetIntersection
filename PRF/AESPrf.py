@@ -3,7 +3,9 @@ from Crypto.Cipher import AES
 
 class AESPrf(PRFAbstract):
     def computePrf(self, plaintext):
-        return self._cipher.encrypt(plaintext)
+        result = self._cipher.encrypt(plaintext)
+        print('PRF with AES', result)
+        return result
 
     def setCipher(self):
         self._mode = AES.MODE_CBC

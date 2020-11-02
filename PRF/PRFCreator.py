@@ -8,7 +8,7 @@ class PRFCreator(ABC):
 
     @abstractmethod
     def  createPrf(self):
-       raise NotImplementedError
+       pass
 
     def computePrf(self, plaintext):
         return self._prf.computePrf(plaintext)

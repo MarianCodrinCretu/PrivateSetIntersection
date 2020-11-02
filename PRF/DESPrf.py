@@ -3,7 +3,9 @@ from Crypto.Cipher import DES
 
 class DESPrf(PRFAbstract):
     def computePrf(self, plaintext):
-        return self._cipher.encrypt(plaintext)
+        result = self._cipher.encrypt(plaintext)
+        print('PRF with DES', result)
+        return result
 
     def setCipher(self):
         self._mode = DES.MODE_CBC
