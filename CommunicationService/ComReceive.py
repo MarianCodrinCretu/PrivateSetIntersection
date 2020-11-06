@@ -25,6 +25,6 @@ class ComReceive(Communication):
             receivedObject += msg
 
             if len(receivedObject) - HEADERSIZE == msglen:
-                #self._socketPool.release(socket)
+                self._socketPool.release(socket)
                 return pickle.loads(receivedObject[HEADERSIZE:])
 
