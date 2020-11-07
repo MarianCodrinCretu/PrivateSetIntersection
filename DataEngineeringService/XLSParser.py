@@ -1,3 +1,6 @@
+import math
+
+import numpy
 import pandas as pd
 #run pip install xlrd
 from Exceptions.InvalidColumnNamesException import InvalidColumnNamesException
@@ -17,11 +20,9 @@ class XLSParser(Parser):
         return columnNames
 
     def parse(self, file):
-
         columnNames = self.extractColumnsNames(file)
         df = pd.read_excel(file)
         columns={}
         for columnName in columnNames:
-            columns[columnName]=list(df[columnName])
-
+            columns[columnName] = list(df[columnName])
         return columns

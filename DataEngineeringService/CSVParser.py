@@ -7,12 +7,10 @@ import csv
 
 class CSVParser(Parser):
 
-    def extractColumnNames(self, file):
-
+    def extractColumnsNames(self, file):
         with open(file, 'r', newline='') as csvfile:
             spamreader = csv.reader(csvfile)
             columnNames = next(spamreader)
-
             for name in columnNames:
                 if not name.replace(" ", "").isalpha():
                     raise InvalidColumnNamesException("Column names are not alphabetic")
@@ -20,16 +18,11 @@ class CSVParser(Parser):
             return columnNames
 
     def parse(self, file):
-
-        columnNames = self.extractColumnNames(file)
-
+        columnNames = self.extractColumnsNames(file)
         columns = {}
-
         with open(file, 'r') as csvfile:
             spamreader = csv.reader(csvfile)
-
             row = next(spamreader)
-
             try:
                 while (row is not None):
                     row = next(spamreader)
