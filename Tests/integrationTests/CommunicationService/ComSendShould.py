@@ -43,31 +43,6 @@ class ComSendShould(TestCase):
 
         server_thread.join()
 
-            # else:
-            #     #child process
-            #     # trying to create a server on a different child process
-            #     socketServer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            #     socketServer.bind(("127.0.0.1", int(portDestination)))
-            #     socketServer.listen(5)
-            #
-            #     connection, address = socketServer.accept()
-            #
-            #     receivedObject = b''
-            #     newMessage = True
-            #     msglen = 0
-            #     while (True):
-            #         msg = connection.recv(16)
-            #         if newMessage:
-            #             msglen = int(msg[:HEADERSIZE])
-            #             newMessage = False
-            #
-            #         receivedObject += msg
-            #
-            #         if len(receivedObject) - HEADERSIZE == msglen:
-            #             # self._socketPool.release(socket)
-            #
-            #             self.assertEqual(pickle.loads(receivedObject[HEADERSIZE:]), toBeSent)
-            #
 
 
 

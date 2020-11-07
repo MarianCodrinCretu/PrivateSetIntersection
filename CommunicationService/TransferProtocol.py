@@ -24,85 +24,59 @@ class TransferProtocol:
                            int(self._connectionParams['Server Port']),
                            HEADERSIZE=10)
 
-    def receiveInitiateConnection(self):
-        return self._comReceive.receive(self._connectionParams['Server IP'], int(self._connectionParams['Server Port']),
-                                        HEADERSIZE=10)
-
     def sendConfirmationInitiateConnection(self):
         self._comSend.send("Received connection attempting! All ok!", self._connectionParams['Client IP'],
                            int(self._connectionParams['Client Port']),
                            HEADERSIZE=10)
-
-    def receiveConfirmationInitiateConnection(self):
-        return self._comReceive.receive(self._connectionParams['Client IP'],
-                                        int(self._connectionParams['Client Port']),
-                                        HEADERSIZE=10)
 
     def sendNegotiateParameters(self, paramsDictionary):
         self._comSend.send(paramsDictionary, self._connectionParams['Server IP'],
                            int(self._connectionParams['Server Port']),
                            HEADERSIZE=10)
 
-    def receiveNegotiateParameters(self):
-        return self._comReceive.receive(self._connectionParams['Server IP'], int(self._connectionParams['Server Port']),
-                                        HEADERSIZE=10)
-
     def sendOT(self, data):
         self._comSend.send(data, self._connectionParams['Server IP'], int(self._connectionParams['Server Port']),
                            HEADERSIZE=10)
-
-    def receiveOT(self):
-        return self._comReceive.receive(self._connectionParams['Server IP'], int(self._connectionParams['Server Port']),
-                                        HEADERSIZE=10)
 
     def sendPRFKey(self, key):
         self._comSend.send(key, self._connectionParams['Server IP'], int(self._connectionParams['Server Port']),
                            HEADERSIZE=10)
 
+    def sendPsiValues(self, data):
+        self._comSend.send(data, self._connectionParams['Client IP'], int(self._connectionParams['Client Port']),
+                           HEADERSIZE=100)
+
+
+    def receiveInitiateConnection(self):
+        return self._comReceive.receive(self._connectionParams['Server IP'], int(self._connectionParams['Server Port']),
+                                        HEADERSIZE=10)
+
+
+    def receiveConfirmationInitiateConnection(self):
+        return self._comReceive.receive(self._connectionParams['Client IP'],
+                                        int(self._connectionParams['Client Port']),
+                                        HEADERSIZE=10)
+
+
+
+    def receiveNegotiateParameters(self):
+        return self._comReceive.receive(self._connectionParams['Server IP'], int(self._connectionParams['Server Port']),
+                                        HEADERSIZE=10)
+
+
+
+    def receiveOT(self):
+        return self._comReceive.receive(self._connectionParams['Server IP'], int(self._connectionParams['Server Port']),
+                                        HEADERSIZE=10)
+
+
     def receiveKey(self):
         return self._comReceive.receive(self._connectionParams['Server IP'], int(self._connectionParams['Server Port']),
                                         HEADERSIZE=10)
 
-    def sendPsiValues(self, data):
-        self._comSend.send(data, self._connectionParams['Client IP'], int(self._connectionParams['Client Port']),
-                           HEADERSIZE=100)
+
 
     def receivePsiValues(self):
         return self._comReceive.receive(self._connectionParams['Client IP'], int(self._connectionParams['Client Port']),
                                         HEADERSIZE=100)
 
-    # def send(self, toBeSent, ipDestination, portDestination, HEADERSIZE):
-    #
-    #     binaryDict = pickle.dumps(toBeSent)
-    #
-    #     socket = self._socketPool.acquire()
-    #     socket.connect((ipDestination, portDestination))
-    #
-    #     binaryDict= bytes(f"{len(binaryDict):<{HEADERSIZE}}", 'utf-8')+binaryDict
-    #     socket.send(binaryDict)
-    #     #self._socketPool.release(socket)
-    #
-    # def receive(self, ipToReceive, portToReceive, HEADERSIZE, sizeOfDgram=16):
-    #
-    #     socket = self._socketPool.acquire()
-    #     socket.bind((ipToReceive, int(portToReceive)))
-    #     socket.listen(5)
-    #
-    #     connection, address = socket.accept()
-    #
-    #     receivedObject = b''
-    #     newMessage = True
-    #     msglen = 0
-    #     while(True):
-    #         msg = connection.recv(sizeOfDgram)
-    #         if newMessage:
-    #             msglen = int(msg[:HEADERSIZE])
-    #             newMessage = False
-    #
-    #         receivedObject += msg
-    #
-    #         if len(receivedObject) - HEADERSIZE == msglen:
-    #             #self._socketPool.release(socket)
-    #             return pickle.loads(receivedObject[HEADERSIZE:])
-    #
-    # #######################################################################################################

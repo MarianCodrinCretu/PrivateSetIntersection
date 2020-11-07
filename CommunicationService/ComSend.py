@@ -14,4 +14,4 @@ class ComSend(Communication):
 
         binaryDict = bytes(f"{len(binaryDict):<{HEADERSIZE}}", 'utf-8') + binaryDict
         socket.send(binaryDict)
-        #self._socketPool.release(socket)
+        self._socketPool.release(socket)
