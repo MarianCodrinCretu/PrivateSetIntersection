@@ -7,6 +7,7 @@ class PRFAbstract(ABC):
         self._key = key
         self.setCipher()
 
+
     def computePrf(self, plaintext):
         raise NotImplementedError()
 

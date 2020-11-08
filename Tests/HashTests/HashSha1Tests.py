@@ -16,7 +16,7 @@ class HashSha1Tests(unittest.TestCase):
         actualResult = self._sha1HashUnderTest.generate(testPlaintext)
 
         # Assert
-        self.assertEqual(expectedResult,actualResult)
+        self.assertEqual(expectedResult, actualResult)
 
     def testGenerate_givenPlaintextAsStringType_shouldThrowTypeException(self):
         # Arrange
