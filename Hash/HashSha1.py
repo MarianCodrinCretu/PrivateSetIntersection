@@ -1,6 +1,7 @@
 from Hash.HashFunction import HashFunction
 import hashlib
 
+
 class HashSha1(HashFunction):
     def initialize(self):
         self._hash = hashlib.sha1()

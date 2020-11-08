@@ -1,5 +1,6 @@
 from abc import ABC
 
+
 class PRFAbstract(ABC):
     def __init__(self, iv, key):
         self._iv = iv

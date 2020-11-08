@@ -1,10 +1,12 @@
+# import _hashlib
+#
 # from Hash.HashMd5 import HashMd5
 # from Hash.HashSha1 import HashSha1
 # from Hash.HashSha256 import HashSha256
 # from Hash.HashBlake2b import HashBlake2b
-#
-# plaintext = b'some message'
-#
+
+# plaintext = b''
+# print(plaintext)
 # md5Hash = HashMd5()
 # md5Hash.generate(plaintext)
 #
