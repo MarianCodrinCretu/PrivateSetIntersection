@@ -3,12 +3,12 @@ import abc
 
 class Transfer_Protocol:
     def __init__(self, value):
-        print(value + " transfer protocol")
+        pass
 
 
 class Mapper:
     def __init__(self, value):
-        print(value + " mapper")
+        pass
 
 
 class Entity(metaclass=abc.ABCMeta):
@@ -154,5 +154,5 @@ receiver = Receiver("R - transfer protocol")
 # sender.get_data()
 # receiver.execute_protocol("f", "g", "f", "f")
 # receiver.get_data()
-print(sender.m)
+# print(sender.m)
 # print(sender.transfer_protocol)
