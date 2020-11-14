@@ -6,8 +6,8 @@ from CommunicationService.ComSend import ComSend
 from CommunicationService.SocketPool import SocketPool
 from CommunicationService.TransferProtocol import TransferProtocol
 
-comSend = ComSend(SocketPool(20))
-comReceive = ComReceive(SocketPool(20))
+comSend = ComSend(SocketPool(20), "Thats my Kung Fu", "ABCDE FG HIJK LM")
+comReceive = ComReceive(SocketPool(20), "Thats my Kung Fu", "ABCDE FG HIJK LM")
 
 transferProtocol = TransferProtocol({'Server IP': Constants.SENDER_ADDRESS, 'Server Port': Constants.SENDER_PORT, 'Client IP':Constants.RECEIVER_ADDRESS, 'Client Port':Constants.RECEIVER_PORT}
                                     , comSend, comReceive)

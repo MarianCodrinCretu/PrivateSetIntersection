@@ -1,9 +1,23 @@
 import pickle
+from Crypto.Cipher import AES
+import aspectlib
 
 from CommunicationService.Communication import Communication
 
 
 class ComReceive(Communication):
+
+    @aspectlib.Aspect
+    def decryptDataAES(self, data):
+
+        cipher = AES.new(self.aesKey, AES.MODE_CFB, self.aesIV)
+        data = cipher.decrypt(data)
+        yield aspectlib.Proceed(self, data)
+
+    def processData(self, data):
+
+        data = pickle.loads(data)
+        return data
 
     def receive(self, ipToReceive, portToReceive, HEADERSIZE, sizeOfDgram=16):
 
@@ -26,5 +40,8 @@ class ComReceive(Communication):
 
             if len(receivedObject) - HEADERSIZE == msglen:
                 self._socketPool.release(socket)
-                return pickle.loads(receivedObject[HEADERSIZE:])
+                data = receivedObject[HEADERSIZE:]
+
+                with aspectlib.weave(self.processData, self.decryptDataAES):
+                    return self.processData(data)
 
