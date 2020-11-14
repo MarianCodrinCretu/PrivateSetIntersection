@@ -1,8 +1,11 @@
+import os
 import pickle
 import socket
 import threading
 import time
 from unittest import TestCase
+
+from Crypto.PublicKey import RSA
 from parameterized import parameterized
 from Crypto.Cipher import AES
 
@@ -34,7 +37,6 @@ def run_fake_client(address, port, message, key, iv, HEADERSIZE, flag):
         server_sock = socket.socket()
         server_sock.connect((address, port))
         if flag!='NoAES':
-            print("intru aici NU AR TREBUI")
             cipher = AES.new(key, AES.MODE_CFB, iv)
             message = pickle.dumps(message)
             message = cipher.encrypt(message)
@@ -46,6 +48,12 @@ def run_fake_client(address, port, message, key, iv, HEADERSIZE, flag):
     except ConnectionRefusedError:
         bufferZone = "CONNECTION ERROR"
 
+strKeyClient = open(os.path.join("..", "..", "..", "CryptoUtils", "client_rsa_public.pem"), 'rb').read()
+
+pubKeyClient = RSA.importKey(open(os.path.join("..", "..", "..", "CryptoUtils", "client_rsa_public.pem"), 'rb').read())
+privKeyClient = RSA.importKey(open(os.path.join("..", "..", "..", "CryptoUtils", "client_rsa_private.pem"), 'rb').read())
+pubKeyServer = RSA.importKey(open(os.path.join("..", "..", "..", "CryptoUtils", "client_rsa_public.pem"), 'rb').read())
+privKeyServer = RSA.importKey(open(os.path.join("..", "..", "..", "CryptoUtils", "client_rsa_private.pem"), 'rb').read())
 
 class TransferProtocolShould(TestCase):
     _connectionParams = {'Server IP': Constants.SENDER_ADDRESS,
@@ -83,6 +91,14 @@ class TransferProtocolShould(TestCase):
             return self._connectionParams['Client IP'], \
                    int(self._connectionParams['Client Port']), \
                    [[[i for i in range(10)] for j in range(10)]], 100, None
+        if index == 7:
+            return self._connectionParams['Server IP'], \
+                int(self._connectionParams['Server Port']), [pubKeyClient], \
+                50, 'NoAES'
+        if index == 8:
+            return self._connectionParams['Client IP'], \
+                int(self._connectionParams['Client Port']), [pubKeyServer], \
+                50, 'NoAES'
 
     def senderMethodMapper(self, index):
         if index == 1:
@@ -97,6 +113,10 @@ class TransferProtocolShould(TestCase):
             return self.transferProtocol.sendPRFKey
         if index == 6:
             return self.transferProtocol.sendPsiValues
+        if index==7:
+            return self.transferProtocol.sendRSAReceiverPublicKey
+        if index==8:
+            return self.transferProtocol.sendRSASenderPublicKey
 
     def receiverMethodMapper(self, index):
         if index == 1:
@@ -111,8 +131,12 @@ class TransferProtocolShould(TestCase):
             return self.transferProtocol.receiveKey
         if index == 6:
             return self.transferProtocol.receivePsiValues
+        if index == 7:
+            return self.transferProtocol.receiveRSAReceiverPublicKey
+        if index == 8:
+            return self.transferProtocol.receiveRSASenderPublicKey
 
-    @parameterized.expand([[1], [2], [3], [4], [5], [6]])
+    @parameterized.expand([[1], [2], [3], [4], [5], [6], [7], [8]])
     def test_sendDesiredDataForEachTestCase(self, index):
 
         senderFunction = self.senderMethodMapper(index)

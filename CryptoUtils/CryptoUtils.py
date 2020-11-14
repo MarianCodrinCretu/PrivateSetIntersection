@@ -59,6 +59,12 @@ def rsaDecrypt(key, data):
     key = PKCS1_OAEP.new(key)
     return key.decrypt(data).decode('utf8')
 
+def convertRSAKeyToString(rsaKey):
+    return rsaKey.exportKey("PEM")
+
+def stringToRSAKey(stringKey):
+    return RSA.importKey(stringKey)
+
 
 key = generateAESKey()
 (publicKey, privateKey) = generateClientRSAKeys()

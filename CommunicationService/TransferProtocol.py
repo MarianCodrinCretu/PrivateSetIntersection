@@ -31,23 +31,28 @@ class TransferProtocol:
                            HEADERSIZE=10, flag='NoAES')
 
     def sendRSAReceiverPublicKey(self, key):
+        key = CryptoUtils.CryptoUtils.convertRSAKeyToString(key)
         self._comSend.send(key, self._connectionParams['Server IP'],
                            int(self._connectionParams['Server Port']),
                            HEADERSIZE=50, flag='NoAES')
 
     def receiveRSAReceiverPublicKey(self):
-        return self._comReceive.receive(self._connectionParams['Server IP'], int(self._connectionParams['Server Port']),
+
+        result= self._comReceive.receive(self._connectionParams['Server IP'], int(self._connectionParams['Server Port']),
                                         HEADERSIZE=50, flag='NoAES')
+        return CryptoUtils.CryptoUtils.stringToRSAKey(result)
 
     def sendRSASenderPublicKey(self, key):
+        key = CryptoUtils.CryptoUtils.convertRSAKeyToString(key)
         self._comSend.send(key, self._connectionParams['Client IP'],
                            int(self._connectionParams['Client Port']),
                            HEADERSIZE=50, flag='NoAES')
 
 
     def receiveRSASenderPublicKey(self, key):
-        return self._comReceive.receive(self._connectionParams['Client IP'], int(self._connectionParams['Client Port']),
+        result = self._comReceive.receive(self._connectionParams['Client IP'], int(self._connectionParams['Client Port']),
                                         HEADERSIZE=50, flag='NoAES')
+        return CryptoUtils.CryptoUtils.stringToRSAKey(result)
 
 
 
