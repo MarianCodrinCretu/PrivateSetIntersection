@@ -1,0 +1,41 @@
+ERROR:root:The prf was instantiated with an invalid key
+ERROR:root:The prf was instantiated with an invalid key
+ERROR:root:The prf was instantiated with an invalid key
+ERROR:root:The prf was instantiated with an invalid key
+ERROR:root:The prf was instantiated with a key of invalid length
+ERROR:root:The prf was instantiated with an invalid key
+ERROR:root:The prf was instantiated with a key of invalid length
+ERROR:root:The prf was instantiated with an initialization vector of invalid length:
+ERROR:root:Incorrect DES key length (4 bytes)
+ERROR:root:The prf was instantiated with an invalid key
+ERROR:root:The prf was instantiated with a key of invalid length
+ERROR:root:The prf was instantiated with an invalid key
+ERROR:root:The prf was instantiated with a key of invalid length
+ERROR:root:Incorrect DES key length (4 bytes)
+ERROR:root:The prf cannot be instantiated with a key of invalid type
+ERROR:root:The prf cannot be instantiated with a key of invalid type
+ERROR:root:The prf was instantiated with a key of invalid length
+ERROR:root:The prf was instantiated with a key of invalid length
+ERROR:root:The prf was instantiated with a key of invalid length
+ERROR:root:The prf cannot be instantiated with a key of invalid type
+ERROR:root:The prf cannot be instantiated with a key of invalid type
+ERROR:root:The prf cannot be instantiated with a key of invalid type
+ERROR:root:The prf cannot be instantiated with a key of invalid type
+ERROR:root:The prf cannot be instantiated with a key of invalid type
+ERROR:root:Your input for your hash was not of byte type
+ERROR:root:Unicode-objects must be encoded before hashing
+ERROR:root:Your input for your hash was not of byte type
+ERROR:root:Your input for your hash was not of byte type
+INFO:root:The input has changed so it can be hashed
+INFO:root:The input has changed so it can be hashed
+INFO:root:The input has changed so it can be hashed
+INFO:root:The input has changed so it can be hashed
+INFO:root:The input has changed so it can be hashed
+INFO:root:The input has changed so it can be hashed
+INFO:root:The input has changed so it can be hashed
+INFO:root:The input has changed so it can be hashed
+INFO:root:The input has changed so it can be hashed
+INFO:root:The input has changed so it can be hashed
+INFO:root:The input has changed so it can be hashed
+INFO:root:The input has changed so it can be hashed
+ERROR:root:Input of invalid type and it can not be hashed

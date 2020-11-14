@@ -1,5 +1,8 @@
 from abc import ABC, abstractmethod
 
+from AOP.DataInterceptor import checkHashPlaintextValidity
+
+
 class HashFunction(ABC):
     def generate(self, plaintext):
         self.initialize()
@@ -11,6 +14,7 @@ class HashFunction(ABC):
     def initialize(self):
         pass
 
+    @checkHashPlaintextValidity
     def computeDigest(self, plaintext):
         self._hash.update(plaintext)
         self._result = self._hash.digest()
