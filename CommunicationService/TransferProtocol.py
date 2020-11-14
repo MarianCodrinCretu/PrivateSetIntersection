@@ -1,11 +1,14 @@
 from CommunicationService.ComReceive import ComReceive
 from CommunicationService.ComSend import ComSend
-from CommunicationService.SocketPool import SocketPool
-import pickle
+import time
+import aspectlib
 
 
 # TransferProtocol Communication Class
 # @author mcretu
+from Constants import SNOOZE_FACTOR
+
+
 class TransferProtocol:
 
     # connectionParams is a dictionary with parameters connection
@@ -57,24 +60,17 @@ class TransferProtocol:
                                         int(self._connectionParams['Client Port']),
                                         HEADERSIZE=10)
 
-
-
     def receiveNegotiateParameters(self):
         return self._comReceive.receive(self._connectionParams['Server IP'], int(self._connectionParams['Server Port']),
                                         HEADERSIZE=10)
-
-
 
     def receiveOT(self):
         return self._comReceive.receive(self._connectionParams['Server IP'], int(self._connectionParams['Server Port']),
                                         HEADERSIZE=10)
 
-
     def receiveKey(self):
         return self._comReceive.receive(self._connectionParams['Server IP'], int(self._connectionParams['Server Port']),
                                         HEADERSIZE=10)
-
-
 
     def receivePsiValues(self):
         return self._comReceive.receive(self._connectionParams['Client IP'], int(self._connectionParams['Client Port']),

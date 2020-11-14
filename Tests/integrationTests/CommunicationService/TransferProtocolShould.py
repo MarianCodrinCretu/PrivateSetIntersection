@@ -2,9 +2,9 @@ import pickle
 import socket
 import threading
 import time
-import unittest
 from unittest import TestCase
 from parameterized import parameterized
+from Crypto.Cipher import AES
 
 import Constants
 from CommunicationService.ComReceive import ComReceive
@@ -13,10 +13,10 @@ from CommunicationService.SocketPool import SocketPool
 from CommunicationService.TransferProtocol import TransferProtocol
 
 
-def run_fake_server(address, port):
+def run_fake_server(address, port, key, iv):
     # Run a server to listen for a connection and then close it
     # inspiration source https://www.devdungeon.com/content/unit-testing-tcp-server-client-python
-    time.sleep(0.3)
+    time.sleep(0.001)
     server_sock = socket.socket()
     server_sock.bind((address, port))
     server_sock.listen(1)
@@ -27,13 +27,15 @@ def run_fake_server(address, port):
 bufferZone = ""
 
 
-def run_fake_client(address, port, message, HEADERSIZE):
+def run_fake_client(address, port, message, key, iv, HEADERSIZE):
     global bufferZone
     try:
-        time.sleep(0.5)
+        time.sleep(0.001)
         server_sock = socket.socket()
         server_sock.connect((address, port))
+        cipher = AES.new(key, AES.MODE_CFB, iv)
         message = pickle.dumps(message)
+        message = cipher.encrypt(message)
         message = bytes(f"{len(message):<{HEADERSIZE}}", 'utf-8') + message
         server_sock.send(message)
         server_sock.close()
@@ -46,8 +48,8 @@ class TransferProtocolShould(TestCase):
                          'Server Port': Constants.SENDER_PORT,
                          'Client IP': Constants.RECEIVER_ADDRESS,
                          'Client Port': Constants.RECEIVER_PORT}
-    comSend = ComSend(SocketPool(20))
-    comReceive = ComReceive(SocketPool(20))
+    comSend = ComSend(SocketPool(20), "Thats my Kung Fu", "ABCDE FG HIJK LM")
+    comReceive = ComReceive(SocketPool(20),"Thats my Kung Fu", "ABCDE FG HIJK LM")
 
     transferProtocol = TransferProtocol(_connectionParams, comSend, comReceive)
 
@@ -111,9 +113,9 @@ class TransferProtocolShould(TestCase):
 
         senderFunction = self.senderMethodMapper(index)
         ip, port, parametersList, HEADERSIZE = self.parametersMapper(index)
-        server_thread = threading.Thread(target=run_fake_server, args=(ip, port))
+        server_thread = threading.Thread(target=run_fake_server, args=(ip, port, self.comSend.aesKey, self.comSend.aesIV))
         server_thread.start()
-        time.sleep(0.2)
+        time.sleep(0.02)
         if len(parametersList) == 0:
             senderFunction()
         else:
@@ -136,7 +138,7 @@ class TransferProtocolShould(TestCase):
         else:
             parameter = parametersList[0]
 
-        client_thread = threading.Thread(target=run_fake_client, args=(ip, port, parameter, HEADERSIZE))
+        client_thread = threading.Thread(target=run_fake_client, args=(ip, port, parameter, self.comReceive.aesKey,self.comReceive.aesIV, HEADERSIZE))
         client_thread.start()
 
         data = receiverFunction()
@@ -146,4 +148,4 @@ class TransferProtocolShould(TestCase):
         if bufferZone == "CONNECTION ERROR":
             self.fail()
 
-        time.sleep(0.1)
+        time.sleep(0.01)

@@ -6,12 +6,13 @@ import time
 
 from CommunicationService.ComReceive import ComReceive
 from CommunicationService.SocketPool import SocketPool
+from Crypto.Cipher import AES
 
 bufferZone = ""
 message = "I love ASET"
 messageReceived = message
 
-def run_fake_client():
+def run_fake_client(key, iv):
     # Run a client which connects to a server
     # inspiration source https://www.devdungeon.com/content/unit-testing-tcp-server-client-python
     global bufferZone
@@ -20,7 +21,9 @@ def run_fake_client():
         time.sleep(0.5)
         server_sock = socket.socket()
         server_sock.connect(('127.0.0.1', 4455))
+        cipher = AES.new(key, AES.MODE_CFB, iv)
         message = pickle.dumps(message)
+        message = cipher.encrypt(message)
         message = bytes(f"{len(message):<{10}}", 'utf-8') + message
         server_sock.send(message)
 
@@ -33,10 +36,9 @@ class ComReceiveShould(TestCase):
 
         global bufferZone
 
-        client_thread = threading.Thread(target=run_fake_client)
+        comReceive = ComReceive(SocketPool(5), "Thats my Kung Fu", "ABCDE FG HIJK LM")
+        client_thread = threading.Thread(target=run_fake_client, args=(comReceive.aesKey, comReceive.aesIV))
         client_thread.start()
-
-        comReceive = ComReceive(SocketPool(5))
         comReceive.receive(ipToReceive="127.0.0.1",
                            portToReceive=4455,
                            HEADERSIZE=10)
@@ -50,10 +52,9 @@ class ComReceiveShould(TestCase):
         global bufferZone
         global messageReceived
 
-        client_thread = threading.Thread(target=run_fake_client)
+        comReceive = ComReceive(SocketPool(5), "Thats my Kung Fu", "ABCDE FG HIJK LM")
+        client_thread = threading.Thread(target=run_fake_client, args=(comReceive.aesKey, comReceive.aesIV))
         client_thread.start()
-
-        comReceive = ComReceive(SocketPool(5))
         data = comReceive.receive(ipToReceive="127.0.0.1",
                            portToReceive=4455,
                            HEADERSIZE=10)

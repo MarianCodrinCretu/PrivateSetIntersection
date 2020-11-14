@@ -5,6 +5,7 @@ import time
 
 from CommunicationService.ComSend import ComSend
 from CommunicationService.SocketPool import SocketPool
+from Crypto.Cipher import AES
 
 def run_fake_server():
     # Run a server to listen for a connection and then close it
@@ -19,7 +20,7 @@ class ComSendShould(TestCase):
 
     def test_failWhereConnectionRefused(self):
 
-        comSend = ComSend(SocketPool(5))
+        comSend = ComSend(SocketPool(5),"Thats my Kung Fu", "ABCDE FG HIJK LM")
         #no server is at the designated address
         with self.assertRaises(ConnectionRefusedError):
             comSend.send(toBeSent="dummyData", ipDestination="127.0.0.1",
@@ -28,7 +29,7 @@ class ComSendShould(TestCase):
 
     def test_successWhenConnectionValid(self):
 
-        comSend = ComSend(SocketPool(5))
+        comSend = ComSend(SocketPool(5), "Thats my Kung Fu", "ABCDE FG HIJK LM")
         toBeSent = "dummyData"
         ipDestination = "127.0.0.1"
         portDestination = 4455
