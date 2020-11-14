@@ -10,11 +10,14 @@ from Constants import SNOOZE_FACTOR
 class ComSend(Communication):
 
     @aspectlib.Aspect
-    def encryptDataAES(self, toBeSent):
+    def encryptDataAES(self, toBeSent, flag):
 
-        cipher = AES.new(self.aesKey, AES.MODE_CFB, self.aesIV)
-        data = yield aspectlib.Proceed
-        yield aspectlib.Return(cipher.encrypt(data))
+        if flag=='NoAES':
+            yield aspectlib.Proceed
+        else:
+            cipher = AES.new(self.aesKey, AES.MODE_CFB, self.aesIV)
+            data = yield aspectlib.Proceed
+            yield aspectlib.Return(cipher.encrypt(data))
 
     @aspectlib.Aspect
     def snoozeAdaptivelyTime(self, data):
@@ -24,15 +27,15 @@ class ComSend(Communication):
         time.sleep(0.2)
 
 
-    def processData(self, toBeSent):
+    def processData(self, toBeSent, flag):
         binaryDict = pickle.dumps(toBeSent)
         return binaryDict
 
 
-    def send(self, toBeSent, ipDestination, portDestination, HEADERSIZE):
+    def send(self, toBeSent, ipDestination, portDestination, HEADERSIZE, flag=None):
 
         with aspectlib.weave(self.processData, self.encryptDataAES):
-            binaryDict = self.processData(toBeSent)
+            binaryDict = self.processData(toBeSent, flag)
 
         socket = self._socketPool.acquire()
         socket.connect((ipDestination, portDestination))

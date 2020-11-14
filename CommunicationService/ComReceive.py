@@ -8,18 +8,21 @@ from CommunicationService.Communication import Communication
 class ComReceive(Communication):
 
     @aspectlib.Aspect
-    def decryptDataAES(self, data):
+    def decryptDataAES(self, data, flag):
 
-        cipher = AES.new(self.aesKey, AES.MODE_CFB, self.aesIV)
-        data = cipher.decrypt(data)
-        yield aspectlib.Proceed(self, data)
+        if flag == 'NoAES':
+            yield aspectlib.Proceed
+        else:
+            cipher = AES.new(self.aesKey, AES.MODE_CFB, self.aesIV)
+            data = cipher.decrypt(data)
+            yield aspectlib.Proceed(self, data, flag)
 
-    def processData(self, data):
+    def processData(self, data, flag):
 
         data = pickle.loads(data)
         return data
 
-    def receive(self, ipToReceive, portToReceive, HEADERSIZE, sizeOfDgram=16):
+    def receive(self, ipToReceive, portToReceive, HEADERSIZE, sizeOfDgram=16, flag=None):
 
         socket = self._socketPool.acquire()
         socket.bind((ipToReceive, int(portToReceive)))
@@ -43,5 +46,5 @@ class ComReceive(Communication):
                 data = receivedObject[HEADERSIZE:]
 
                 with aspectlib.weave(self.processData, self.decryptDataAES):
-                    return self.processData(data)
+                    return self.processData(data, flag)
 

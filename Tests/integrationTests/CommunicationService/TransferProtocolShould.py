@@ -27,15 +27,19 @@ def run_fake_server(address, port, key, iv):
 bufferZone = ""
 
 
-def run_fake_client(address, port, message, key, iv, HEADERSIZE):
+def run_fake_client(address, port, message, key, iv, HEADERSIZE, flag):
     global bufferZone
     try:
         time.sleep(0.001)
         server_sock = socket.socket()
         server_sock.connect((address, port))
-        cipher = AES.new(key, AES.MODE_CFB, iv)
-        message = pickle.dumps(message)
-        message = cipher.encrypt(message)
+        if flag!='NoAES':
+            print("intru aici NU AR TREBUI")
+            cipher = AES.new(key, AES.MODE_CFB, iv)
+            message = pickle.dumps(message)
+            message = cipher.encrypt(message)
+        else:
+            message = pickle.dumps(message)
         message = bytes(f"{len(message):<{HEADERSIZE}}", 'utf-8') + message
         server_sock.send(message)
         server_sock.close()
@@ -57,28 +61,28 @@ class TransferProtocolShould(TestCase):
         if index == 1:
             return self._connectionParams['Server IP'], \
                    int(self._connectionParams['Server Port']), \
-                   [], 10
+                   [], 10, 'NoAES'
         if index == 2:
             return self._connectionParams['Client IP'], \
                    int(self._connectionParams['Client Port']), \
-                   [], 10
+                   [], 10, 'NoAES'
         if index == 3:
             return self._connectionParams['Server IP'], \
                    int(self._connectionParams['Server Port']), \
                    [{'message': 'I love Quantum Computing', 'message2': 'I love Superposition and Entanglement',
-                     'planck': 6.61e-2}], 10
+                     'planck': 6.61e-2}], 10, None
         if index == 4:
             return self._connectionParams['Server IP'], \
                    int(self._connectionParams['Server Port']), \
-                   [[[i for i in range(10)] for j in range(10)]], 10
+                   [[[i for i in range(10)] for j in range(10)]], 10, None
         if index == 5:
             return self._connectionParams['Server IP'], \
                    int(self._connectionParams['Server Port']), \
-                   ["keykeykeykeykey"], 10
+                   ["keykeykeykeykey"], 10, None
         if index == 6:
             return self._connectionParams['Client IP'], \
                    int(self._connectionParams['Client Port']), \
-                   [[[i for i in range(10)] for j in range(10)]], 100
+                   [[[i for i in range(10)] for j in range(10)]], 100, None
 
     def senderMethodMapper(self, index):
         if index == 1:
@@ -112,7 +116,7 @@ class TransferProtocolShould(TestCase):
     def test_sendDesiredDataForEachTestCase(self, index):
 
         senderFunction = self.senderMethodMapper(index)
-        ip, port, parametersList, HEADERSIZE = self.parametersMapper(index)
+        ip, port, parametersList, HEADERSIZE, flag = self.parametersMapper(index)
         server_thread = threading.Thread(target=run_fake_server, args=(ip, port, self.comSend.aesKey, self.comSend.aesIV))
         server_thread.start()
         time.sleep(0.02)
@@ -128,8 +132,8 @@ class TransferProtocolShould(TestCase):
         global bufferZone
 
         receiverFunction = self.receiverMethodMapper(index)
-        ip, port, parametersList, HEADERSIZE = self.parametersMapper(index)
-
+        ip, port, parametersList, HEADERSIZE, flag = self.parametersMapper(index)
+        print(flag)
         parameter = ""
         if index == 1:
             parameter = "Connection attempting!"
@@ -138,7 +142,7 @@ class TransferProtocolShould(TestCase):
         else:
             parameter = parametersList[0]
 
-        client_thread = threading.Thread(target=run_fake_client, args=(ip, port, parameter, self.comReceive.aesKey,self.comReceive.aesIV, HEADERSIZE))
+        client_thread = threading.Thread(target=run_fake_client, args=(ip, port, parameter, self.comReceive.aesKey,self.comReceive.aesIV, HEADERSIZE, flag))
         client_thread.start()
 
         data = receiverFunction()
