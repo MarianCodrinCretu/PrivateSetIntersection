@@ -59,7 +59,8 @@ class ServerWindow(QWidget):
         self.worker.update_data.connect(self.update_textbox)
 
     def update_textbox(self, value):
-        self.log_textbox.setText(self.log_textbox.toPlainText() + "\n" + str(value))
+        text = "Client from " + str(value) + " is connected"
+        self.log_textbox.setText(self.log_textbox.toPlainText() + "\n" + "\n" + text)
 
 
 class WorkerThread(QThread):
