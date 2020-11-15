@@ -1,0 +1,14 @@
+ERROR:root:Matrix D should contain just bits. D[1][1] = 3
+ERROR:root:A and D should have same number of lines
+ERROR:root:Matrix A should contain just bits. A[1][1] = 3
+ERROR:root:Matrix A should contain just bits. A[1][1] = 5
+ERROR:root:Matrix D should contain just bits. D[1][0] = 5
+ERROR:root:operateDReceiver Matrix D should contain just bits. D[1][0] = 5
+ERROR:root:computeBReceiver: Matrix D should contain just bits. D[1][1] = 5
+ERROR:root:computeBReceiver: A and D should have same number of columns
+ERROR:root:computeBReceiver: A and D should have same number of columns
+ERROR:root:generateSSender: 010
+ERROR:root:generateSSender function should return just bits; result contains a
+ERROR:root:initMatrixDReceiver function should return a matrix just with 1s; D[0][0] = 0
+ERROR:root:initMatrixAReceiver function should return a matrix just with bits; A[0][1] = 3
+ERROR:root:generateKey function should return just bits; result contains s

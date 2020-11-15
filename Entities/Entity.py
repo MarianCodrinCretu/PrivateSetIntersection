@@ -1,4 +1,5 @@
 import abc
+from aspectlib.test import record
 
 
 class Transfer_Protocol:
@@ -111,13 +112,19 @@ class Entity(metaclass=abc.ABCMeta):
         """specific implementation for get_data"""
         raise NotImplementedError
 
-# class Entity:
-#
+    @abc.abstractmethod
+    def end_entity(self):
+        """specific implementation for get_data"""
+        raise NotImplementedError
 
 
 class Sender(Entity):
 
+    @record
     def __init__(self, transfer_protocol):
+        if Receiver.__init__.calls:
+            if Receiver.__init__.calls[0][1] != self.__init__.calls[0][1]:
+                raise Exception("Sender and Receiver should have same Transfer_Protocol")
         super().__init__(transfer_protocol)
         mapper = Mapper("Sender")
 
@@ -127,10 +134,17 @@ class Sender(Entity):
     def get_data(self):
         print("Sender: get data")
 
+    def end_entity(self):
+        self.__init__.calls.clear()
+
 
 class Receiver(Entity):
 
+    @record
     def __init__(self, transfer_protocol):
+        if Sender.__init__.calls:
+            if Sender.__init__.calls[0][1] != self.__init__.calls[0][1]:
+                raise Exception("Sender and Receiver should have same Transfer_Protocol")
         super().__init__(transfer_protocol)
         mapper = Mapper("Receiver")
 
@@ -146,13 +160,19 @@ class Receiver(Entity):
     def negociate_parameters(self):
         pass
 
+    def end_entity(self):
+        self.__init__.calls.clear()
 
-t = Transfer_Protocol("Sender")
-sender = Sender(t)
-receiver = Receiver("R - transfer protocol")
-# sender.execute_protocol("s", "s", "s", "s")
-# sender.get_data()
-# receiver.execute_protocol("f", "g", "f", "f")
-# receiver.get_data()
-# print(sender.m)
-# print(sender.transfer_protocol)
+
+if __name__ == "__main__":
+    t = Transfer_Protocol("Sender")
+    sender = Sender(t)
+    print(Sender.__init__.calls)
+    receiver = Receiver(t)
+
+    # sender.execute_protocol("s", "s", "s", "s")
+    # sender.get_data()
+    # receiver.execute_protocol("f", "g", "f", "f")
+    # receiver.get_data()
+    # print(sender.m)
+    # print(sender.transfer_protocol)

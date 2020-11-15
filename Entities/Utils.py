@@ -1,5 +1,6 @@
 import Entity
 import random
+from AOP_specifications import logMatricesBitsErrors, logNotReturnedBitsErrors
 
 
 class RandomUtils:
@@ -20,18 +21,22 @@ class RandomUtils:
             RandomUtils.__instance = self
 
     @staticmethod
+    @logNotReturnedBitsErrors
     def generateSSender(w: int):
         return bin(random.getrandbits(w))[2:].zfill(w)
 
     @staticmethod
+    @logNotReturnedBitsErrors
     def initMatrixDReceiver(m: int, w: int):
         return [[1 for c in range(w)] for l in range(m)]
 
     @staticmethod
+    @logNotReturnedBitsErrors
     def initMatrixAReceiver(m: int, w: int):
         return [[random.randint(0, 1) for c in range(w)] for l in range(m)]
 
     @staticmethod
+    @logNotReturnedBitsErrors
     def generateKey(lambda_: int):
         return bin(random.getrandbits(lambda_))[2:].zfill(lambda_)
 
@@ -54,6 +59,7 @@ class PSIAlgoUtils:
             PSIAlgoUtils.__instance = self
 
     @staticmethod
+    @logMatricesBitsErrors
     def computeBReceiver(D: list, A: list):
         if len(A) != len(D):
             raise Exception("A and D should have same number of lines")
@@ -68,9 +74,13 @@ class PSIAlgoUtils:
         return B
 
     @staticmethod
+    @logMatricesBitsErrors
     def operateDReceiver(D: list):
         pass
 
 
 if __name__ == "__main__":
-    print(PSIAlgoUtils.computeBReceiver([[1, 0], [0, 1], [1]], [[1, 0], [0, 1]]))
+    print(PSIAlgoUtils.computeBReceiver([[1, 0], [0, 1]], [[1, 0], [0, 1]]))
+    print(RandomUtils.generateKey(3))
+    # PSIAlgoUtils.operateDReceiver([[1, 0], [0, 0]])
+    # print(RandomUtils.generateSSender(3))
