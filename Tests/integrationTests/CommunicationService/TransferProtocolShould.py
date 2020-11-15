@@ -14,6 +14,7 @@ from CommunicationService.ComReceive import ComReceive
 from CommunicationService.ComSend import ComSend
 from CommunicationService.SocketPool import SocketPool
 from CommunicationService.TransferProtocol import TransferProtocol
+from CryptoUtils import CryptoUtils
 
 
 def run_fake_server(address, port, key, iv):
@@ -30,7 +31,7 @@ def run_fake_server(address, port, key, iv):
 bufferZone = ""
 
 
-def run_fake_client(address, port, message, key, iv, HEADERSIZE, flag):
+def run_fake_client(address, port, message, key, iv, HEADERSIZE, flag, index):
     global bufferZone
     try:
         time.sleep(0.001)
@@ -41,7 +42,20 @@ def run_fake_client(address, port, message, key, iv, HEADERSIZE, flag):
             message = pickle.dumps(message)
             message = cipher.encrypt(message)
         else:
-            message = pickle.dumps(message)
+            if index in(7,8):
+                message = pickle.dumps(CryptoUtils.convertRSAKeyToString(message))
+            elif index == 9:
+                print(pubKeyServer)
+                print(message)
+                message = CryptoUtils.rsaEncrypt(pubKeyServer, message)
+                message = pickle.dumps(message)
+            elif index == 10:
+                print(pubKeyClient)
+                print(message)
+                message = CryptoUtils.rsaEncrypt(pubKeyClient, message)
+                message = pickle.dumps(message)
+            else:
+                message = pickle.dumps(message)
         message = bytes(f"{len(message):<{HEADERSIZE}}", 'utf-8') + message
         server_sock.send(message)
         server_sock.close()
@@ -50,10 +64,10 @@ def run_fake_client(address, port, message, key, iv, HEADERSIZE, flag):
 
 strKeyClient = open(os.path.join("..", "..", "..", "CryptoUtils", "client_rsa_public.pem"), 'rb').read()
 
-pubKeyClient = RSA.importKey(open(os.path.join("..", "..", "..", "CryptoUtils", "client_rsa_public.pem"), 'rb').read())
-privKeyClient = RSA.importKey(open(os.path.join("..", "..", "..", "CryptoUtils", "client_rsa_private.pem"), 'rb').read())
-pubKeyServer = RSA.importKey(open(os.path.join("..", "..", "..", "CryptoUtils", "client_rsa_public.pem"), 'rb').read())
-privKeyServer = RSA.importKey(open(os.path.join("..", "..", "..", "CryptoUtils", "client_rsa_private.pem"), 'rb').read())
+pubKeyClient = RSA.importKey(open(os.path.join("..", "..", "..", "CryptoUtils", "client_rsa_public.pem")).read())
+privKeyClient = RSA.importKey(open(os.path.join("..", "..", "..", "CryptoUtils", "client_rsa_private.pem")).read())
+pubKeyServer = RSA.importKey(open(os.path.join("..", "..", "..", "CryptoUtils", "client_rsa_public.pem")).read())
+privKeyServer = RSA.importKey(open(os.path.join("..", "..", "..", "CryptoUtils", "client_rsa_private.pem")).read())
 
 class TransferProtocolShould(TestCase):
     _connectionParams = {'Server IP': Constants.SENDER_ADDRESS,
@@ -99,6 +113,13 @@ class TransferProtocolShould(TestCase):
             return self._connectionParams['Client IP'], \
                 int(self._connectionParams['Client Port']), [pubKeyServer], \
                 50, 'NoAES'
+        if index == 10:
+             return self._connectionParams['Server IP'],\
+            int(self._connectionParams['Server Port']), [pubKeyServer, self.comReceive.aesIV], 10, 'NoAES'
+        if index == 9:
+            return self._connectionParams['Client IP'],\
+            int(self._connectionParams['Client Port']), [pubKeyClient, self.comReceive.aesKey], 10, 'NoAES'
+
 
     def senderMethodMapper(self, index):
         if index == 1:
@@ -117,6 +138,10 @@ class TransferProtocolShould(TestCase):
             return self.transferProtocol.sendRSAReceiverPublicKey
         if index==8:
             return self.transferProtocol.sendRSASenderPublicKey
+        if index == 9:
+            return self.transferProtocol.sendAESKeyByRSA
+        if index==10:
+            return self.transferProtocol.sendIVByRSA
 
     def receiverMethodMapper(self, index):
         if index == 1:
@@ -135,8 +160,12 @@ class TransferProtocolShould(TestCase):
             return self.transferProtocol.receiveRSAReceiverPublicKey
         if index == 8:
             return self.transferProtocol.receiveRSASenderPublicKey
+        if index == 9:
+            return self.transferProtocol.receiveAESKeyByRSA
+        if index==10:
+            return self.transferProtocol.receiveIVByRSA
 
-    @parameterized.expand([[1], [2], [3], [4], [5], [6], [7], [8]])
+    @parameterized.expand([[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]])
     def test_sendDesiredDataForEachTestCase(self, index):
 
         senderFunction = self.senderMethodMapper(index)
@@ -146,31 +175,52 @@ class TransferProtocolShould(TestCase):
         time.sleep(0.02)
         if len(parametersList) == 0:
             senderFunction()
+        elif len(parametersList)==2:
+            senderFunction(parametersList[1], parametersList[0])
         else:
             senderFunction(parametersList[0])
         server_thread.join()
 
-    @parameterized.expand([[1], [2], [3], [4], [5], [6]])
+    @parameterized.expand([[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]])
     def test_receiveDesiredDataForEachTestCase(self, index):
 
         global bufferZone
 
         receiverFunction = self.receiverMethodMapper(index)
+        print(self.parametersMapper(index))
         ip, port, parametersList, HEADERSIZE, flag = self.parametersMapper(index)
-        print(flag)
         parameter = ""
+        receiveParameter = None
         if index == 1:
             parameter = "Connection attempting!"
         elif index == 2:
             parameter = "Received connection attempting! All ok!"
+        elif index == 9:
+            parameter = self.comReceive.aesIV
+        elif index == 10:
+            parameter = self.comReceive.aesKey
         else:
             parameter = parametersList[0]
 
-        client_thread = threading.Thread(target=run_fake_client, args=(ip, port, parameter, self.comReceive.aesKey,self.comReceive.aesIV, HEADERSIZE, flag))
+        if index == 9:
+            receiveParameter = privKeyServer
+        elif index== 10:
+            receiveParameter = privKeyClient
+        else:
+            receiveParameter = parameter
+
+        client_thread = threading.Thread(target=run_fake_client, args=(ip, port, parameter, self.comReceive.aesKey,self.comReceive.aesIV, HEADERSIZE, flag, index))
         client_thread.start()
 
-        data = receiverFunction()
-        self.assertEqual(data, parameter)
+        if index not in (9,10):
+            data = receiverFunction()
+        else:
+            data = receiverFunction(receiveParameter)
+
+        if index not in (9,10):
+            self.assertEqual(data, parameter)
+        else:
+            self.assertEqual(data, parameter.decode())
         client_thread.join()
 
         if bufferZone == "CONNECTION ERROR":

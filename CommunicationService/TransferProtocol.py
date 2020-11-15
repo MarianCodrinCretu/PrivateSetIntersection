@@ -49,7 +49,7 @@ class TransferProtocol:
                            HEADERSIZE=50, flag='NoAES')
 
 
-    def receiveRSASenderPublicKey(self, key):
+    def receiveRSASenderPublicKey(self):
         result = self._comReceive.receive(self._connectionParams['Client IP'], int(self._connectionParams['Client Port']),
                                         HEADERSIZE=50, flag='NoAES')
         return CryptoUtils.CryptoUtils.stringToRSAKey(result)

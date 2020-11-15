@@ -69,6 +69,7 @@ def stringToRSAKey(stringKey):
 key = generateAESKey()
 (publicKey, privateKey) = generateClientRSAKeys()
 generateServerRSAKeys()
-print(key)
-print(rsaDecrypt(privateKey, rsaEncrypt(publicKey, key.encode('utf8'))))
+#print(key)
+print(publicKey)
+#print(rsaDecrypt(privateKey, rsaEncrypt(publicKey, key.encode('utf8'))))
 
