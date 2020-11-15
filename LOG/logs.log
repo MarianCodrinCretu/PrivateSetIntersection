@@ -39,3 +39,5 @@ INFO:root:The input has changed so it can be hashed
 INFO:root:The input has changed so it can be hashed
 INFO:root:The input has changed so it can be hashed
 ERROR:root:Input of invalid type and it can not be hashed
+ERROR:root:The prf cannot be instantiated with a key of invalid type
+ERROR:root:Input of invalid type and it can not be hashed

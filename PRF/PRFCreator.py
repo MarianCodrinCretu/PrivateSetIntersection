@@ -12,4 +12,7 @@ class PRFCreator(ABC):
         pass
 
     def computePrf(self, plaintext):
-        return self._prf.computePrf(plaintext)
+        return self.getPrf().computePrf(plaintext)
+
+    def getPrf(self):
+        return self._prf

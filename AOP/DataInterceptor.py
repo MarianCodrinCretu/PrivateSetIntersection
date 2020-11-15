@@ -2,7 +2,7 @@ from Crypto.Util.Padding import pad
 from aspectlib import Aspect, Proceed
 
 import logging
-logging.basicConfig(filename='../LOG/logs.log', level=logging.DEBUG)
+logging.basicConfig(filename='../../LOG/logs.log', level=logging.DEBUG)
 
 @Aspect
 def changePlaintextValidity(*args):
@@ -14,6 +14,7 @@ def changePlaintextValidity(*args):
         plaintext = plaintext.encode("utf-8")
     else:
         plaintext = pad(plaintext, blockSize)
+    plaintext = pad(plaintext, blockSize)
 
     yield Proceed(classInstance, plaintext)
 
