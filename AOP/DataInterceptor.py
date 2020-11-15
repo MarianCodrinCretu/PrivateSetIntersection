@@ -1,8 +1,13 @@
+import os
+
 from Crypto.Util.Padding import pad
 from aspectlib import Aspect, Proceed
 
 import logging
-logging.basicConfig(filename='../LOG/logs.log', level=logging.DEBUG)
+
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+CONFIG_PATH = os.path.join(ROOT_DIR, '/LOG/logs.log')
+logging.basicConfig(filename='CONFIG_PATH', level=logging.DEBUG)
 
 @Aspect
 def changePlaintextValidity(*args):
