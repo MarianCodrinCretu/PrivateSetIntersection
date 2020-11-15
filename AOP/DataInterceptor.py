@@ -2,7 +2,7 @@ from Crypto.Util.Padding import pad
 from aspectlib import Aspect, Proceed
 
 import logging
-logging.basicConfig(filename='../../LOG/logs.log', level=logging.DEBUG)
+logging.basicConfig(filename='../LOG/logs.log', level=logging.DEBUG)
 
 @Aspect
 def changePlaintextValidity(*args):
