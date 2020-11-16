@@ -1,43 +1,8 @@
-ERROR:root:The prf was instantiated with an invalid key
-ERROR:root:The prf was instantiated with an invalid key
-ERROR:root:The prf was instantiated with an invalid key
-ERROR:root:The prf was instantiated with an invalid key
-ERROR:root:The prf was instantiated with a key of invalid length
-ERROR:root:The prf was instantiated with an invalid key
-ERROR:root:The prf was instantiated with a key of invalid length
-ERROR:root:The prf was instantiated with an initialization vector of invalid length:
-ERROR:root:Incorrect DES key length (4 bytes)
-ERROR:root:The prf was instantiated with an invalid key
-ERROR:root:The prf was instantiated with a key of invalid length
-ERROR:root:The prf was instantiated with an invalid key
-ERROR:root:The prf was instantiated with a key of invalid length
-ERROR:root:Incorrect DES key length (4 bytes)
-ERROR:root:The prf cannot be instantiated with a key of invalid type
-ERROR:root:The prf cannot be instantiated with a key of invalid type
-ERROR:root:The prf was instantiated with a key of invalid length
-ERROR:root:The prf was instantiated with a key of invalid length
-ERROR:root:The prf was instantiated with a key of invalid length
-ERROR:root:The prf cannot be instantiated with a key of invalid type
-ERROR:root:The prf cannot be instantiated with a key of invalid type
-ERROR:root:The prf cannot be instantiated with a key of invalid type
-ERROR:root:The prf cannot be instantiated with a key of invalid type
-ERROR:root:The prf cannot be instantiated with a key of invalid type
-ERROR:root:Your input for your hash was not of byte type
-ERROR:root:Unicode-objects must be encoded before hashing
-ERROR:root:Your input for your hash was not of byte type
-ERROR:root:Your input for your hash was not of byte type
-INFO:root:The input has changed so it can be hashed
-INFO:root:The input has changed so it can be hashed
-INFO:root:The input has changed so it can be hashed
-INFO:root:The input has changed so it can be hashed
-INFO:root:The input has changed so it can be hashed
-INFO:root:The input has changed so it can be hashed
-INFO:root:The input has changed so it can be hashed
-INFO:root:The input has changed so it can be hashed
-INFO:root:The input has changed so it can be hashed
-INFO:root:The input has changed so it can be hashed
-INFO:root:The input has changed so it can be hashed
-INFO:root:The input has changed so it can be hashed
-ERROR:root:Input of invalid type and it can not be hashed
-ERROR:root:The prf cannot be instantiated with a key of invalid type
-ERROR:root:Input of invalid type and it can not be hashed
+ERROR:root:[ 16/11/2020 09:46:24 ] Input of invalid type and it can not be hashed
+ERROR:root:[ 16/11/2020 09:46:56 ] Input of invalid type and it can not be hashed
+ERROR:root:[ 16/11/2020 09:47:32 ] The prf cannot be instantiated with a key of invalid type
+INFO:root:[ 16/11/2020 09:49:37 ] The plaintext type has been changed to bytes so it can be computed
+INFO:root:[ 16/11/2020 09:49:46 ] The plaintext type has been changed to bytes so it can be computed
+INFO:root:[ 16/11/2020 09:50:06 ] The plaintext type has been changed to bytes so it can be computed
+ERROR:root:[ 16/11/2020 09:51:55 ] The prf was instantiated with a key of invalid length
+ERROR:root:[ 16/11/2020 09:52:09 ] The prf was instantiated with an initialization vector of invalid length

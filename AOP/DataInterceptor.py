@@ -2,12 +2,10 @@ import os
 
 from Crypto.Util.Padding import pad
 from aspectlib import Aspect, Proceed
+from datetime import datetime
 
 import logging
-
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-CONFIG_PATH = os.path.join(ROOT_DIR, '/LOG/logs.log')
-logging.basicConfig(filename='CONFIG_PATH', level=logging.DEBUG)
+logging.basicConfig(filename='../LOG/logs.log', level=logging.DEBUG)
 
 @Aspect
 def changePlaintextValidity(*args):
@@ -17,10 +15,17 @@ def changePlaintextValidity(*args):
 
     if isinstance(plaintext, str):
         plaintext = plaintext.encode("utf-8")
-    else:
+        loggingInfo = '[ ' + getCurrentTime() + ' ] The plaintext type has been changed to bytes so it can be computed'
+        logging.info(loggingInfo)
+        raise TypeError('The prf cannot be computed on this type of value')
+    elif isinstance(plaintext, bytes):
         plaintext = pad(plaintext, blockSize)
-    plaintext = pad(plaintext, blockSize)
+    else:
+        loggingError = '[ ' + getCurrentTime() + ' ] The prf cannot be computed on this type of value' + str(type(plaintext))
+        logging.error(loggingError)
+        raise TypeError('The prf cannot be computed on this type of value')
 
+    plaintext = pad(plaintext, blockSize)
     yield Proceed(classInstance, plaintext)
 
 
@@ -32,26 +37,32 @@ def logCipherDetailsErrors(*args):
     iv = classInstance._iv
 
     if not isinstance(key, bytes):
-        logging.error('The prf cannot be instantiated with a key of invalid type')
+        loggingError = '[ ' + getCurrentTime() + ' ] The prf cannot be instantiated with a key of invalid type'
+        logging.error(loggingError)
         raise TypeError('Please instantiate your PRF function with a key of byte type')
 
     if not isinstance(iv, bytes):
-        logging.error('The prf was instantiated with an invalid iv')
+        loggingError = '[ ' + getCurrentTime() + ' ] The prf was instantiated with an invalid iv'
+        logging.error(loggingError)
         raise TypeError('Please instantiate your PRF function with an initialization vector of byte type')
 
     if len(key) != blockSize:
-        logging.error('The prf was instantiated with a key of invalid length')
+        loggingError = '[ ' + getCurrentTime() + ' ] The prf was instantiated with a key of invalid length'
+        logging.error(loggingError)
         raise TypeError('Please instantiate your PRF function with a key of length: ' + str(blockSize))
 
     if len(iv) != blockSize:
-        logging.error('The prf was instantiated with an initialization vector of invalid length')
-        raise TypeError('Please instantiate your PRF function with an initialization vector  of length: ' + str(blockSize))
+        loggingError = '[ ' + getCurrentTime() + ' ] The prf was instantiated with an initialization vector of invalid length'
+        logging.error(loggingError)
+        raise TypeError(
+            'Please instantiate your PRF function with an initialization vector  of length: ' + str(blockSize))
 
     try:
         yield
     except Exception as exception:
         print('An error has occurred when setting your PRF cipher, please check you logs file for more information')
-        logging.error(exception)
+        loggingError = '[ ' + getCurrentTime() + ' ] ' + str(exception)
+        logging.error(loggingError)
 
 
 @Aspect
@@ -60,14 +71,23 @@ def checkHashPlaintextValidity(*args):
     classInstance = args[0]
 
     if isinstance(plaintext, str):
-        logging.info('The input has changed so it can be hashed')
+        loggingInfo = '[ ' + getCurrentTime() + ' ] The input has changed so it can be hashed'
+        logging.info(loggingInfo)
         plaintext = plaintext.encode('utf-8')
     elif not isinstance(plaintext, bytes):
-        logging.error('Input of invalid type and it can not be hashed')
+        loggingError = '[ ' + getCurrentTime() + ' ] Input of invalid type and it can not be hashed'
+        logging.error(loggingError)
         raise ValueError('Your input is of invalid type and it can not be hashed')
 
     try:
         yield Proceed(classInstance, plaintext)
     except Exception as exception:
-        print('An error has occurred when you tried to compute your hash, for more information please check your errors log file')
-        logging.error(exception)
+        print(
+            'An error has occurred when you tried to compute your hash, for more information please check your errors log file')
+        loggingError = '[ ' + getCurrentTime() + ' ] ' + str(exception)
+        logging.error(loggingError)
+
+
+def getCurrentTime():
+    currentTime = datetime.now()
+    return currentTime.strftime("%d/%m/%Y %H:%M:%S")

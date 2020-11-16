@@ -5,7 +5,7 @@ from Hash.HashSha1 import HashSha1
 from Hash.HashSha256 import HashSha256
 from Hash.HashBlake2b import HashBlake2b
 
-plaintext = 3
+plaintext = b'test'
 print(plaintext)
 md5Hash = HashMd5()
 md5Hash.generate(plaintext)

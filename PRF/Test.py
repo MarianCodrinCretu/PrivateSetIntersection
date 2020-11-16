@@ -2,14 +2,13 @@
 from PRF.DESPrfCreator import DESPrfCreator
 from PRF.AESPrfCreator import AESPrfCreator
 #
-# key = 'This is a key123'.encode("utf8")
-# iv = 'This is an IV456'.encode("utf8")
-# print(type(key))
-# plaintext = 'This is a key123'
-#
-# prfCreator = AESPrfCreator(iv, key)
-# result = prfCreator.computePrf(plaintext)
-# print(result)
+key = 'This is a key123'.encode("utf8")
+iv = 'This is an IV4'.encode("utf8")
+plaintext = 'test'
+
+prfCreator = AESPrfCreator(iv, key)
+result = prfCreator.computePrf(plaintext)
+print(result)
 
 from Crypto.Util.Padding import pad
 key = "12345678"
@@ -19,4 +18,10 @@ plaintext = 'andzddsdfsdfsdfsdfsdfsdfsddsfdsfdsfdsffdfsfsdfsdfssdfsdfsdfsdfsdfsd
 prfCreator = DESPrfCreator(iv, key)
 # result = prfCreator.computePrf(plaintext)
 # print(isinstance(plaintext, str))
+
+
+
+
+
+
 
