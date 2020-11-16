@@ -18,8 +18,6 @@ def changePlaintextValidity(*args):
         loggingInfo = '[ ' + getCurrentTime() + ' ] The plaintext type has been changed to bytes so it can be computed'
         logging.info(loggingInfo)
         raise TypeError('The prf cannot be computed on this type of value')
-    elif isinstance(plaintext, bytes):
-        plaintext = pad(plaintext, blockSize)
     else:
         loggingError = '[ ' + getCurrentTime() + ' ] The prf cannot be computed on this type of value' + str(type(plaintext))
         logging.error(loggingError)
