@@ -1,0 +1,28 @@
+
+HASH_LIST = ['MD5', 'SHA1', 'SHA256', 'BLAKE2B']
+
+PRF_LIST = ['AES', 'DES']
+
+OT_VARIANTS = ['1', '2']
+
+LAMBDA = 128
+
+SIGMA = 40
+
+L1 = 256
+
+L2 = 50
+
+mMin = 0.25
+
+mMax = 1.25
+
+m = 1.0
+
+W = 10
+
+DEFAULT_HASH = 'MD5'
+
+DEFAULT_PRF = 'AES'
+
+DEFAULT_OT = 1
