@@ -1,5 +1,6 @@
 import Entity
-import random
+from Crypto.Random import random
+# import random
 from AOP_specifications import logMatricesBitsErrors, logNotReturnedBitsErrors
 
 
@@ -84,3 +85,4 @@ if __name__ == "__main__":
     print(RandomUtils.generateKey(3))
     # PSIAlgoUtils.operateDReceiver([[1, 0], [0, 0]])
     # print(RandomUtils.generateSSender(3))
+    print(bin(random.getrandbits(5)))

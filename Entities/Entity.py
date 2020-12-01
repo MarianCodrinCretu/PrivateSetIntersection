@@ -1,10 +1,6 @@
 import abc
 from aspectlib.test import record
-
-
-class Transfer_Protocol:
-    def __init__(self, value):
-        pass
+from Transfer import Transfer_Protocol
 
 
 class Mapper:
@@ -18,8 +14,8 @@ class Entity(metaclass=abc.ABCMeta):
         """Uses property setter."""
         self.lambda_ = "lambda"
         self.sigma = "sigma"
-        self.m = "m"
-        self.w = "w"
+        self.m = 3
+        self.w = 5
         self.l1 = "l1"
         self.l2 = "l2"
         self.transfer_protocol = transfer_protocol
@@ -116,63 +112,3 @@ class Entity(metaclass=abc.ABCMeta):
     def end_entity(self):
         """specific implementation for get_data"""
         raise NotImplementedError
-
-
-class Sender(Entity):
-
-    @record
-    def __init__(self, transfer_protocol):
-        if Receiver.__init__.calls:
-            if Receiver.__init__.calls[0][1] != self.__init__.calls[0][1]:
-                raise Exception("Sender and Receiver should have same Transfer_Protocol")
-        super().__init__(transfer_protocol)
-        mapper = Mapper("Sender")
-
-    def execute_protocol(self, ip: str, port: str, mapper, transfer_protocol):
-        print("Sender: execute protocol")
-
-    def get_data(self):
-        print("Sender: get data")
-
-    def end_entity(self):
-        self.__init__.calls.clear()
-
-
-class Receiver(Entity):
-
-    @record
-    def __init__(self, transfer_protocol):
-        if Sender.__init__.calls:
-            if Sender.__init__.calls[0][1] != self.__init__.calls[0][1]:
-                raise Exception("Sender and Receiver should have same Transfer_Protocol")
-        super().__init__(transfer_protocol)
-        mapper = Mapper("Receiver")
-
-    def execute_protocol(self, ip: str, port: str, mapper, transfer_protocol):
-        print("Receiver: execute_protocol")
-
-    def get_data(self):
-        print("Receiver: get data")
-
-    def start_protocol(self):
-        pass
-
-    def negociate_parameters(self):
-        pass
-
-    def end_entity(self):
-        self.__init__.calls.clear()
-
-
-if __name__ == "__main__":
-    t = Transfer_Protocol("Sender")
-    sender = Sender(t)
-    print(Sender.__init__.calls)
-    receiver = Receiver(t)
-
-    # sender.execute_protocol("s", "s", "s", "s")
-    # sender.get_data()
-    # receiver.execute_protocol("f", "g", "f", "f")
-    # receiver.get_data()
-    # print(sender.m)
-    # print(sender.transfer_protocol)
