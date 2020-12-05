@@ -79,6 +79,14 @@ def createLogSendNegociate(ip, port):
     description = "Parameters sent to SENDER (%s %s)" % (ip, str(port))
     return infoType, entity, date, description
 
+def createLogSendBackNegociate(ip, port):
+    infoType = '[INFO]'
+    entity = 'SENDER'
+    date = f"{datetime.now():%Y-%m-%d %H:%M:%S}"
+    description = "Parameters corrected sent back to RECEIVER (%s %s)" % (ip, str(port))
+    return infoType, entity, date, description
+
+
 def createLogSendOT(ip, port):
     infoType = '[INFO]'
     entity = 'RECEIVER'
@@ -112,6 +120,13 @@ def createLogReceiveNegParameters(ip, port):
     entity = 'SENDER'
     date = f"{datetime.now():%Y-%m-%d %H:%M:%S}"
     description = "Received parameters from RECEIVER (%s, %s)" % (ip, str(port))
+    return infoType, entity, date, description
+
+def createModifiedLogReceiveNegParameters(ip, port):
+    infoType = '[INFO]'
+    entity = 'RECEIVER'
+    date = f"{datetime.now():%Y-%m-%d %H:%M:%S}"
+    description = "Received modified parameters from SENDER (%s, %s)" % (ip, str(port))
     return infoType, entity, date, description
 
 def createLogReceiveOT(ip, port):

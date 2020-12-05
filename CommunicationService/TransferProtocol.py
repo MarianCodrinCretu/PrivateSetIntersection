@@ -168,6 +168,15 @@ class TransferProtocol:
         with aspectlib.weave(self.processMessage, self.log_results):
             self.processMessage(message)
 
+    def sendBackNegotiateParameters(self, paramsDictionary):
+        self._comSend.send(paramsDictionary, self._connectionParams['Client IP'],
+                           int(self._connectionParams['Client Port']),
+                           HEADERSIZE=10)
+        message = Logs.LogMessaging.createLogSendBackNegociate(self._connectionParams['Client IP'],
+                                                       self._connectionParams['Client Port'])
+        with aspectlib.weave(self.processMessage, self.log_results):
+            self.processMessage(message)
+
 
     def sendOT(self, data):
 
@@ -223,6 +232,15 @@ class TransferProtocol:
                                         HEADERSIZE=10)
         message = Logs.LogMessaging.createLogReceiveNegParameters(self._connectionParams['Client IP'],
                                                            self._connectionParams['Client Port'])
+        with aspectlib.weave(self.processMessage, self.log_results):
+            self.processMessage(message)
+        return result
+
+    def receiveModifiedNegotiateParameters(self):
+        result= self._comReceive.receive(self._connectionParams['Client IP'], int(self._connectionParams['Client Port']),
+                                        HEADERSIZE=10)
+        message = Logs.LogMessaging.createModifiedLogReceiveNegParameters(self._connectionParams['Server IP'],
+                                                           self._connectionParams['Server Port'])
         with aspectlib.weave(self.processMessage, self.log_results):
             self.processMessage(message)
         return result

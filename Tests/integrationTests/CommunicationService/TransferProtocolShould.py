@@ -119,6 +119,12 @@ class TransferProtocolShould(TestCase):
         if index == 9:
             return self._connectionParams['Client IP'],\
             int(self._connectionParams['Client Port']), [pubKeyClient, self.comReceive.aesKey], 10, 'NoAES'
+        if index==11:
+            return self._connectionParams['Client IP'], \
+                   int(self._connectionParams['Client Port']), \
+                   [{'message': 'I love Quantum Computing', 'message2': 'I love Superposition and Entanglement',
+                     'planck': 6.61e-2}], 10, None
+
 
 
     def senderMethodMapper(self, index):
@@ -142,6 +148,8 @@ class TransferProtocolShould(TestCase):
             return self.transferProtocol.sendAESKeyByRSA
         if index==10:
             return self.transferProtocol.sendIVByRSA
+        if index==11:
+            return self.transferProtocol.sendBackNegotiateParameters
 
     def receiverMethodMapper(self, index):
         if index == 1:
@@ -164,8 +172,10 @@ class TransferProtocolShould(TestCase):
             return self.transferProtocol.receiveAESKeyByRSA
         if index==10:
             return self.transferProtocol.receiveIVByRSA
+        if index == 11:
+            return self.transferProtocol.receiveModifiedNegotiateParameters
 
-    @parameterized.expand([[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]])
+    @parameterized.expand([[1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11]])
     def test_sendDesiredDataForEachTestCase(self, index):
 
         senderFunction = self.senderMethodMapper(index)
@@ -181,7 +191,7 @@ class TransferProtocolShould(TestCase):
             senderFunction(parametersList[0])
         server_thread.join()
 
-    @parameterized.expand([[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]])
+    @parameterized.expand([[1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11]])
     def test_receiveDesiredDataForEachTestCase(self, index):
 
         global bufferZone
