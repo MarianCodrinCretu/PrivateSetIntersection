@@ -1,11 +1,13 @@
-import os
-
 from Crypto.Util.Padding import pad
 from aspectlib import Aspect, Proceed
 from datetime import datetime
 
 import logging
+
+from PRF.PrfScopeEnum import PrfScopeEnum
+
 logging.basicConfig(filename='../LOG/logs.log', level=logging.DEBUG)
+
 
 @Aspect
 def changePlaintextValidity(*args):
@@ -23,7 +25,7 @@ def changePlaintextValidity(*args):
         logging.error(loggingError)
         raise TypeError('The prf cannot be computed on this type of value')
 
-    plaintext = pad(plaintext, blockSize)
+    # plaintext = pad(plaintext, blockSize)
     yield Proceed(classInstance, plaintext)
 
 
@@ -49,7 +51,7 @@ def logCipherDetailsErrors(*args):
         logging.error(loggingError)
         raise TypeError('Please instantiate your PRF function with a key of length: ' + str(blockSize))
 
-    if len(iv) != blockSize:
+    if len(iv) != blockSize and classInstance._scope != PrfScopeEnum.PRG and classInstance._scope != PrfScopeEnum.GENERATOR:
         loggingError = '[ ' + getCurrentTime() + ' ] The prf was instantiated with an initialization vector of invalid length'
         logging.error(loggingError)
         raise TypeError(
