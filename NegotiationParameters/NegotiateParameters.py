@@ -1,10 +1,10 @@
 from CommunicationService.TransferProtocol import TransferProtocol
-from NegotiationParameters.NegotiateParametersUtils import NegociateParametersUtils
+from NegotiationParameters.NegotiateParametersUtils import NegotiateParametersUtils
 
 
-class NegotiateParameters:
+class NegociateParameters:
 
-    def __init__(self, transferProtocol: TransferProtocol, negotiateParametersUtils :NegociateParametersUtils):
+    def __init__(self, transferProtocol: TransferProtocol, negotiateParametersUtils :NegotiateParametersUtils):
         self.transferProtocol=transferProtocol
         self.negotiateParametersUtils=negotiateParametersUtils
 
