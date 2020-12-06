@@ -11,6 +11,7 @@ class Transfer_Protocol:
             "Client IP": '127.0.0.1',
             "Client Port": 5586
         }
+        self.parameters = connectionParams
         self._socketPool = [socket.socket(socket.AF_INET, socket.SOCK_STREAM) for _ in range(5)]
 
     def processDataS(self, toBeSent, flag):

@@ -1,4 +1,4 @@
-from aspectlib import Aspect
+from aspectlib import Aspect, Proceed
 import logging
 logging.basicConfig(filename='log.csv', level=logging.DEBUG)
 

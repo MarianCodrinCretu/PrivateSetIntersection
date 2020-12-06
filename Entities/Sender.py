@@ -9,9 +9,6 @@ class Sender(Entity):
 
     @record
     def __init__(self, transfer_protocol):
-        # if Receiver.__init__.calls:
-        #     if Receiver.__init__.calls[0][1] != self.__init__.calls[0][1]:
-        #         raise Exception("Sender and Receiver should have same Transfer_Protocol")
         super().__init__(transfer_protocol)
         mapper = Mapper("Sender")
 
@@ -28,10 +25,24 @@ class Sender(Entity):
                 C[l][it] = selected[l]
         return C
 
+    def random_OT(self, transfer_protocol, s):
+        C = [[0 for c in range(self.w)] for l in range(self.m)]
+        for it in range(self.w):
+            data = transfer_protocol.receiveOT()
+            print(data)
+            if s[it] == "0":
+                selected = data["r_0"]
+            else:
+                selected = [int(bool(data["r_1"][i]) ^ bool(data["delta"][i])) for i in range(self.m)]
+            for l in range(self.m):
+                C[l][it] = selected[l]
+        return C
+
     def execute_protocol(self, ip: str, port: str, mapper, transfer_protocol):
         s = RandomUtils.generateSSender(self.w)
         print("s: ", s)
-        C = self.OT(transfer_protocol, s)
+        # C = self.OT(transfer_protocol, s)
+        C = self.random_OT(transfer_protocol, s)
         print(C)
 
     def get_data(self):
@@ -44,3 +55,4 @@ class Sender(Entity):
 if __name__ == "__main__":
     send = Sender(Transfer_Protocol(""))
     send.execute_protocol("", "", "", send.transfer_protocol)
+    # Entity.__init__.calls.clear()

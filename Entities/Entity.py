@@ -1,6 +1,7 @@
 import abc
 from aspectlib.test import record
-from Transfer import Transfer_Protocol
+# from Transfer import Transfer_Protocol
+import MOP
 
 
 class Mapper:
@@ -10,6 +11,8 @@ class Mapper:
 
 class Entity(metaclass=abc.ABCMeta):
 
+    @record
+    @MOP.sameTransferProtocol
     def __init__(self, transfer_protocol):
         """Uses property setter."""
         self.lambda_ = "lambda"
@@ -18,6 +21,7 @@ class Entity(metaclass=abc.ABCMeta):
         self.w = 5
         self.l1 = "l1"
         self.l2 = "l2"
+        # print(self.__init__.calls)
         self.transfer_protocol = transfer_protocol
 
     @property
