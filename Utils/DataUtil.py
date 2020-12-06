@@ -1,14 +1,14 @@
-from MOP.DataUtilInterceptor import checkBytesType, checkSplitFunctionValidity, checkBitOperands
+from MOP.DataUtilInterceptor import checkBytesType, checkSplitFunctionValidity, checkByteOperands
 
 
 def splitIntoBlocks(data, blockSize):
     return [data[blockIndex:blockIndex + blockSize] for blockIndex in range(0, len(data), blockSize)]
 
 
-def splitIntoNBlocks(data, blockNumber):
-    blockSize = (len(data) + blockNumber - 1) // blockNumber
+def splitIntoNBlocks(data, blocksNumber):
+    blockSize = (len(data) + blocksNumber - 1) // blocksNumber
 
-    return [data[blockIndex:blockIndex + blockSize] for blockIndex in range(0, blockNumber * blockSize, blockSize)]
+    return [data[blockIndex:blockIndex + blockSize] for blockIndex in range(0, blocksNumber * blockSize, blockSize)]
 
 
 @checkBytesType
@@ -24,19 +24,6 @@ def convertBytesIntoBits(bytesString):
         return bits
 
 
-@checkBytesType
-def convertBytesIntoBitsArray(bytesString):
-    bytesLength = len(bytesString)
-    if bytesLength == 1:
-        ' '.join(format(ord(byteString), 'b') for byteString in bytesString)
-    # elif bytesLength > 1:
-    #     bytesAsBitsArray = []
-    #     for index in range(0, bytesLength):
-    #         byteAsBits = '{0:08b}'.format(bytesString[index])
-    #         bytesAsBitsArray.append(byteAsBits)
-    #     return bytesAsBitsArray
-
-
 @checkSplitFunctionValidity
 def splitTextIntoHalves(text):
     if len(text) % 2 == 1:
@@ -44,8 +31,8 @@ def splitTextIntoHalves(text):
     return [text[0:len(text) // 2], text[len(text) // 2:]]
 
 
-@checkBitOperands
-def computeXor(operand1, operand2):
+@checkByteOperands
+def computeByteXor(operand1, operand2):
     result = ''
     for index in range(0, len(operand1)):
         result += str(xorBits(operand1[index], operand2[index]))

@@ -23,7 +23,7 @@ def checkSplitFunctionValidity(inputToCheck):
 
 
 @Aspect
-def checkBitOperands(operand1, operand2):
+def checkByteOperands(operand1, operand2):
     if len(operand1) == len(operand2):
         yield Proceed
     elif len(operand1) > len(operand2):
