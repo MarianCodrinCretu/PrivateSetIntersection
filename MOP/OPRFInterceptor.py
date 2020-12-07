@@ -29,8 +29,13 @@ def checkPlaintextForF(plaintext, key, l1, w, m, prfType='AES', isKeyAsBitString
 def checkResultValidity(plaintext, key, l1, w, m, prfType='AES', isKeyAsBitString=False, isPlaintextAsBits=False):
     v = yield Proceed
 
+    if len(v) != w:
+        print('The result does not have the required length')
+        yield Return
+
     for index in range(0, len(v)):
         if v[index] > m:
+            print('The result does not have correct values')
             yield Return
 
     print('The result has been checked')
