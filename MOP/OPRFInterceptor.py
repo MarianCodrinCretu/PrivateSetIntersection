@@ -16,10 +16,10 @@ def checkKey(plaintext, key, l1, w, m, prfType='AES', isKeyAsBitString=False, is
 
 @Aspect
 def checkPlaintextForF(plaintext, key, l1, w, m, prfType='AES', isKeyAsBitString=False, isPlaintextAsBits=False):
-    if isKeyAsBitString and len(plaintext) != l1:
+    if isPlaintextAsBits and len(plaintext) != l1:
         raise ValueError('Wrong input for F, please provide another input!')
 
-    if not isKeyAsBitString and len(plaintext) != l1 // 8:
+    if not isPlaintextAsBits and len(plaintext) != l1 // 8:
         raise ValueError('Wrong input for F, please provide another input!')
 
     yield Proceed(plaintext, key, l1, w, m, prfType, isKeyAsBitString, isPlaintextAsBits)
