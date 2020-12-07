@@ -15,8 +15,8 @@ def checkBytesType(inputToCheck):
 
 @Aspect
 def checkSplitFunctionValidity(inputToCheck):
-    if len(inputToCheck) % 8 != 0:
-        raise ValueError('The bytes has not been padded in order to do the splitting correctly')
+    if len(inputToCheck) % 2 == 1:
+        raise ValueError('The value which needs to be split has to be of even length')
     result = yield Proceed
     if len(result) != 2 or len(result[0]) != len(result[1]):
         raise Exception('The two halves has not been computed correctly')

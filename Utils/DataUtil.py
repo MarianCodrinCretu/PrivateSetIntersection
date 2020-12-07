@@ -26,8 +26,6 @@ def convertBytesIntoBits(bytesString):
 
 @checkSplitFunctionValidity
 def splitTextIntoHalves(text):
-    if len(text) % 2 == 1:
-        raise ValueError('The value which needs to be split has to be of even length')
     return [text[0:len(text) // 2], text[len(text) // 2:]]
 
 
