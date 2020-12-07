@@ -30,10 +30,6 @@ def getVAsAWLengthVector(FkValueAsBitArray):
     return [convertBinaryToDecimal(FkValueAsBitArray[index]) for index in range(0, len(FkValueAsBitArray))]
 
 
-def getIntegerValuesOfFk(FkValueAsBitArray):
-    return [convertBinaryToDecimal(FkValueAsBitArray[index]) for index in range(0, len(FkValueAsBitArray))]
-
-
 def getPrfInstance(prfType, key, scope, iv=b''):
     if prfType == 'DES':
         return DESPrfCreator(iv, key, scope)
