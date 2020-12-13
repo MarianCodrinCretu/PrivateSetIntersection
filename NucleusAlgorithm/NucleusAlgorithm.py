@@ -1,6 +1,7 @@
 from OPRFEvaluation.OPRFEvaluation import OPRFEvaluation
 from NegotiationParameters.NegotiateParameters import NegociateParameters
 from OTService.OTService import OTService
+from Precomputation.Precomputation import Precomputation
 import Utils.Utils as randomUtils
 
 from Hash.HashMd5 import HashMd5
@@ -13,11 +14,13 @@ class NucleusAlgorithm:
 
     def __init__(self, data, dictParameters,
                  negotiateParameters: NegociateParameters,
+                 precomputation: Precomputation,
                  otService:OTService,
                  oprfEvaluation: OPRFEvaluation):
         self.data=data
         self.dictParameters=dictParameters
         self.negotiateParameters=negotiateParameters
+        self.precomputation=precomputation
         self.otService=otService
         self.oprfEvaluation=oprfEvaluation
 
@@ -40,8 +43,11 @@ class NucleusAlgorithm:
         # ---------------------- TO BE COMPLETED -------------------------
 
         D = randomUtils.RandomUtils.initMatrixDReceiver(modifiedDict['m'], modifiedDict['w'])
-        
         key = randomUtils.RandomUtils.generateKey(modifiedDict['lambda'])
+        vList=self.precomputation.compute_input(self.data, key, modifiedDict)
+
+        for element in vList:
+            D= self.precomputation.update_d(element, D)
 
         # ot
         # ---------------------- TO BE COMPLETED -------------------------
