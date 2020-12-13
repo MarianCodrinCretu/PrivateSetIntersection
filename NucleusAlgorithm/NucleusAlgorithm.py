@@ -1,5 +1,7 @@
 from OPRFEvaluation.OPRFEvaluation import OPRFEvaluation
 from NegotiationParameters.NegotiateParameters import NegociateParameters
+from OTService.OTService import OTService
+import Utils.Utils as randomUtils
 
 from Hash.HashMd5 import HashMd5
 from Hash.HashSha256 import HashSha256
@@ -9,10 +11,14 @@ from PRF.OPRF import computeOPrfValue
 
 class NucleusAlgorithm:
 
-    def __init__(self, data, dictParameters, negotiateParameters: NegociateParameters, oprfEvaluation: OPRFEvaluation):
+    def __init__(self, data, dictParameters,
+                 negotiateParameters: NegociateParameters,
+                 otService:OTService,
+                 oprfEvaluation: OPRFEvaluation):
         self.data=data
         self.dictParameters=dictParameters
         self.negotiateParameters=negotiateParameters
+        self.otService=otService
         self.oprfEvaluation=oprfEvaluation
 
     @staticmethod
@@ -22,7 +28,7 @@ class NucleusAlgorithm:
             'SHA1': HashSha1().generate,
             'SHA256': HashSha256().generate,
             'BLAKE2B' : HashBlake2b().generate,
-            'FK': computeOPrfValue
+            'FK': computeOPrfValue,
         }
 
     def receiverAlgorithmSide(self):
@@ -32,22 +38,27 @@ class NucleusAlgorithm:
 
         #precomputation side
         # ---------------------- TO BE COMPLETED -------------------------
-        matrix=[]
+
+        D = randomUtils.RandomUtils.initMatrixDReceiver(modifiedDict['m'], modifiedDict['w'])
+        
+        key = randomUtils.RandomUtils.generateKey(modifiedDict['lambda'])
 
         # ot
         # ---------------------- TO BE COMPLETED -------------------------
+        A = randomUtils.RandomUtils.initMatrixAReceiver(modifiedDict['m'], modifiedDict['w'])
+        B = randomUtils.PSIAlgoUtils.computeBReceiver(A, D)
+
+        if (modifiedDict['otVariant'])==1:
+            self.otService.receiverOT(A,B,modifiedDict['w'], modifiedDict['m'])
+        else:
+            self.otService.receiver_randomOT(A, B, modifiedDict['w'], modifiedDict['m'])
 
         #oprf evaluation
-        key = self.oprfEvaluation.generateKey(modifiedDict)
         self.oprfEvaluation.sendKeyToSender(key)
         senderPsiValues = self.oprfEvaluation.receiveSenderPsiValues()
-        result = self.oprfEvaluation.evaluatePsiValues(key, senderPsiValues, matrix, self.data, modifiedDict)
+        result = self.oprfEvaluation.evaluatePsiValues(key, senderPsiValues, A, self.data, modifiedDict)
 
         return result
-
-
-
-
 
     def senderAlgorithmSide(self):
         #negociation parameters side
@@ -57,14 +68,18 @@ class NucleusAlgorithm:
 
         #precomputation side
         # ---------------------- TO BE COMPLETED -------------------------
-        matrix = []
+        s = randomUtils.RandomUtils.generateSSender(receivedDict['w'])
 
         #ot
         # ---------------------- TO BE COMPLETED -------------------------
+        if (modifiedDict['otVariant'])==1:
+            C = self.otService.senderOT(s,modifiedDict['w'], modifiedDict['m'])
+        else:
+            C = self.otService.senderOT(s, modifiedDict['w'], modifiedDict['m'])
 
         #oprf evaluation
         key = self.oprfEvaluation.receiveKeyFromReceiver()
-        senderPsiValues=self.oprfEvaluation.generateSenderPsiValues(key, matrix, self.data, modifiedDict)
+        senderPsiValues=self.oprfEvaluation.generateSenderPsiValues(key, C, self.data, modifiedDict)
         self.oprfEvaluation.sendSenderPsiValuesToReceiver(senderPsiValues)
 
 
