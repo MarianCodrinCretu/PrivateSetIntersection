@@ -7,23 +7,28 @@ class OPRFEvaluation:
 
     def __init__(self, transferProtocol : CommunicationService.TransferProtocol,
                  dictParameters,
+                 dictFunctions,
                  data,
                  matrix):
 
         self.transferProtocol = transferProtocol
         self.dictParameters = dictParameters
+        self.dictFunctions=dictFunctions
         self.data=data,
         #matrix = A, if entity=Receiver, else matrix=B for entity=Sender
         self.matrix=matrix
 
     def computeHash1(self, x):
-        pass
+        return self.dictFunctions[self.dictParameters['hash1']](x)
 
     def computeHash2(self, x):
-        pass
+        return self.dictFunctions[self.dictParameters['hash2']](x)
 
     def computePRF(self, x, key):
-        pass
+        return self.dictFunctions['FK'](x, key, self.dictParameters['l1'],
+                                        self.dictParameters['w'],
+                                        self.dictParameters['m'],
+                                        self.dictParameters['prf'])
 
     def generateKey(self):
         lambdaP = self.dictParameters['lambda']
