@@ -4,33 +4,31 @@ from PrecomputationMonitors import check_input_validity, check_update_validity
 
 class Precomputation:
 
-    def __init__(self, dictParameters, dictFunctions, key):
-        self.dictParameters = dictParameters
+    def __init__(self, dictFunctions):
         self.dictFunctions = dictFunctions
-        self.key = key
 
-    def computeHash1(self, x):
-        return self.dictFunctions[self.dictParameters['hash1']](x)
+    def computeHash1(self, x, dictParameters):
+        return self.dictFunctions[dictParameters['hash1']](x)
 
-    def computePRF(self, x, key):
-        return self.dictFunctions['FK'](x, key, self.dictParameters['l1'],
-                                        self.dictParameters['w'],
-                                        self.dictParameters['m'],
-                                        self.dictParameters['prf'])
+    def computePRF(self, x, key, dictParameters):
+        return self.dictFunctions['FK'](x, key, dictParameters['l1'],
+                                        dictParameters['w'],
+                                        dictParameters['m'],
+                                        dictParameters['prf'])
 
-    def compute_v(self, w):
+    def compute_v(self, w, key, dictParameters):
 
-        v = self.computePRF(self.computeHash1(w), self.key)
+        v = self.computePRF(self.computeHash1(w, dictParameters), key, dictParameters)
 
         return v
 
     @check_input_validity
-    def compute_input(self, input_y):
+    def compute_input(self, input_y, key, dictParameters):
 
         result = []
 
         for i in range(0, len(input_y)):
-            result.append(self.compute_v(input_y[i]))
+            result.append(self.compute_v(input_y[i], key, dictParameters))
 
         return result
 
