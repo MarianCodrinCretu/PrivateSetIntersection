@@ -45,7 +45,7 @@ from Utils.DataUtil import convertBytesIntoBits, splitTextIntoHalves
 # print(paddedResult)
 # print(unpad(paddedResult, desiredBitLength))
 # print('test0', len(paddedResult))
-
+#
 # print(type(result))
 # print(result[0])
 # print(result[63])

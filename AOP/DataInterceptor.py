@@ -1,3 +1,4 @@
+from Crypto.Cipher import DES3
 from Crypto.Util.Padding import pad
 from aspectlib import Aspect, Proceed
 from datetime import datetime
@@ -32,7 +33,7 @@ def changePlaintextValidity(*args):
 @Aspect
 def logCipherDetailsErrors(*args):
     classInstance = args[0]
-    blockSize = classInstance.getAlgorithm().block_size
+    blockSize = getBlockSize(classInstance)
     key = classInstance._key
     iv = classInstance._iv
 
@@ -64,6 +65,14 @@ def logCipherDetailsErrors(*args):
         loggingError = '[ ' + getCurrentTime() + ' ] ' + str(exception)
         logging.error(loggingError)
 
+def getBlockSize(classInstance):
+    print(classInstance.getAlgorithm())
+    blockSize = classInstance.getAlgorithm().block_size
+
+    if classInstance.getAlgorithm() == DES3:
+        blockSize = 24
+    print(blockSize)
+    return blockSize
 
 @Aspect
 def checkHashPlaintextValidity(*args):

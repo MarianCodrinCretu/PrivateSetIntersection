@@ -1,16 +1,16 @@
 from AOP.DataInterceptor import changePlaintextValidity, logCipherDetailsErrors
 from PRF.PRFAbstract import PRFAbstract
-from Crypto.Cipher import DES
+from Crypto.Cipher import DES3
 
 
-class DESPrf(PRFAbstract):
+class DES3Prf(PRFAbstract):
     @changePlaintextValidity
     def computePrf(self, plaintext):
         result = self._cipher.encrypt(plaintext)
         return result
 
     def setAlgorithm(self):
-        self._algorithm = DES
+        self._algorithm = DES3
 
     @logCipherDetailsErrors
     def setCipher(self):

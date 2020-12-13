@@ -2,6 +2,7 @@ from math import log2
 
 from MOP.OPRFInterceptor import checkKey, checkPlaintextForF, checkResultValidity
 from PRF.AESPrfCreator import AESPrfCreator
+from PRF.DES3PrfCreator import DES3PrfCreator
 from PRF.DESPrfCreator import DESPrfCreator
 from PRF.PrfScopeEnum import PrfScopeEnum
 from Utils.DataUtil import convertBytesIntoBits, splitTextIntoHalves, convertBinaryToDecimal, splitIntoNBlocks, xorStrings
@@ -11,7 +12,7 @@ import os
 @checkKey
 @checkPlaintextForF
 @checkResultValidity
-def computeOPrfValue(plaintext, key, l1, w, m, prfType='AES', isKeyAsBitString=False, isPlaintextAsBits=False):
+def computeOPrfValue(plaintext, key, l1, w, m, prfType='DES', isKeyAsBitString=False, isPlaintextAsBits=False):
     plaintextSplitIntoHalves = splitTextIntoHalves(plaintext)
 
     lambdaValue = int(l1 // 2)
@@ -33,12 +34,13 @@ def getVAsAWLengthVector(FkValueAsBitArray):
 def getPrfInstance(prfType, key, scope, iv=b''):
     if prfType == 'DES':
         return DESPrfCreator(iv, key, scope)
-    else:
+    elif prfType == 'AES':
         return AESPrfCreator(iv, key, scope)
-
+    elif prfType == 'DES3':
+        return DES3PrfCreator(iv, key, scope)
 
 def getExtendedKey(t, prfType, key):
-    seed = os.urandom(16)
+    seed = os.urandom(len(key))
     prg = getPrfInstance(prfType, seed, PrfScopeEnum.PRG)
     extendedKey = []
     for index in range(0, t + 1):

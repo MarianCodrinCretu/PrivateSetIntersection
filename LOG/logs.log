@@ -7254,3 +7254,24 @@ INFO:root:[ 06/12/2020 19:47:57 ] The plaintext type has been changed to bytes s
 INFO:root:[ 06/12/2020 19:48:05 ] The plaintext type has been changed to bytes so it can be computed
 INFO:root:[ 06/12/2020 19:49:15 ] The plaintext type has been changed to bytes so it can be computed
 INFO:root:[ 06/12/2020 19:50:20 ] The plaintext type has been changed to bytes so it can be computed
+ERROR:root:[ 07/12/2020 19:06:28 ] The prf was instantiated with a key of invalid length
+ERROR:root:[ 07/12/2020 19:07:28 ] The prf was instantiated with a key of invalid length
+ERROR:root:[ 07/12/2020 19:07:32 ] The prf was instantiated with a key of invalid length
+ERROR:root:[ 13/12/2020 18:48:58 ] The prf was instantiated with a key of invalid length
+ERROR:root:[ 13/12/2020 18:49:12 ] The prf was instantiated with a key of invalid length
+ERROR:root:[ 13/12/2020 18:52:25 ] The prf was instantiated with a key of invalid length
+ERROR:root:[ 13/12/2020 18:54:01 ] Impossible to create a safe nonce for short block sizes
+ERROR:root:[ 13/12/2020 19:06:37 ] The prf was instantiated with a key of invalid length
+ERROR:root:[ 13/12/2020 19:07:57 ] The prf was instantiated with a key of invalid length
+ERROR:root:[ 13/12/2020 19:08:16 ] Incorrect DES key length (24 bytes)
+ERROR:root:[ 13/12/2020 23:23:10 ] The prf was instantiated with a key of invalid length
+ERROR:root:[ 13/12/2020 23:24:45 ] The prf was instantiated with a key of invalid length
+ERROR:root:[ 13/12/2020 23:25:07 ] The prf was instantiated with a key of invalid length
+ERROR:root:[ 13/12/2020 23:33:28 ] The prf was instantiated with a key of invalid length
+ERROR:root:[ 13/12/2020 23:33:59 ] The prf was instantiated with a key of invalid length
+ERROR:root:[ 13/12/2020 23:35:36 ] The prf was instantiated with a key of invalid length
+ERROR:root:[ 13/12/2020 23:35:42 ] The prf was instantiated with a key of invalid length
+ERROR:root:[ 13/12/2020 23:43:59 ] The prf was instantiated with a key of invalid length
+ERROR:root:[ 13/12/2020 23:47:27 ] The prf was instantiated with a key of invalid length
+ERROR:root:[ 13/12/2020 23:47:54 ] The prf was instantiated with a key of invalid length
+ERROR:root:[ 13/12/2020 23:48:30 ] Impossible to create a safe nonce for short block sizes
