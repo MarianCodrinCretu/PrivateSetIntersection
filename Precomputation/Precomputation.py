@@ -2,41 +2,30 @@ import random
 from PrecomputationMonitors import check_input_validity, check_update_validity
 
 
-def compute_v(w):
+class Precomputation:
+    __instance = None
 
-    v = [i for i in range(0, w)]
-    random.shuffle(v)
+    def compute_v(self, w):
 
-    return v
+        v = [i for i in range(0, w)]
+        random.shuffle(v)
 
+        return v
 
-@check_input_validity
-def compute_input(input_y):
+    @check_input_validity
+    def compute_input(self, input_y):
 
-    result = []
+        result = []
 
-    for i in range(0, len(input_y)):
-        result.append(compute_v(input_y[i]))
+        for i in range(0, len(input_y)):
+            result.append(self.compute_v(input_y[i]))
 
-    return result
+        return result
 
+    @check_update_validity
+    def update_d(self, v_list, matrix):
 
-@check_update_validity
-def update_d(v_list, matrix):
+        for i in range(0, len(v_list)):
+            matrix[i][v_list[i]] = 0
 
-    for i in range(0, len(v_list)):
-        matrix[i][v_list[i]] = 0
-
-    return matrix
-
-
-def xor_b(matrix_a, matrix_d):
-
-    matrix_b = []
-
-    for i in range(0, len(matrix_a)):
-        matrix_b.append([])
-        for j in range(0, len(matrix_a[i])):
-            matrix_b[-1].append(int(matrix_a[i][j] != matrix_d[i][j]))
-
-    return matrix_b
+        return matrix
