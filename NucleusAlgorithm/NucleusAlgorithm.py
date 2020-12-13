@@ -9,7 +9,8 @@ from PRF.OPRF import computeOPrfValue
 
 class NucleusAlgorithm:
 
-    def __init__(self, dictParameters, negotiateParameters: NegociateParameters, oprfEvaluation: OPRFEvaluation):
+    def __init__(self, data, dictParameters, negotiateParameters: NegociateParameters, oprfEvaluation: OPRFEvaluation):
+        self.data=data
         self.dictParameters=dictParameters
         self.negotiateParameters=negotiateParameters
         self.oprfEvaluation=oprfEvaluation
@@ -25,8 +26,46 @@ class NucleusAlgorithm:
         }
 
     def receiverAlgorithmSide(self):
-        pass
+        #negociation parameters side
+        self.negotiateParameters.sendParametersToServer(self.dictParameters)
+        modifiedDict = self.negotiateParameters.receiveModifiedParametersFromServer()
+
+        #precomputation side
+        # ---------------------- TO BE COMPLETED -------------------------
+        matrix=[]
+
+        # ot
+        # ---------------------- TO BE COMPLETED -------------------------
+
+        #oprf evaluation
+        key = self.oprfEvaluation.generateKey(modifiedDict)
+        self.oprfEvaluation.sendKeyToSender(key)
+        senderPsiValues = self.oprfEvaluation.receiveSenderPsiValues()
+        result = self.oprfEvaluation.evaluatePsiValues(key, senderPsiValues, matrix, self.data, modifiedDict)
+
+        return result
+
+
+
+
 
     def senderAlgorithmSide(self):
-        pass
+        #negociation parameters side
+        receivedDict = self.negotiateParameters.receiveParametersFromClient()
+        modifiedDict = self.negotiateParameters.validateParameters(receivedDict)
+        self.negotiateParameters.sendModifiedParametersToClient(modifiedDict)
+
+        #precomputation side
+        # ---------------------- TO BE COMPLETED -------------------------
+        matrix = []
+
+        #ot
+        # ---------------------- TO BE COMPLETED -------------------------
+
+        #oprf evaluation
+        key = self.oprfEvaluation.receiveKeyFromReceiver()
+        senderPsiValues=self.oprfEvaluation.generateSenderPsiValues(key, matrix, self.data, modifiedDict)
+        self.oprfEvaluation.sendSenderPsiValuesToReceiver(senderPsiValues)
+
+
 
