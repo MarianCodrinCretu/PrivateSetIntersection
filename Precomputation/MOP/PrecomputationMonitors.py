@@ -1,7 +1,7 @@
 from aspectlib import Aspect, Proceed
 from datetime import datetime
 import logging
-logging.basicConfig(filename='../PSIAlgorithm/logs.log', level=logging.DEBUG)
+logging.basicConfig(filename='../logs.log', level=logging.DEBUG)
 
 
 def get_current_time():
@@ -10,7 +10,8 @@ def get_current_time():
 
 
 @Aspect
-def check_input_validity(v_array):
+def check_input_validity(*args):
+    v_array = args[1]
 
     if v_array != [i for i in v_array if isinstance(i, int) or i.isdigit()]:
 
@@ -25,7 +26,7 @@ def check_input_validity(v_array):
         v_array = [int(i) for i in v_array]
 
     try:
-        yield Proceed(v_array)
+        yield Proceed(*args)
     except Exception as exception:
         print(
             'An error has occurred during input computation, for more information please check your errors log file')
@@ -35,22 +36,7 @@ def check_input_validity(v_array):
 
 @Aspect
 def check_update_validity(*args):
-    v_array = args[0]
-    matrix = args[1]
-
-    # Array check
-
-    if v_array != [i for i in v_array if isinstance(i, int) or i.isdigit()]:
-
-        logging_error = '[ ' + get_current_time() + ' ] Input of invalid type and it can not be used to update matrix D'
-        logging.error(logging_error)
-        raise ValueError('The input is of invalid type and it can not be used to update matrix D')
-
-    elif v_array != [i for i in v_array if isinstance(i, int)]:
-
-        logging_info = '[ ' + get_current_time() + ' ] The string digits were converted to integer, so they can be used in the update of the matrix D'
-        logging.info(logging_info)
-        v_array = [int(i) for i in v_array]
+    matrix = args[2]
 
     # Matrix check
 
@@ -76,7 +62,7 @@ def check_update_validity(*args):
         raise ValueError('The matrix D contains elements of invalid type')
 
     try:
-        yield Proceed(v_array, matrix)
+        yield Proceed(*args)
     except Exception as exception:
         print(
             'An error has occurred when you tried to update the matrix D, for more information please check your errors log file')

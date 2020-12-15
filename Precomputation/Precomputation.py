@@ -1,5 +1,4 @@
-import random
-from PrecomputationMonitors import check_input_validity, check_update_validity
+from MOP.PrecomputationMonitors import check_input_validity, check_update_validity
 
 
 class Precomputation:
@@ -23,19 +22,20 @@ class Precomputation:
         return v
 
     @check_input_validity
-    def compute_input(self, input_y, key, dictParameters):
+    def compute_v_list(self, input_y, key, dictParameters):
 
-        result = []
+        v_list = []
 
         for i in range(0, len(input_y)):
-            result.append(self.compute_v(input_y[i], key, dictParameters))
+            v_list.append(self.compute_v(input_y[i], key, dictParameters))
 
-        return result
+        return v_list
 
     @check_update_validity
     def update_d(self, v_list, matrix):
 
         for i in range(0, len(v_list)):
-            matrix[i][v_list[i]] = 0
+            for j in range(0, len(v_list[i])):
+                matrix[j][v_list[i][j]] = 0
 
         return matrix
