@@ -7,6 +7,8 @@ class Communication:
     def __init__(self, socketPool: SocketPool, aesKey, aesIV):
 
         self._socketPool = socketPool
+        self.aesKey=aesKey
+        self.aesIV=aesIV
         if aesKey is None or len(aesKey)!=16:
             self.aesKey = ''.join(random.choices(string.ascii_uppercase +
                              string.digits, k = 16))

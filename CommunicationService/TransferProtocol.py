@@ -116,6 +116,8 @@ class TransferProtocol:
 
     def sendIVByRSA(self, iv, rsaKey):
 
+        self._comSend.aesIV=iv
+        self._comReceive.aesIV=iv
         iv = CryptoUtils.CryptoUtils.rsaEncrypt(rsaKey, iv)
         self._comSend.send(iv, self._connectionParams['Server IP'],
                            int(self._connectionParams['Server Port']),
@@ -134,9 +136,15 @@ class TransferProtocol:
 
         with aspectlib.weave(self.processMessage, self.log_results):
             self.processMessage(message)
-        return CryptoUtils.CryptoUtils.rsaDecrypt(rsaKey, result)
+        print('HERE IS IV: ' + str(CryptoUtils.CryptoUtils.rsaDecrypt(rsaKey, result)))
+        result = CryptoUtils.CryptoUtils.rsaDecrypt(rsaKey, result)
+        self._comSend.aesIV=result.encode('utf8')
+        self._comReceive.aesIV = result.encode('utf8')
+        return result
 
     def sendAESKeyByRSA(self, aesKey, rsaKey):
+        self._comSend.aesKey = aesKey
+        self._comReceive.aesKey = aesKey
         aesKey = CryptoUtils.CryptoUtils.rsaEncrypt(rsaKey, aesKey)
         self._comSend.send(aesKey, self._connectionParams['Client IP'],
                            int(self._connectionParams['Client Port']),
@@ -153,10 +161,11 @@ class TransferProtocol:
                                                        self._connectionParams['Server Port'])
         with aspectlib.weave(self.processMessage, self.log_results):
             self.processMessage(message)
-        return CryptoUtils.CryptoUtils.rsaDecrypt(rsaKey, result)
-
-
-
+        print('HERE IS KEY: ' + str(CryptoUtils.CryptoUtils.rsaDecrypt(rsaKey, result)))
+        result = CryptoUtils.CryptoUtils.rsaDecrypt(rsaKey, result)
+        self._comSend.aesKey = result.encode('utf8')
+        self._comReceive.aesKey = result.encode('utf8')
+        return result
 
 
     def sendNegotiateParameters(self, paramsDictionary):
