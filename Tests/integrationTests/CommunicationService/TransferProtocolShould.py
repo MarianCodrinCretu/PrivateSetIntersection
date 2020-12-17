@@ -62,12 +62,10 @@ def run_fake_client(address, port, message, key, iv, HEADERSIZE, flag, index):
     except ConnectionRefusedError:
         bufferZone = "CONNECTION ERROR"
 
-strKeyClient = open(os.path.join("..", "..", "..", "CryptoUtils", "client_rsa_public.pem"), 'rb').read()
-
-pubKeyClient = RSA.importKey(open(os.path.join("..", "..", "..", "CryptoUtils", "client_rsa_public.pem")).read())
-privKeyClient = RSA.importKey(open(os.path.join("..", "..", "..", "CryptoUtils", "client_rsa_private.pem")).read())
-pubKeyServer = RSA.importKey(open(os.path.join("..", "..", "..", "CryptoUtils", "client_rsa_public.pem")).read())
-privKeyServer = RSA.importKey(open(os.path.join("..", "..", "..", "CryptoUtils", "client_rsa_private.pem")).read())
+pubKeyClient = RSA.importKey(open(os.path.join("client_rsa_public.pem")).read())
+privKeyClient = RSA.importKey(open(os.path.join("client_rsa_private.pem")).read())
+pubKeyServer = RSA.importKey(open(os.path.join("client_rsa_public.pem")).read())
+privKeyServer = RSA.importKey(open(os.path.join("client_rsa_private.pem")).read())
 
 class TransferProtocolShould(TestCase):
     _connectionParams = {'Server IP': Constants.SENDER_ADDRESS,

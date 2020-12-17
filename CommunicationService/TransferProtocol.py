@@ -1,6 +1,4 @@
 import csv
-import datetime
-from datetime import date
 
 import aspectlib
 from aspectlib import Aspect

@@ -17,10 +17,25 @@ class ComReceive(Communication):
             data = cipher.decrypt(data)
             yield aspectlib.Proceed(self, data, flag)
 
+    @aspectlib.Aspect
+    def securityTestingTune(self, data, flag):
+
+        if flag == 'NoAES':
+            yield aspectlib.Proceed
+        else:
+            import os
+            with open(os.path.join('security.txt'), 'a') as filex:
+                filex.write(str(data))
+                filex.write('\n--------------------\n')
+                yield aspectlib.Proceed
+
     def processData(self, data, flag):
 
         data = pickle.loads(data)
         return data
+
+    def securityTesting(self, data, flag):
+        pass
 
     def receive(self, ipToReceive, portToReceive, HEADERSIZE, sizeOfDgram=16, flag=None):
 
@@ -44,6 +59,9 @@ class ComReceive(Communication):
             if len(receivedObject) - HEADERSIZE == msglen:
                 self._socketPool.release(socket)
                 data = receivedObject[HEADERSIZE:]
+
+                # with aspectlib.weave(self.securityTesting, self.securityTestingTune):
+                #     self.securityTesting(data, flag)
 
                 with aspectlib.weave(self.processData, self.decryptDataAES):
                     return self.processData(data, flag)

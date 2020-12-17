@@ -1,0 +1,20 @@
+[INFO],SENDER,2020-12-18 00:31:33,"Received parameters from RECEIVER (127.0.0.1, 5585)"
+[INFO],SENDER,2020-12-18 00:31:33,"Received OT data from RECEIVER (127.0.0.1, 5585)"
+[INFO],SENDER,2020-12-18 00:31:33,"Received PRF key data from RECEIVER (127.0.0.1, 5585)"
+[ERROR FROM RECEIVER],SENDER,2020-12-18 00:31:34,Dummy exception
+[INFO],SENDER,2020-12-18 00:31:52,"Received parameters from RECEIVER (127.0.0.1, 5585)"
+[INFO],SENDER,2020-12-18 00:31:52,"Received OT data from RECEIVER (127.0.0.1, 5585)"
+[INFO],SENDER,2020-12-18 00:31:52,"Received PRF key data from RECEIVER (127.0.0.1, 5585)"
+[ERROR FROM RECEIVER],SENDER,2020-12-18 00:31:52,Dummy exception
+[INFO],SENDER,2020-12-18 01:23:05,"Received parameters from RECEIVER (127.0.0.1, 5585)"
+[INFO],SENDER,2020-12-18 01:23:05,"Received OT data from RECEIVER (127.0.0.1, 5585)"
+[INFO],SENDER,2020-12-18 01:23:05,"Received PRF key data from RECEIVER (127.0.0.1, 5585)"
+[ERROR FROM RECEIVER],SENDER,2020-12-18 01:23:05,aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+[INFO],SENDER,2020-12-18 01:26:40,"Received parameters from RECEIVER (127.0.0.1, 5585)"
+[INFO],SENDER,2020-12-18 01:26:40,"Received OT data from RECEIVER (127.0.0.1, 5585)"
+[INFO],SENDER,2020-12-18 01:26:40,"Received PRF key data from RECEIVER (127.0.0.1, 5585)"
+[ERROR FROM RECEIVER],SENDER,2020-12-18 01:26:40,Dummy exception
+[INFO],SENDER,2020-12-18 01:29:44,"Received parameters from RECEIVER (127.0.0.1, 5585)"
+[INFO],SENDER,2020-12-18 01:29:44,"Received OT data from RECEIVER (127.0.0.1, 5585)"
+[INFO],SENDER,2020-12-18 01:29:44,"Received PRF key data from RECEIVER (127.0.0.1, 5585)"
+[ERROR FROM RECEIVER],SENDER,2020-12-18 01:29:44,Dummy exception
