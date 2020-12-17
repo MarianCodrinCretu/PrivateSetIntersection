@@ -13,17 +13,11 @@ def get_current_time():
 def check_input_validity(*args):
     v_array = args[1]
 
-    if v_array != [i for i in v_array if isinstance(i, int) or i.isdigit()]:
+    if v_array != [i for i in v_array if i.isascii() and i.isprintable()]:
 
         logging_error = '[ ' + get_current_time() + ' ] Input of invalid type and it can not be used to compute V'
         logging.error(logging_error)
         raise ValueError('The input is of invalid type and it can not be used to compute V')
-
-    elif v_array != [i for i in v_array if isinstance(i, int)]:
-
-        logging_info = '[ ' + get_current_time() + ' ] The string digits were converted to integer, so they can be used in V computation'
-        logging.info(logging_info)
-        v_array = [int(i) for i in v_array]
 
     try:
         yield Proceed(*args)
