@@ -162,6 +162,124 @@ def createLogReceiveConfirmConnection(ip, port):
 
 # -----------------------------------------
 
+def firstHashWrong():
+    infoType = '[WARNING]'
+    entity = 'SENDER'
+    date = f"{datetime.now():%Y-%m-%d %H:%M:%S}"
+    description = 'First hash function is not valid'
+    return "%s %s %s %s"%(infoType, entity, date, description), infoType, entity, date, description
+
+def secondHashWrong():
+    infoType = '[WARNING]'
+    entity = 'SENDER'
+    date = f"{datetime.now():%Y-%m-%d %H:%M:%S}"
+    description = 'Second hash function is not valid'
+    return "%s %s %s %s"%(infoType, entity, date, description), infoType, entity, date, description
+
+def prfWrong():
+    infoType = '[WARNING]'
+    entity = 'SENDER'
+    date = f"{datetime.now():%Y-%m-%d %H:%M:%S}"
+    description = 'PRF is not valid'
+    return "%s %s %s %s"%(infoType, entity, date, description), infoType, entity, date, description
+
+def otVariantWrong():
+    infoType = '[WARNING]'
+    entity = 'SENDER'
+    date = f"{datetime.now():%Y-%m-%d %H:%M:%S}"
+    description = 'OT Variants not valid; please select 1 or 2'
+    return "%s %s %s %s"%(infoType, entity, date, description),infoType, entity, date, description
+
+def lambdaLow():
+    infoType = '[WARNING]'
+    entity = 'SENDER'
+    date = f"{datetime.now():%Y-%m-%d %H:%M:%S}"
+    description = 'Lambda too low; please select a value higher than 128'
+    return "%s %s %s %s"%(infoType, entity, date, description), infoType, entity, date, description
+
+
+def lambdaWrong():
+    infoType = '[WARNING]'
+    entity = 'SENDER'
+    date = f"{datetime.now():%Y-%m-%d %H:%M:%S}"
+    description = 'Lambda too low; please select a value higher than 128'
+    return "%s %s %s %s"%(infoType, entity, date, description), infoType, entity, date, description
+
+def sigmaLow():
+    infoType = '[WARNING]'
+    entity = 'SENDER'
+    date = f"{datetime.now():%Y-%m-%d %H:%M:%S}"
+    description = 'Sigma too low; please select a value higher than 40'
+    return "%s %s %s %s"%(infoType, entity, date, description),infoType, entity, date, description
+
+def sigmaWrong():
+    infoType = '[WARNING]'
+    entity = 'SENDER'
+    date = f"{datetime.now():%Y-%m-%d %H:%M:%S}"
+    description = 'Invalid sigma'
+    return "%s %s %s %s"%(infoType, entity, date, description),infoType, entity, date, description
+
+
+
+def l1Low():
+    infoType = '[WARNING]'
+    entity = 'SENDER'
+    date = f"{datetime.now():%Y-%m-%d %H:%M:%S}"
+    description = 'L1 too low; please select a value higher than 128'
+    return "%s %s %s %s"%(infoType, entity, date, description), infoType, entity, date, description
+
+def l2Low():
+    infoType = '[WARNING]'
+    entity = 'SENDER'
+    date = f"{datetime.now():%Y-%m-%d %H:%M:%S}"
+    description = 'L2 too low; please select a value higher than 50'
+    return "%s %s %s %s"%(infoType, entity, date, description),infoType, entity, date, description
+
+def l1Wrong():
+    infoType = '[WARNING]'
+    entity = 'SENDER'
+    date = f"{datetime.now():%Y-%m-%d %H:%M:%S}"
+    description = 'Invalid L1'
+    return "%s %s %s %s"%(infoType, entity, date, description), infoType, entity, date, description
+
+def l2Wrong():
+    infoType = '[WARNING]'
+    entity = 'SENDER'
+    date = f"{datetime.now():%Y-%m-%d %H:%M:%S}"
+    description = 'Invalid L2'
+    return "%s %s %s %s"%(infoType, entity, date, description),infoType, entity, date, description
+
+'W too low; please select a value higher at least than 10'
+def wLow():
+    infoType = '[WARNING]'
+    entity = 'SENDER'
+    date = f"{datetime.now():%Y-%m-%d %H:%M:%S}"
+    description = 'W too low; please select a value higher at least than 10'
+    return "%s %s %s %s"%(infoType, entity, date, description), infoType, entity, date, description
+
+def wWrong():
+    infoType = '[WARNING]'
+    entity = 'SENDER'
+    date = f"{datetime.now():%Y-%m-%d %H:%M:%S}"
+    description = 'Invalid W'
+    return "%s %s %s %s"%(infoType, entity, date, description), infoType, entity, date, description
+
+def mLow():
+    infoType = '[WARNING]'
+    entity = 'SENDER'
+    date = f"{datetime.now():%Y-%m-%d %H:%M:%S}"
+    description = 'M not between 0.25 and 1.25'
+    return "%s %s %s %s"%(infoType, entity, date, description),infoType, entity, date, description
+
+def mWrong():
+    infoType = '[WARNING]'
+    entity = 'SENDER'
+    date = f"{datetime.now():%Y-%m-%d %H:%M:%S}"
+    description = 'Invalid M'
+    return "%s %s %s %s"%(infoType, entity, date, description), infoType, entity, date, description
+
+
+
 def exceptionReceiver(e):
     infoType = '[ERROR]'
     entity = 'RECEIVER'
@@ -169,9 +287,23 @@ def exceptionReceiver(e):
     description = str(e)
     return infoType, entity, date, description
 
+def receivedExceptionFromReceiver(e):
+    infoType = '[ERROR FROM RECEIVER]'
+    entity = 'SENDER'
+    date = f"{datetime.now():%Y-%m-%d %H:%M:%S}"
+    description = str(e)
+    return infoType, entity, date, description
+
 def exceptionSender(e):
     infoType = '[ERROR]'
     entity = 'SENDER'
+    date = f"{datetime.now():%Y-%m-%d %H:%M:%S}"
+    description = str(e)
+    return infoType, entity, date, description
+
+def receivedExceptionFromSender(e):
+    infoType = '[ERROR FROM SENDER]'
+    entity = 'RECEIVER'
     date = f"{datetime.now():%Y-%m-%d %H:%M:%S}"
     description = str(e)
     return infoType, entity, date, description

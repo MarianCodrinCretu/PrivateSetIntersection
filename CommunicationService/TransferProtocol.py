@@ -282,3 +282,42 @@ class TransferProtocol:
             self.processMessage(message)
         return result
 
+
+    ######################################## ERROR MESSAGING MANAGING ###################################################
+    def sendErrorMessageFromSender(self, e):
+        self._comSend.send("EXCEPTION FROM SENDER: "+str(e), self._connectionParams['Client IP'],
+                           int(self._connectionParams['Client Port']),
+                           HEADERSIZE=10)
+        message = Logs.LogMessaging.exceptionSender(str(e))
+        with aspectlib.weave(self.processMessage, self.log_results):
+            self.processMessage(message)
+
+    def receiveErrorMessageFromSender(self):
+        result = self._comReceive.receive(self._connectionParams['Client IP'],
+                                          int(self._connectionParams['Client Port']),
+                                          HEADERSIZE=10)
+        message = Logs.LogMessaging.receivedExceptionFromSender(str(result))
+        with aspectlib.weave(self.processMessage, self.log_results):
+            self.processMessage(message)
+        return result
+
+    def sendErrorMessageFromReceiver(self, e):
+        self._comSend.send("EXCEPTION FROM RECEIVER: " + str(e), self._connectionParams['Server IP'],
+                           int(self._connectionParams['Server Port']),
+                           HEADERSIZE=10)
+        message = Logs.LogMessaging.exceptionReceiver(str(e))
+        with aspectlib.weave(self.processMessage, self.log_results):
+            self.processMessage(message)
+
+    def receiveErrorMessageFromReceiver(self):
+        result = self._comReceive.receive(self._connectionParams['Server IP'],
+                                          int(self._connectionParams['Server Port']),
+                                          HEADERSIZE=10)
+        message = Logs.LogMessaging.receivedExceptionFromReceiver(str(result))
+        with aspectlib.weave(self.processMessage, self.log_results):
+            self.processMessage(message)
+        return result
+
+
+
+

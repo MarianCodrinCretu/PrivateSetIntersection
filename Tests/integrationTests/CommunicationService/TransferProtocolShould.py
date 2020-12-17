@@ -124,6 +124,14 @@ class TransferProtocolShould(TestCase):
                    int(self._connectionParams['Client Port']), \
                    [{'message': 'I love Quantum Computing', 'message2': 'I love Superposition and Entanglement',
                      'planck': 6.61e-2}], 10, None
+        if index==12:
+            return self._connectionParams['Client IP'], \
+                   int(self._connectionParams['Client Port']), \
+                   [str(Exception('Dummy exception'))], 10, None
+        if index==13:
+            return self._connectionParams['Server IP'], \
+                   int(self._connectionParams['Server Port']), \
+                   [str(Exception('Dummy exception'))], 10, None
 
 
 
@@ -150,6 +158,10 @@ class TransferProtocolShould(TestCase):
             return self.transferProtocol.sendIVByRSA
         if index==11:
             return self.transferProtocol.sendBackNegotiateParameters
+        if index==12:
+            return self.transferProtocol.sendErrorMessageFromSender
+        if index==13:
+            return self.transferProtocol.sendErrorMessageFromReceiver
 
     def receiverMethodMapper(self, index):
         if index == 1:
@@ -174,8 +186,12 @@ class TransferProtocolShould(TestCase):
             return self.transferProtocol.receiveIVByRSA
         if index == 11:
             return self.transferProtocol.receiveModifiedNegotiateParameters
+        if index==12:
+            return self.transferProtocol.receiveErrorMessageFromSender
+        if index==13:
+            return self.transferProtocol.receiveErrorMessageFromReceiver
 
-    @parameterized.expand([[1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11]])
+    @parameterized.expand([[1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13]])
     def test_sendDesiredDataForEachTestCase(self, index):
 
         senderFunction = self.senderMethodMapper(index)
@@ -191,7 +207,7 @@ class TransferProtocolShould(TestCase):
             senderFunction(parametersList[0])
         server_thread.join()
 
-    @parameterized.expand([[1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11]])
+    @parameterized.expand([[1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13]])
     def test_receiveDesiredDataForEachTestCase(self, index):
 
         global bufferZone
