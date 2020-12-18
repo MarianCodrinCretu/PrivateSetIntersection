@@ -15,9 +15,9 @@ class Precomputation:
                                         dictParameters['m'],
                                         dictParameters['prf'])
 
-    def compute_v(self, w, key, dictParameters):
+    def compute_v(self, x, key, dictParameters):
 
-        v = self.computePRF(self.computeHash1(w, dictParameters), key, dictParameters)
+        v = self.computePRF(self.computeHash1(x, dictParameters), key, dictParameters)
 
         return v
 
