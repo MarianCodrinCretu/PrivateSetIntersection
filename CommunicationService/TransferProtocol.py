@@ -134,7 +134,6 @@ class TransferProtocol:
 
         with aspectlib.weave(self.processMessage, self.log_results):
             self.processMessage(message)
-        print('HERE IS IV: ' + str(CryptoUtils.CryptoUtils.rsaDecrypt(rsaKey, result)))
         result = CryptoUtils.CryptoUtils.rsaDecrypt(rsaKey, result)
         self._comSend.aesIV=result.encode('utf8')
         self._comReceive.aesIV = result.encode('utf8')
@@ -159,7 +158,6 @@ class TransferProtocol:
                                                        self._connectionParams['Server Port'])
         with aspectlib.weave(self.processMessage, self.log_results):
             self.processMessage(message)
-        print('HERE IS KEY: ' + str(CryptoUtils.CryptoUtils.rsaDecrypt(rsaKey, result)))
         result = CryptoUtils.CryptoUtils.rsaDecrypt(rsaKey, result)
         self._comSend.aesKey = result.encode('utf8')
         self._comReceive.aesKey = result.encode('utf8')
@@ -285,7 +283,7 @@ class TransferProtocol:
     def sendErrorMessageFromSender(self, e):
         self._comSend.send("EXCEPTION FROM SENDER: "+str(e), self._connectionParams['Client IP'],
                            int(self._connectionParams['Client Port']),
-                           HEADERSIZE=10)
+                           HEADERSIZE=10, flag='NoAES')
         message = Logs.LogMessaging.exceptionSender(str(e))
         with aspectlib.weave(self.processMessage, self.log_results):
             self.processMessage(message)
@@ -293,7 +291,7 @@ class TransferProtocol:
     def receiveErrorMessageFromSender(self):
         result = self._comReceive.receive(self._connectionParams['Client IP'],
                                           int(self._connectionParams['Client Port']),
-                                          HEADERSIZE=10)
+                                          HEADERSIZE=10, flag='NoAES')
         message = Logs.LogMessaging.receivedExceptionFromSender(str(result))
         with aspectlib.weave(self.processMessage, self.log_results):
             self.processMessage(message)
@@ -302,7 +300,7 @@ class TransferProtocol:
     def sendErrorMessageFromReceiver(self, e):
         self._comSend.send("EXCEPTION FROM RECEIVER: " + str(e), self._connectionParams['Server IP'],
                            int(self._connectionParams['Server Port']),
-                           HEADERSIZE=10)
+                           HEADERSIZE=10, flag="NoAES")
         message = Logs.LogMessaging.exceptionReceiver(str(e))
         with aspectlib.weave(self.processMessage, self.log_results):
             self.processMessage(message)
@@ -310,7 +308,7 @@ class TransferProtocol:
     def receiveErrorMessageFromReceiver(self):
         result = self._comReceive.receive(self._connectionParams['Server IP'],
                                           int(self._connectionParams['Server Port']),
-                                          HEADERSIZE=10)
+                                          HEADERSIZE=10, flag="NoAES")
         message = Logs.LogMessaging.receivedExceptionFromReceiver(str(result))
         with aspectlib.weave(self.processMessage, self.log_results):
             self.processMessage(message)

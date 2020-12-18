@@ -1,0 +1,130 @@
+INFO:root:[WARNING] SENDER 2020-12-06 17:15:31 First hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 17:15:31 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 17:37:03 First hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 17:37:03 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 17:37:03 PRF is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 17:38:25 First hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 17:38:25 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 17:38:25 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-06 17:38:25 PRF is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 17:48:28 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 17:48:28 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 17:48:28 First hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 17:48:28 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 17:48:28 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-06 17:48:28 PRF is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 17:54:15 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 17:54:15 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-06 17:54:15 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 17:54:15 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-06 17:54:15 First hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 17:54:15 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 17:54:15 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-06 17:54:15 PRF is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:16:55 L1 too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:16:55 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:16:55 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-06 18:16:55 Invalid L1
+INFO:root:[WARNING] SENDER 2020-12-06 18:16:55 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:16:55 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-06 18:16:55 First hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:16:55 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:16:55 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-06 18:16:55 PRF is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:17:56 L1 too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:17:56 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:17:56 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-06 18:17:56 Invalid L1
+INFO:root:[WARNING] SENDER 2020-12-06 18:17:56 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:17:56 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-06 18:17:56 First hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:17:56 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:17:56 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-06 18:17:56 PRF is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:18:04 L1 too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:18:04 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:18:04 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-06 18:18:04 Invalid L1
+INFO:root:[WARNING] SENDER 2020-12-06 18:18:04 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:18:04 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-06 18:18:04 First hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:18:04 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:18:04 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-06 18:18:04 PRF is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:19:29 L1 too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:19:29 L2 too low; please select a value higher than 50
+INFO:root:[WARNING] SENDER 2020-12-06 18:19:29 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:19:29 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-06 18:19:29 Invalid L1
+INFO:root:[WARNING] SENDER 2020-12-06 18:19:29 Invalid L2
+INFO:root:[WARNING] SENDER 2020-12-06 18:19:29 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:19:29 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-06 18:19:29 First hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:19:29 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:19:29 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-06 18:19:29 PRF is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 L1 too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 L2 too low; please select a value higher than 50
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 W too low; please select a value higher at least than 10
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 Invalid L1
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 Invalid L2
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 First hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 PRF is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 Invalid W
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 L1 too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 L2 too low; please select a value higher than 50
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 W too low; please select a value higher at least than 10
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 Invalid L1
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 Invalid L2
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 Invalid M
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 First hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 PRF is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 Invalid W
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 L1 too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 L2 too low; please select a value higher than 50
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 W too low; please select a value higher at least than 10
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 Invalid L1
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 Invalid L2
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 Invalid M
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 First hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 PRF is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 Invalid W
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 L1 too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 L2 too low; please select a value higher than 50
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 W too low; please select a value higher at least than 10
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 Invalid L1
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 Invalid L2
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 Invalid M
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 First hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 PRF is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 Invalid W

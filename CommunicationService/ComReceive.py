@@ -37,7 +37,7 @@ class ComReceive(Communication):
     def securityTesting(self, data, flag):
         pass
 
-    def receive(self, ipToReceive, portToReceive, HEADERSIZE, sizeOfDgram=16, flag=None):
+    def receive(self, ipToReceive, portToReceive, HEADERSIZE=10, sizeOfDgram=16, flag=None):
 
         socket = self._socketPool.acquire()
         socket.bind((ipToReceive, int(portToReceive)))
