@@ -110,7 +110,7 @@ class TransferProtocolShouldUnit(TestCase):
             return transferProtocol.sendErrorMessageFromSender
         if index == 13:
             return transferProtocol.sendErrorMessageFromReceiver
-        
+
     def receiverMethodMapper(self, index, transferProtocol):
         if index == 1:
             return transferProtocol.receiveInitiateConnection
@@ -130,13 +130,13 @@ class TransferProtocolShouldUnit(TestCase):
             return transferProtocol.receiveRSASenderPublicKey
         if index == 9:
             return transferProtocol.receiveAESKeyByRSA
-        if index==10:
+        if index == 10:
             return transferProtocol.receiveIVByRSA
         if index == 11:
             return transferProtocol.receiveModifiedNegotiateParameters
-        if index==12:
+        if index == 12:
             return transferProtocol.receiveErrorMessageFromSender
-        if index==13:
+        if index == 13:
             return transferProtocol.receiveErrorMessageFromReceiver
 
     @parameterized.expand([[1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13]])
@@ -307,8 +307,6 @@ class TransferProtocolShouldUnit(TestCase):
 
         unstub()
 
-
-
     # ----------------------------------------- RECEIVE METHODS -------------------------------------#
 
     @parameterized.expand([[1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13]])
@@ -341,7 +339,7 @@ class TransferProtocolShouldUnit(TestCase):
             response = self.receiverMethodMapper(index, transferProtocol)(data[0])
 
         # verify
-        self.assertEqual(toReceive,response)
+        self.assertEqual(toReceive, response)
         if flag == None:
             verify(comReceive).receive(ip, port, HEADERSIZE=headersize)
         else:
