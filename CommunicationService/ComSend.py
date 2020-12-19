@@ -2,7 +2,7 @@ import pickle
 import time
 
 import aspectlib
-from Crypto.Cipher import AES
+
 from CommunicationService.Communication import Communication
 from Constants import SNOOZE_FACTOR
 
@@ -10,14 +10,13 @@ from Constants import SNOOZE_FACTOR
 class ComSend(Communication):
 
     @aspectlib.Aspect
-    def encryptDataAES(self, toBeSent, flag):
+    def encryptDataAES(self, toBeSent, aesCipher, flag):
 
-        if flag=='NoAES':
+        if flag == 'NoAES':
             yield aspectlib.Proceed
         else:
-            cipher = AES.new(self.aesKey, AES.MODE_CFB, self.aesIV)
             data = yield aspectlib.Proceed
-            yield aspectlib.Return(cipher.encrypt(data))
+            yield aspectlib.Return(aesCipher.encrypt(data))
 
     @aspectlib.Aspect
     def snoozeAdaptivelyTime(self, data):
@@ -26,16 +25,14 @@ class ComSend(Communication):
     def snoozeTime(self, data):
         time.sleep(0.2)
 
-
-    def processData(self, toBeSent, flag):
+    def processData(self, toBeSent, aesCipher, flag):
         binaryDict = pickle.dumps(toBeSent)
         return binaryDict
 
-
-    def send(self, toBeSent, ipDestination, portDestination, HEADERSIZE, flag=None):
+    def send(self, toBeSent, ipDestination, portDestination, HEADERSIZE, aesCipher=None, flag=None):
 
         with aspectlib.weave(self.processData, self.encryptDataAES):
-            binaryDict = self.processData(toBeSent, flag)
+            binaryDict = self.processData(toBeSent, aesCipher, flag)
 
         socket = self._socketPool.acquire()
         socket.connect((ipDestination, portDestination))

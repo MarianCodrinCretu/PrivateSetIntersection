@@ -1,5 +1,7 @@
 from unittest import TestCase
 
+from Crypto.Cipher import AES
+from mockito import ANY
 from mockito import when, mock, unstub, verify
 from mockito.matchers import any
 from parameterized import parameterized
@@ -21,67 +23,71 @@ class TransferProtocolShouldUnit(TestCase):
     comSend = None
     comReceive = None
 
+    aesMock = mock(AES)
+
     def parametersMapper(self, index):
         if index == 1:
             return self._connectionParams['Server IP'], \
                    int(self._connectionParams['Server Port']), \
-                   [], str, "Connection attempting!", 10, 'NoAES'
+                   [], str, "Connection attempting!", 10, None, 'NoAES'
         if index == 2:
             return self._connectionParams['Client IP'], \
                    int(self._connectionParams['Client Port']), \
-                   [], str, "Received connection attempting! All ok!", 10, 'NoAES'
+                   [], str, "Received connection attempting! All ok!", 10, None, 'NoAES'
         if index == 3:
             return self._connectionParams['Server IP'], \
                    int(self._connectionParams['Server Port']), \
                    [{'message': 'I love Quantum Computing', 'message2': 'I love Superposition and Entanglement',
                      'planck': 6.61e-2}], dict, {'message': 'I love Quantum Computing',
                                                  'message2': 'I love Superposition and Entanglement',
-                                                 'planck': 6.61e-2}, 10, None
+                                                 'planck': 6.61e-2}, 10, self.aesMock, None
         if index == 4:
             return self._connectionParams['Server IP'], \
                    int(self._connectionParams['Server Port']), \
                    [[[i for i in range(10)] for j in range(10)]], list, [[i for i in range(10)] for j in
-                                                                         range(10)], 10, None
+                                                                         range(10)], 10, self.aesMock, None
         if index == 5:
             return self._connectionParams['Server IP'], \
                    int(self._connectionParams['Server Port']), \
-                   ["keykeykeykeykey"], str, "keykeykeykeykey", 10, None
+                   ["keykeykeykeykey"], str, "keykeykeykeykey", 10, self.aesMock, None
         if index == 6:
             return self._connectionParams['Client IP'], \
                    int(self._connectionParams['Client Port']), \
                    [[[i for i in range(10)] for j in range(10)]], list, [[i for i in range(10)] for j in range(10)], \
-                   100, None
+                   100, self.aesMock, None
         if index == 7:
             return self._connectionParams['Server IP'], \
                    int(self._connectionParams['Server Port']), ['pubKeyClient'], str, 'pubKeyClient', \
-                   50, 'NoAES'
+                   50, None, 'NoAES'
         if index == 8:
             return self._connectionParams['Client IP'], \
                    int(self._connectionParams['Client Port']), ['pubKeyServer'], str, 'pubKeyServer', \
-                   50, 'NoAES'
+                   50, None, 'NoAES'
         if index == 10:
             return self._connectionParams['Server IP'], \
-                   int(self._connectionParams['Server Port']), ['pubKeyServer', 'aesIV'], str, 'aesIV', 10, 'NoAES'
+                   int(self._connectionParams['Server Port']), ['pubKeyServer',
+                                                                'aesIV'], str, 'aesIV', 10, None, 'NoAES'
         if index == 9:
             return self._connectionParams['Client IP'], \
-                   int(self._connectionParams['Client Port']), ['pubKeyClient', 'aesKey'], str, 'aesKey', 10, 'NoAES'
+                   int(self._connectionParams['Client Port']), ['pubKeyClient',
+                                                                'aesKey'], str, 'aesKey', 10, None, 'NoAES'
         if index == 11:
             return self._connectionParams['Client IP'], \
                    int(self._connectionParams['Client Port']), \
                    [{'message': 'I love Quantum Computing', 'message2': 'I love Superposition and Entanglement',
                      'planck': 6.61e-2}], dict, {'message': 'I love Quantum Computing',
                                                  'message2': 'I love Superposition and Entanglement',
-                                                 'planck': 6.61e-2}, 10, None
+                                                 'planck': 6.61e-2}, 10, self.aesMock, None
         if index == 12:
             return self._connectionParams['Client IP'], \
                    int(self._connectionParams['Client Port']), \
                    [Exception('Dummy exception')], str, "EXCEPTION FROM SENDER: " + str(Exception('Dummy exception')), \
-                   10, 'NoAES'
+                   10, None, 'NoAES'
         if index == 13:
             return self._connectionParams['Server IP'], \
                    int(self._connectionParams['Server Port']), \
                    [Exception('Dummy exception')], str, "EXCEPTION FROM RECEIVER: " + str(Exception('Dummy exception')), \
-                   10, 'NoAES'
+                   10, None, 'NoAES'
 
     def senderMethodMapper(self, index, transferProtocol):
         if index == 1:
@@ -144,7 +150,7 @@ class TransferProtocolShouldUnit(TestCase):
         # setup
         comSend = mock(ComSend)
         comReceive = mock(ComReceive)
-        ip, port, data, datatype, toSend, headersize, flag = self.parametersMapper(index)
+        ip, port, data, datatype, toSend, headersize, aesCipher, flag = self.parametersMapper(index)
 
         # ----------------- when RSA exchange keys procedure -------------------------------
         if index in (7, 8):
@@ -158,7 +164,7 @@ class TransferProtocolShouldUnit(TestCase):
         if flag is None:
             when(comSend).send(any(datatype), ip,
                                port,
-                               HEADERSIZE=headersize)
+                               HEADERSIZE=headersize, aesCipher=ANY)
         else:
             when(comSend).send(any(datatype), ip,
                                port,
@@ -181,7 +187,7 @@ class TransferProtocolShouldUnit(TestCase):
             verify(CryptoUtils).rsaEncrypt(data[0], data[1])
 
         if flag == None:
-            verify(comSend).send(toSend, ip, port, HEADERSIZE=headersize)
+            verify(comSend).send(toSend, ip, port, HEADERSIZE=headersize, aesCipher=ANY)
         else:
             verify(comSend).send(toSend, ip, port, HEADERSIZE=headersize, flag=flag)
 
@@ -192,7 +198,7 @@ class TransferProtocolShouldUnit(TestCase):
         # setup
         comSend = mock(ComSend)
         comReceive = mock(ComReceive)
-        ip, port, data, datatype, toSend, headersize, flag = self.parametersMapper(index)
+        ip, port, data, datatype, toSend, headersize, aesCipher, flag = self.parametersMapper(index)
 
         # ----------------- when RSA exchange keys procedure -------------------------------
         if index in (7, 8):
@@ -207,7 +213,7 @@ class TransferProtocolShouldUnit(TestCase):
         if flag is None:
             when(comSend).send(any(datatype), ip,
                                port,
-                               HEADERSIZE=headersize).thenRaise(exception)
+                               HEADERSIZE=headersize, aesCipher=ANY).thenRaise(exception)
         else:
             when(comSend).send(any(datatype), ip,
                                port,
@@ -224,7 +230,7 @@ class TransferProtocolShouldUnit(TestCase):
             else:
                 self.senderMethodMapper(index, transferProtocol)(data[1], data[0])
 
-            self.assertTrue('Bad Sending' in context.exception)
+            self.assertTrue(str(exception) in context.exception)
 
         # verify
         if index in (7, 8):
@@ -233,7 +239,7 @@ class TransferProtocolShouldUnit(TestCase):
             verify(CryptoUtils).rsaEncrypt(data[0], data[1])
 
         if flag == None:
-            verify(comSend).send(toSend, ip, port, HEADERSIZE=headersize)
+            verify(comSend).send(toSend, ip, port, HEADERSIZE=headersize, aesCipher=ANY)
         else:
             verify(comSend).send(toSend, ip, port, HEADERSIZE=headersize, flag=flag)
 
@@ -244,7 +250,7 @@ class TransferProtocolShouldUnit(TestCase):
         # setup
         comSend = mock(ComSend)
         comReceive = mock(ComReceive)
-        ip, port, data, datatype, toSend, headersize, flag = self.parametersMapper(index)
+        ip, port, data, datatype, toSend, headersize, aesCipher, flag = self.parametersMapper(index)
 
         # ----------------- when RSA exchange keys procedure -------------------------------
 
@@ -263,7 +269,7 @@ class TransferProtocolShouldUnit(TestCase):
             else:
                 self.senderMethodMapper(index, transferProtocol)(data[1], data[0])
 
-            self.assertTrue('Wrong convert RSA key to String' in context.exception)
+            self.assertTrue(str(exception) in context.exception)
 
         # verify
 
@@ -278,7 +284,7 @@ class TransferProtocolShouldUnit(TestCase):
         # setup
         comSend = mock(ComSend)
         comReceive = mock(ComReceive)
-        ip, port, data, datatype, toSend, headersize, flag = self.parametersMapper(index)
+        ip, port, data, datatype, toSend, headersize, aesCipher, flag = self.parametersMapper(index)
 
         # ----------------- when RSA exchange keys procedure -------------------------------
 
@@ -297,7 +303,7 @@ class TransferProtocolShouldUnit(TestCase):
             else:
                 self.senderMethodMapper(index, transferProtocol)(data[1], data[0])
 
-            self.assertTrue('Failing RSA encryption' in context.exception)
+            self.assertTrue(str(exception) in context.exception)
 
         # verify
 
@@ -314,10 +320,10 @@ class TransferProtocolShouldUnit(TestCase):
         # setup
         comSend = mock(ComSend)
         comReceive = mock(ComReceive)
-        ip, port, data, datatype, toReceive, headersize, flag = self.parametersMapper(index)
+        ip, port, data, datatype, toReceive, headersize, aesCipher, flag = self.parametersMapper(index)
 
         if flag is None:
-            when(comReceive).receive(ip, port, HEADERSIZE=headersize).thenReturn(toReceive)
+            when(comReceive).receive(ip, port, HEADERSIZE=headersize, aesCipher=ANY).thenReturn(toReceive)
         else:
             when(comReceive).receive(ip, port, HEADERSIZE=headersize, flag=flag).thenReturn(toReceive)
 
@@ -341,7 +347,7 @@ class TransferProtocolShouldUnit(TestCase):
         # verify
         self.assertEqual(toReceive, response)
         if flag == None:
-            verify(comReceive).receive(ip, port, HEADERSIZE=headersize)
+            verify(comReceive).receive(ip, port, HEADERSIZE=headersize, aesCipher=ANY)
         else:
             verify(comReceive).receive(ip, port, HEADERSIZE=headersize, flag=flag)
 
@@ -357,11 +363,11 @@ class TransferProtocolShouldUnit(TestCase):
         # setup
         comSend = mock(ComSend)
         comReceive = mock(ComReceive)
-        ip, port, data, datatype, toReceive, headersize, flag = self.parametersMapper(index)
+        ip, port, data, datatype, toReceive, headersize, aesCipher, flag = self.parametersMapper(index)
 
         exception = Exception('Bad Receiving')
         if flag is None:
-            when(comReceive).receive(ip, port, HEADERSIZE=headersize).thenRaise(exception)
+            when(comReceive).receive(ip, port, HEADERSIZE=headersize, aesCipher=ANY).thenRaise(exception)
         else:
             when(comReceive).receive(ip, port, HEADERSIZE=headersize, flag=flag).thenRaise(exception)
 
@@ -382,11 +388,11 @@ class TransferProtocolShouldUnit(TestCase):
                 self.receiverMethodMapper(index, transferProtocol)()
             else:
                 self.receiverMethodMapper(index, transferProtocol)(data[0])
-            self.assertTrue('Bad Receiving' in context.exception)
+            self.assertTrue(str(exception) in context.exception)
 
         # verify
         if flag == None:
-            verify(comReceive).receive(ip, port, HEADERSIZE=headersize)
+            verify(comReceive).receive(ip, port, HEADERSIZE=headersize, aesCipher=ANY)
         else:
             verify(comReceive).receive(ip, port, HEADERSIZE=headersize, flag=flag)
 
@@ -402,7 +408,7 @@ class TransferProtocolShouldUnit(TestCase):
         # setup
         comSend = mock(ComSend)
         comReceive = mock(ComReceive)
-        ip, port, data, datatype, toReceive, headersize, flag = self.parametersMapper(index)
+        ip, port, data, datatype, toReceive, headersize, aesCipher, flag = self.parametersMapper(index)
 
         exception = Exception('Wrong convert RSA String to key')
         if flag is None:
@@ -422,7 +428,7 @@ class TransferProtocolShouldUnit(TestCase):
                 self.receiverMethodMapper(index, transferProtocol)()
             else:
                 self.receiverMethodMapper(index, transferProtocol)(data[0])
-            self.assertTrue('Wrong convert RSA String to key' in context.exception)
+            self.assertTrue(str(exception) in context.exception)
 
         # verify
         verify(comReceive).receive(ip, port, HEADERSIZE=headersize, flag=flag)
@@ -436,7 +442,7 @@ class TransferProtocolShouldUnit(TestCase):
         # setup
         comSend = mock(ComSend)
         comReceive = mock(ComReceive)
-        ip, port, data, datatype, toReceive, headersize, flag = self.parametersMapper(index)
+        ip, port, data, datatype, toReceive, headersize, aesCipher, flag = self.parametersMapper(index)
 
         exception = Exception('Failing RSA decryption')
         if flag is None:
@@ -456,7 +462,7 @@ class TransferProtocolShouldUnit(TestCase):
                 self.receiverMethodMapper(index, transferProtocol)()
             else:
                 self.receiverMethodMapper(index, transferProtocol)(data[0])
-            self.assertTrue('Failing RSA encryption' in context.exception)
+            self.assertTrue(str(exception) in context.exception)
 
         # verify
         verify(comReceive).receive(ip, port, HEADERSIZE=headersize, flag=flag)

@@ -1,5 +1,5 @@
 import pickle
-from Crypto.Cipher import AES
+
 import aspectlib
 
 from CommunicationService.Communication import Communication
@@ -8,14 +8,14 @@ from CommunicationService.Communication import Communication
 class ComReceive(Communication):
 
     @aspectlib.Aspect
-    def decryptDataAES(self, data, flag):
-
+    def decryptDataAES(self, data, aesCipher, flag):
         if flag == 'NoAES':
             yield aspectlib.Proceed
         else:
-            cipher = AES.new(self.aesKey, AES.MODE_CFB, self.aesIV)
-            data = cipher.decrypt(data)
-            yield aspectlib.Proceed(self, data, flag)
+
+            data = aesCipher.decrypt(data)
+
+            yield aspectlib.Proceed(self, data, aesCipher, flag)
 
     @aspectlib.Aspect
     def securityTestingTune(self, data, flag):
@@ -29,7 +29,7 @@ class ComReceive(Communication):
                 filex.write('\n--------------------\n')
                 yield aspectlib.Proceed
 
-    def processData(self, data, flag):
+    def processData(self, data, aesCipher, flag):
 
         data = pickle.loads(data)
         return data
@@ -37,7 +37,7 @@ class ComReceive(Communication):
     def securityTesting(self, data, flag):
         pass
 
-    def receive(self, ipToReceive, portToReceive, HEADERSIZE=10, sizeOfDgram=16, flag=None):
+    def receive(self, ipToReceive, portToReceive, HEADERSIZE, aesCipher=None, sizeOfDgram=16, flag=None):
 
         socket = self._socketPool.acquire()
         socket.bind((ipToReceive, int(portToReceive)))
@@ -62,7 +62,6 @@ class ComReceive(Communication):
 
                 # with aspectlib.weave(self.securityTesting, self.securityTestingTune):
                 #     self.securityTesting(data, flag)
-
                 with aspectlib.weave(self.processData, self.decryptDataAES):
-                    return self.processData(data, flag)
 
+                    return self.processData(data, aesCipher, flag)

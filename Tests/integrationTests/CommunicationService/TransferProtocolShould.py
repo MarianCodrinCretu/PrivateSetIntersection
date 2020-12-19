@@ -5,9 +5,9 @@ import threading
 import time
 from unittest import TestCase
 
+from Crypto.Cipher import AES
 from Crypto.PublicKey import RSA
 from parameterized import parameterized
-from Crypto.Cipher import AES
 
 import Constants
 from CommunicationService.ComReceive import ComReceive
@@ -37,12 +37,12 @@ def run_fake_client(address, port, message, key, iv, HEADERSIZE, flag, index):
         time.sleep(0.001)
         server_sock = socket.socket()
         server_sock.connect((address, port))
-        if flag!='NoAES':
+        if flag != 'NoAES':
             cipher = AES.new(key, AES.MODE_CFB, iv)
             message = pickle.dumps(message)
             message = cipher.encrypt(message)
         else:
-            if index in(7,8):
+            if index in (7, 8):
                 message = pickle.dumps(CryptoUtils.convertRSAKeyToString(message))
             elif index == 9:
                 print(pubKeyServer)
@@ -62,20 +62,22 @@ def run_fake_client(address, port, message, key, iv, HEADERSIZE, flag, index):
     except ConnectionRefusedError:
         bufferZone = "CONNECTION ERROR"
 
+
 pubKeyClient = RSA.importKey(open(os.path.join("client_rsa_public.pem")).read())
 privKeyClient = RSA.importKey(open(os.path.join("client_rsa_private.pem")).read())
 pubKeyServer = RSA.importKey(open(os.path.join("client_rsa_public.pem")).read())
 privKeyServer = RSA.importKey(open(os.path.join("client_rsa_private.pem")).read())
+
 
 class TransferProtocolShould(TestCase):
     _connectionParams = {'Server IP': Constants.SENDER_ADDRESS,
                          'Server Port': Constants.SENDER_PORT,
                          'Client IP': Constants.RECEIVER_ADDRESS,
                          'Client Port': Constants.RECEIVER_PORT}
-    comSend = ComSend(SocketPool(20), "Thats my Kung Fu", "ABCDE FG HIJK LM")
-    comReceive = ComReceive(SocketPool(20),"Thats my Kung Fu", "ABCDE FG HIJK LM")
+    comSend = ComSend(SocketPool(20))
+    comReceive = ComReceive(SocketPool(20))
 
-    transferProtocol = TransferProtocol(_connectionParams, comSend, comReceive)
+    transferProtocol = TransferProtocol(_connectionParams, comSend, comReceive, "Thats my Kung Fu", "ABCDE FG HIJK LM")
 
     def parametersMapper(self, index):
         if index == 1:
@@ -105,33 +107,31 @@ class TransferProtocolShould(TestCase):
                    [[[i for i in range(10)] for j in range(10)]], 100, None
         if index == 7:
             return self._connectionParams['Server IP'], \
-                int(self._connectionParams['Server Port']), [pubKeyClient], \
-                50, 'NoAES'
+                   int(self._connectionParams['Server Port']), [pubKeyClient], \
+                   50, 'NoAES'
         if index == 8:
             return self._connectionParams['Client IP'], \
-                int(self._connectionParams['Client Port']), [pubKeyServer], \
-                50, 'NoAES'
+                   int(self._connectionParams['Client Port']), [pubKeyServer], \
+                   50, 'NoAES'
         if index == 10:
-             return self._connectionParams['Server IP'],\
-            int(self._connectionParams['Server Port']), [pubKeyServer, self.comReceive.aesIV], 10, 'NoAES'
+            return self._connectionParams['Server IP'], \
+                   int(self._connectionParams['Server Port']), [pubKeyServer, self.transferProtocol.aesIV], 10, 'NoAES'
         if index == 9:
-            return self._connectionParams['Client IP'],\
-            int(self._connectionParams['Client Port']), [pubKeyClient, self.comReceive.aesKey], 10, 'NoAES'
-        if index==11:
+            return self._connectionParams['Client IP'], \
+                   int(self._connectionParams['Client Port']), [pubKeyClient, self.transferProtocol.aesKey], 10, 'NoAES'
+        if index == 11:
             return self._connectionParams['Client IP'], \
                    int(self._connectionParams['Client Port']), \
                    [{'message': 'I love Quantum Computing', 'message2': 'I love Superposition and Entanglement',
                      'planck': 6.61e-2}], 10, None
-        if index==12:
+        if index == 12:
             return self._connectionParams['Client IP'], \
                    int(self._connectionParams['Client Port']), \
-                   [str(Exception('Dummy exception'))], 10, None
-        if index==13:
+                   [str(Exception('Dummy exception'))], 10, 'NoAES'
+        if index == 13:
             return self._connectionParams['Server IP'], \
                    int(self._connectionParams['Server Port']), \
-                   [str(Exception('Dummy exception'))], 10, None
-
-
+                   [str(Exception('Dummy exception'))], 10, 'NoAES'
 
     def senderMethodMapper(self, index):
         if index == 1:
@@ -146,19 +146,19 @@ class TransferProtocolShould(TestCase):
             return self.transferProtocol.sendPRFKey
         if index == 6:
             return self.transferProtocol.sendPsiValues
-        if index==7:
+        if index == 7:
             return self.transferProtocol.sendRSAReceiverPublicKey
-        if index==8:
+        if index == 8:
             return self.transferProtocol.sendRSASenderPublicKey
         if index == 9:
             return self.transferProtocol.sendAESKeyByRSA
-        if index==10:
+        if index == 10:
             return self.transferProtocol.sendIVByRSA
-        if index==11:
+        if index == 11:
             return self.transferProtocol.sendBackNegotiateParameters
-        if index==12:
+        if index == 12:
             return self.transferProtocol.sendErrorMessageFromSender
-        if index==13:
+        if index == 13:
             return self.transferProtocol.sendErrorMessageFromReceiver
 
     def receiverMethodMapper(self, index):
@@ -180,13 +180,13 @@ class TransferProtocolShould(TestCase):
             return self.transferProtocol.receiveRSASenderPublicKey
         if index == 9:
             return self.transferProtocol.receiveAESKeyByRSA
-        if index==10:
+        if index == 10:
             return self.transferProtocol.receiveIVByRSA
         if index == 11:
             return self.transferProtocol.receiveModifiedNegotiateParameters
-        if index==12:
+        if index == 12:
             return self.transferProtocol.receiveErrorMessageFromSender
-        if index==13:
+        if index == 13:
             return self.transferProtocol.receiveErrorMessageFromReceiver
 
     @parameterized.expand([[1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13]])
@@ -194,12 +194,13 @@ class TransferProtocolShould(TestCase):
 
         senderFunction = self.senderMethodMapper(index)
         ip, port, parametersList, HEADERSIZE, flag = self.parametersMapper(index)
-        server_thread = threading.Thread(target=run_fake_server, args=(ip, port, self.comSend.aesKey, self.comSend.aesIV))
+        server_thread = threading.Thread(target=run_fake_server,
+                                         args=(ip, port, self.transferProtocol.aesKey, self.transferProtocol.aesIV))
         server_thread.start()
         time.sleep(0.02)
         if len(parametersList) == 0:
             senderFunction()
-        elif len(parametersList)==2:
+        elif len(parametersList) == 2:
             senderFunction(parametersList[1], parametersList[0])
         else:
             senderFunction(parametersList[0])
@@ -220,28 +221,29 @@ class TransferProtocolShould(TestCase):
         elif index == 2:
             parameter = "Received connection attempting! All ok!"
         elif index == 9:
-            parameter = self.comReceive.aesIV
+            parameter = self.transferProtocol.aesIV
         elif index == 10:
-            parameter = self.comReceive.aesKey
+            parameter = self.transferProtocol.aesKey
         else:
             parameter = parametersList[0]
 
         if index == 9:
             receiveParameter = privKeyServer
-        elif index== 10:
+        elif index == 10:
             receiveParameter = privKeyClient
         else:
             receiveParameter = parameter
 
-        client_thread = threading.Thread(target=run_fake_client, args=(ip, port, parameter, self.comReceive.aesKey,self.comReceive.aesIV, HEADERSIZE, flag, index))
+        client_thread = threading.Thread(target=run_fake_client, args=(
+            ip, port, parameter, self.transferProtocol.aesKey, self.transferProtocol.aesIV, HEADERSIZE, flag, index))
         client_thread.start()
 
-        if index not in (9,10):
+        if index not in (9, 10):
             data = receiverFunction()
         else:
             data = receiverFunction(receiveParameter)
 
-        if index not in (9,10):
+        if index not in (9, 10):
             self.assertEqual(data, parameter)
         else:
             self.assertEqual(data, parameter.decode())

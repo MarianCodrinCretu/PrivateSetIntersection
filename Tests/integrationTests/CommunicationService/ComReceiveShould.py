@@ -1,16 +1,18 @@
 import pickle
-import threading
 import socket
-from unittest import TestCase
+import threading
 import time
+from unittest import TestCase
+
+from Crypto.Cipher import AES
 
 from CommunicationService.ComReceive import ComReceive
 from CommunicationService.SocketPool import SocketPool
-from Crypto.Cipher import AES
 
 bufferZone = ""
 message = "I love ASET"
 messageReceived = message
+
 
 def run_fake_client(key, iv):
     # Run a client which connects to a server
@@ -30,18 +32,21 @@ def run_fake_client(key, iv):
     except ConnectionRefusedError:
         bufferZone = "CONNECTION ERROR"
 
+
 class ComReceiveShould(TestCase):
+    key = "Thats my Kung Fu".encode('utf8')
+    iv = "ABCDE FG HIJK LM".encode('utf8')
 
     def test_receiveConnection(self):
 
         global bufferZone
 
-        comReceive = ComReceive(SocketPool(5), "Thats my Kung Fu", "ABCDE FG HIJK LM")
-        client_thread = threading.Thread(target=run_fake_client, args=(comReceive.aesKey, comReceive.aesIV))
+        comReceive = ComReceive(SocketPool(5))
+        client_thread = threading.Thread(target=run_fake_client, args=(self.key, self.iv))
         client_thread.start()
         comReceive.receive(ipToReceive="127.0.0.1",
                            portToReceive=4455,
-                           HEADERSIZE=10)
+                           HEADERSIZE=10, aesCipher=AES.new(self.key, AES.MODE_CFB, self.iv))
 
         client_thread.join()
         if bufferZone == "CONNECTION ERROR":
@@ -52,18 +57,15 @@ class ComReceiveShould(TestCase):
         global bufferZone
         global messageReceived
 
-        comReceive = ComReceive(SocketPool(5), "Thats my Kung Fu", "ABCDE FG HIJK LM")
-        client_thread = threading.Thread(target=run_fake_client, args=(comReceive.aesKey, comReceive.aesIV))
+        comReceive = ComReceive(SocketPool(5))
+        client_thread = threading.Thread(target=run_fake_client, args=(self.key, self.iv))
         client_thread.start()
         data = comReceive.receive(ipToReceive="127.0.0.1",
-                           portToReceive=4455,
-                           HEADERSIZE=10)
+                                  portToReceive=4455,
+                                  HEADERSIZE=10, aesCipher=AES.new(self.key, AES.MODE_CFB, self.iv))
 
         self.assertEqual(data, messageReceived)
 
         client_thread.join()
         if bufferZone == "CONNECTION ERROR":
             self.fail()
-
-
-
