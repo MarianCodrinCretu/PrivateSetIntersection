@@ -61,21 +61,6 @@ def run_fake_client(address, port, message, key, iv, HEADERSIZE, flag, index):
             cipher = AES.new(key, AES.MODE_CFB, iv)
             message = pickle.dumps(message)
             message = cipher.encrypt(message)
-        else:
-            if index in(7,8):
-                message = pickle.dumps(CryptoUtils.convertRSAKeyToString(message))
-            elif index == 9:
-                print(pubKeyServer)
-                print(message)
-                message = CryptoUtils.rsaEncrypt(pubKeyServer, message)
-                message = pickle.dumps(message)
-            elif index == 10:
-                print(pubKeyClient)
-                print(message)
-                message = CryptoUtils.rsaEncrypt(pubKeyClient, message)
-                message = pickle.dumps(message)
-            else:
-                message = pickle.dumps(message)
         message = bytes(f"{len(message):<{HEADERSIZE}}", 'utf-8') + message
         server_sock.send(message)
         server_sock.close()
@@ -92,10 +77,13 @@ class TransferProtocolSecurity(TestCase):
                          'Server Port': Constants.SENDER_PORT,
                          'Client IP': Constants.RECEIVER_ADDRESS,
                          'Client Port': Constants.RECEIVER_PORT}
-    comSend = ComSend(SocketPool(20), "Thats my Kung Fu", "ABCDE FG HIJK LM")
-    comReceive = ComReceive(SocketPool(20), "Thats my Kung Fu", "ABCDE FG HIJK LM")
 
-    transferProtocol = TransferProtocol(_connectionParams, comSend, comReceive)
+    aesKey = "Thats my Kung Fu"
+    aesIV = "ABCDE FG HIJK LM"
+    comSend = ComSend(SocketPool(20))
+    comReceive = ComReceive(SocketPool(20))
+
+    transferProtocol = TransferProtocol(_connectionParams, comSend, comReceive, aesKey, aesIV)
 
     def test_statisticalNIST(self):
         with open('security.txt', 'r') as filex:
@@ -130,14 +118,6 @@ class TransferProtocolSecurity(TestCase):
                    int(self._connectionParams['Client Port']), \
                    [{'message': 'I love Quantum Computing', 'message2': 'I love Superposition and Entanglement',
                      'planck': 6.61e-2}], 10, None
-        if index == 12:
-            return self._connectionParams['Client IP'], \
-                   int(self._connectionParams['Client Port']), \
-                   [str(Exception('Dummy exception'))], 10, None
-        if index == 13:
-            return self._connectionParams['Server IP'], \
-                   int(self._connectionParams['Server Port']), \
-                   [str(Exception('Dummy exception'))], 10, None
 
     def receiverMethodMapper(self, index):
         if index == 3:
@@ -150,13 +130,9 @@ class TransferProtocolSecurity(TestCase):
             return self.transferProtocol.receivePsiValues
         if index == 11:
             return self.transferProtocol.receiveModifiedNegotiateParameters
-        if index == 12:
-            return self.transferProtocol.receiveErrorMessageFromSender
-        if index == 13:
-            return self.transferProtocol.receiveErrorMessageFromReceiver
 
 
-    @parameterized.expand([ [3], [4], [5], [6], [11], [12], [13]])
+    @parameterized.expand([ [3], [4], [5], [6], [11]])
     def test_receiveDesiredDataForEachTestCase(self, index):
 
         global bufferZone
@@ -168,7 +144,7 @@ class TransferProtocolSecurity(TestCase):
         parameter = parametersList[0]
 
         client_thread = threading.Thread(target=run_fake_client, args=(
-        ip, port, parameter, self.comReceive.aesKey, self.comReceive.aesIV, HEADERSIZE, flag, index))
+        ip, port, parameter, self.transferProtocol.aesKey, self.transferProtocol.aesIV, HEADERSIZE, flag, index))
         client_thread.start()
 
         data = receiverFunction()

@@ -13,3 +13,9 @@
 [INFO],RECEIVER,2020-12-18 01:29:44,"Received PSI data from SENDER (127.0.0.1, 5586)"
 [INFO],RECEIVER,2020-12-18 01:29:44,"Received modified parameters from SENDER (127.0.0.1, 5586)"
 [ERROR FROM SENDER],RECEIVER,2020-12-18 01:29:44,Dummy exception
+[INFO],RECEIVER,2020-12-18 10:57:28,"Received PSI data from SENDER (127.0.0.1, 5586)"
+[INFO],RECEIVER,2020-12-18 10:57:28,"Received modified parameters from SENDER (127.0.0.1, 5586)"
+[INFO],RECEIVER,2020-12-18 10:58:23,"Received PSI data from SENDER (127.0.0.1, 5586)"
+[INFO],RECEIVER,2020-12-18 10:58:23,"Received modified parameters from SENDER (127.0.0.1, 5586)"
+[INFO],RECEIVER,2020-12-20 01:14:57,"Received PSI data from SENDER (127.0.0.1, 5586)"
+[INFO],RECEIVER,2020-12-20 01:14:57,"Received modified parameters from SENDER (127.0.0.1, 5586)"
