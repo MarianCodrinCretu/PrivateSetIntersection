@@ -6,7 +6,7 @@ import os
 class HashBlake2b(HashFunction):
     def initialize(self):
         blakeSalt = os.urandom(hashlib.blake2b.SALT_SIZE)
-        self._hash = hashlib.blake2b(salt=blakeSalt,  digest_size=64)
+        self._hash = hashlib.blake2b(salt=blakeSalt,  digest_size=self._desiredOutputByteLength)
 
 
     def displayResult(self):

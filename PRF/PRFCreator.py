@@ -1,20 +1,25 @@
 from abc import ABC, abstractmethod
-from PRF.PrfScopeEnum import PrfScopeEnum
 
 
 class PRFCreator(ABC):
-    def __init__(self, iv, key, scope=PrfScopeEnum.GENERATOR) -> None:
+    def __init__(self, iv, key) -> None:
         self._iv = iv
         self._key = key
-        self._scope = scope
         self._prf = self.createPrf()
 
     @abstractmethod
     def createPrf(self):
         pass
 
-    def computePrf(self, plaintext):
-        return self.getPrf().computePrf(plaintext)
+    def computePrf(self, plaintext, scope):
+        return self._prf.computePrf(plaintext, scope)
 
-    def getPrf(self):
-        return self._prf
+    # @staticmethod
+    # def getPrfInstance(prfType, key, iv=b''):
+    #     if prfType == 'DES':
+    #         return DESPrfCreator(iv, key)
+    #     elif prfType == 'AES':
+    #         return AESPrfCreator(iv, key)
+    #     elif prfType == 'DES3':
+    #         return DES3PrfCreator(iv, key)
+

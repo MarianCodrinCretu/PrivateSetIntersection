@@ -1,12 +1,12 @@
 from abc import ABC, abstractmethod
 
-from AOP.DataInterceptor import checkHashPlaintextValidity, logCipherDetailsErrors
+from AOP.DataInterceptor import checkHashPlaintextValidity
 from MOP.HashOutputInterceptor import addPaddingToTheOutput
 
 
 class HashFunction(ABC):
-    def __init__(self, outputBitLength):
-        self._outputBitLength = outputBitLength
+    def __init__(self, l1):
+        self._desiredOutputByteLength = l1
 
     def generate(self, plaintext):
         self.initialize()

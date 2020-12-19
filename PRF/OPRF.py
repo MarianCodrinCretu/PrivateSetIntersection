@@ -31,31 +31,32 @@ def getVAsAWLengthVector(FkValueAsBitArray):
     return [convertBinaryToDecimal(FkValueAsBitArray[index]) for index in range(0, len(FkValueAsBitArray))]
 
 
-def getPrfInstance(prfType, key, scope, iv=b''):
+def getPrfInstance(prfType, key, iv=b''):
     if prfType == 'DES':
-        return DESPrfCreator(iv, key, scope)
+        return DESPrfCreator(iv, key)
     elif prfType == 'AES':
-        return AESPrfCreator(iv, key, scope)
+        return AESPrfCreator(iv, key)
     elif prfType == 'DES3':
-        return DES3PrfCreator(iv, key, scope)
+        return DES3PrfCreator(iv, key)
+
 
 def getExtendedKey(t, prfType, key):
     seed = os.urandom(len(key))
-    prg = getPrfInstance(prfType, seed, PrfScopeEnum.PRG)
+    prg = getPrfInstance(prfType, seed)
     extendedKey = []
     for index in range(0, t + 1):
-        keyIndex = prg.computePrf(key)
+        keyIndex = prg.computePrf(key, PrfScopeEnum.PRG)
         extendedKey.append(keyIndex)
     return extendedKey
 
 
 def getFkValueAsString(t, keys, prfType, x0, x1, iv=b''):
-    gCipherKey0 = getPrfInstance(prfType, keys[0], PrfScopeEnum.GENERATOR, iv)
-    gValKey0X0 = gCipherKey0.computePrf(x0)
+    gCipherKey0 = getPrfInstance(prfType, keys[0], iv)
+    gValKey0X0 = gCipherKey0.computePrf(x0, PrfScopeEnum.GENERATOR)
     gValKey0X0XorX1AsString = xorStrings(x1, gValKey0X0)
     result = b''
     for index in range(1, t + 1):
-        gCipherKeyIndex = getPrfInstance(prfType, keys[index], PrfScopeEnum.GENERATOR, iv)
-        gValKeyIndexOfGValKey0X0XorX1 = gCipherKeyIndex.computePrf(gValKey0X0XorX1AsString)
+        gCipherKeyIndex = getPrfInstance(prfType, keys[index], iv)
+        gValKeyIndexOfGValKey0X0XorX1 = gCipherKeyIndex.computePrf(gValKey0X0XorX1AsString, PrfScopeEnum.GENERATOR)
         result += gValKeyIndexOfGValKey0X0XorX1
     return result

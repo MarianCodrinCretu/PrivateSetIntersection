@@ -1,21 +1,20 @@
 from Crypto.Util.Padding import pad
-from aspectlib import Aspect, Proceed
+from aspectlib import Aspect, Proceed, Return
 
 
 @Aspect
 def addPaddingToTheOutput(classInstance, plaintext):
     yield Proceed
-    actualResultBitLength = len(classInstance._result) * 8
-    desiredByteLength = int(classInstance._outputBitLength / 8)
+    actualByteLength = len(classInstance._result)
+    desiredByteLength = classInstance._desiredOutputByteLength
 
-    if actualResultBitLength == classInstance._outputBitLength:
-        print('The hash output is already of length', str(classInstance._outputBitLength))
-        return
+    if actualByteLength == desiredByteLength:
+        print('The hash output is already of length', str(classInstance._desiredOutputByteLength))
 
-    elif actualResultBitLength < classInstance._outputBitLength:
-        paddedResult = pad(classInstance._result, desiredByteLength)
-
-    print('The output of hash has been padded')
-    classInstance._result = paddedResult
-
+    elif actualByteLength < desiredByteLength:
+        print('The output of hash has been padded')
+        classInstance._result = pad(classInstance._result, desiredByteLength)
+    else:
+        print('The output of hash cannot be padded')
+        classInstance._result = None
 

@@ -11,10 +11,7 @@ logging.basicConfig(filename='../LOG/logs.log', level=logging.DEBUG)
 
 
 @Aspect
-def changePlaintextValidity(*args):
-    plaintext = args[1]
-    classInstance = args[0]
-    blockSize = classInstance.getAlgorithm().block_size
+def changePlaintextValidity(classInstance, plaintext, scope):
 
     if isinstance(plaintext, str):
         plaintext = plaintext.encode("utf-8")
@@ -26,13 +23,11 @@ def changePlaintextValidity(*args):
         logging.error(loggingError)
         raise TypeError('The prf cannot be computed on this type of value')
 
-    # plaintext = pad(plaintext, blockSize)
-    yield Proceed(classInstance, plaintext)
+    yield Proceed(classInstance, plaintext, scope)
 
 
 @Aspect
-def logCipherDetailsErrors(*args):
-    classInstance = args[0]
+def logCipherDetailsErrors(classInstance):
     blockSize = getBlockSize(classInstance)
     key = classInstance._key
     iv = classInstance._iv
@@ -52,12 +47,6 @@ def logCipherDetailsErrors(*args):
         logging.error(loggingError)
         raise TypeError('Please instantiate your PRF function with a key of length: ' + str(blockSize))
 
-    if len(iv) != blockSize and classInstance._scope != PrfScopeEnum.PRG and classInstance._scope != PrfScopeEnum.GENERATOR:
-        loggingError = '[ ' + getCurrentTime() + ' ] The prf was instantiated with an initialization vector of invalid length'
-        logging.error(loggingError)
-        raise TypeError(
-            'Please instantiate your PRF function with an initialization vector  of length: ' + str(blockSize))
-
     try:
         yield
     except Exception as exception:
@@ -66,12 +55,10 @@ def logCipherDetailsErrors(*args):
         logging.error(loggingError)
 
 def getBlockSize(classInstance):
-    print(classInstance.getAlgorithm())
     blockSize = classInstance.getAlgorithm().block_size
 
     if classInstance.getAlgorithm() == DES3:
         blockSize = 24
-    print(blockSize)
     return blockSize
 
 @Aspect

@@ -1,51 +1,55 @@
-import _hashlib
-
-from Cryptodome.Util.Padding import pad, unpad
 
 from Hash.HashMd5 import HashMd5
 from Hash.HashSha1 import HashSha1
 from Hash.HashSha256 import HashSha256
 from Hash.HashBlake2b import HashBlake2b
-#
-from PRF.OPRF import OPRF
-from Utils.DataUtil import convertBytesIntoBits, splitTextIntoHalves
+from Hash.HashSha384 import HashSha384
+from Hash.HashSha3_256 import HashSha3_256
+from Hash.HashSha512 import HashSha512
+from Hash.Sha3_384 import HashSha3_384
+from Hash.Sha3_512 import HashSha3_512
 
-# desiredBitLength = 256
-# plaintext = 'test'
-# # print(type(plaintext))
-# testConvert = b"\t\x8fk\xcdF!\xd3s\xca\xdeN\x83&'\xb4\xf6"
-# print(type(testConvert))
-# convertBytesIntoBits(plaintext)
-# print(testConvert.decode("utf-8"))
-# oprf = OPRF()
-# result = oprf.computeOprfValue(testConvert)
-# print(result)
+plaintext='jhdgsjdfb'
 
-# splitResult = splitTextIntoHalves(result)
-# print(splitResult)
+blake2bHashRandomResultFrom1To64 = HashBlake2b(2)
+result = blake2bHashRandomResultFrom1To64.generate(plaintext)
+# print(result, len(result))
 
-# print(plaintext)
-# md5Hash = HashMd5(128)
-# result = md5Hash.generate(plaintext)
-# print(len(result))
-# for index in range(0, len(result)):
-#     print(result[index])
-# #
-# sha1Hash = HashSha1()
-# sha1Hash.generate(plaintext)
-#
-# blake2bHash = HashBlake2b()
-# result = blake2bHash.generate(plaintext)
+blake2bHash64BytesResult = HashBlake2b(64)
+result = blake2bHash64BytesResult.generate(plaintext)
+# print(result, len(result))
 
-# #
-# sha256Hash = HashSha256(desiredBitLength)
-# result = sha256Hash.generate(plaintext)
-# print('result', result)
-# paddedResult = pad(result, desiredBitLength)
-# print(paddedResult)
-# print(unpad(paddedResult, desiredBitLength))
-# print('test0', len(paddedResult))
-#
-# print(type(result))
-# print(result[0])
-# print(result[63])
+sha1Hash = HashSha1(20)
+result = sha1Hash.generate(plaintext)
+# print(result, len(result))
+
+sha256Hash = HashSha256(32)
+result = sha256Hash.generate(plaintext)
+# print(result, len(result))
+
+sha384Hash = HashSha384(48)
+result = sha384Hash.generate(plaintext)
+# print(result, len(result))
+
+
+sha512Hash = HashSha512(64)
+result = sha512Hash.generate(plaintext)
+# print(result, len(result))
+
+
+md5Hash = HashMd5(16)
+result = md5Hash.generate(plaintext)
+# print(result, len(result))
+
+sha3_256Hash = HashSha3_256(32)
+result = sha3_256Hash.generate(plaintext)
+# print(result, len(result))
+
+sha3_384Hash = HashSha3_384(48)
+result = sha3_384Hash.generate(plaintext)
+# print(result, len(result))
+
+sha3_512Hash = HashSha3_512(64)
+result = sha3_512Hash.generate(plaintext)
+# print(result, len(result))
+
