@@ -34,7 +34,7 @@ def checkResultValidity(plaintext, key, l1, w, m, prfType='AES', isKeyAsBitStrin
         yield Return
 
     for index in range(0, len(v)):
-        if v[index] > m:
+        if v[index] > m-1:
             print('The result does not have correct values')
             yield Return
 
