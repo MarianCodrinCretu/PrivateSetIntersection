@@ -3,31 +3,28 @@ from MOP.PrecomputationMonitors import check_input_validity, check_update_validi
 
 class Precomputation:
 
-    def __init__(self, dictFunctions):
-        self.dictFunctions = dictFunctions
+    def computeHash1(self, x, functionHash1):
+        return functionHash1(x)
 
-    def computeHash1(self, x, dictParameters):
-        return self.dictFunctions[dictParameters['hash1']](x)
-
-    def computePRF(self, x, key, dictParameters):
-        return self.dictFunctions['FK'](x, key, dictParameters['l1'],
+    def computePRF(self, x, key, dictParameters, functionPRF):
+        return functionPRF(x, key, dictParameters['l1'],
                                         dictParameters['w'],
                                         dictParameters['m'],
                                         dictParameters['prf'])
 
-    def compute_v(self, x, key, dictParameters):
+    def compute_v(self, x, key, dictParameters, functionHash1, functionPRF):
 
-        v = self.computePRF(self.computeHash1(x, dictParameters), key, dictParameters)
+        v = self.computePRF(self.computeHash1(x, functionHash1), key, dictParameters, functionPRF)
 
         return v
 
     @check_input_validity
-    def compute_v_list(self, input_y, key, dictParameters):
+    def compute_v_list(self, input_y, key, dictParameters, functionHash1, functionPRF):
 
         v_list = []
 
         for i in range(0, len(input_y)):
-            v_list.append(self.compute_v(input_y[i], key, dictParameters))
+            v_list.append(self.compute_v(input_y[i], key, dictParameters, functionHash1, functionPRF))
 
         return v_list
 
