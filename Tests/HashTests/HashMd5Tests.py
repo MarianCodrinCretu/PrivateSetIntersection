@@ -5,7 +5,8 @@ from Hash.HashMd5 import HashMd5
 
 class HashMd5Tests(unittest.TestCase):
     def setUp(self):
-        self._md5HashUnderTest = HashMd5()
+        self._expectedOutputByteLength = 16
+        self._md5HashUnderTest = HashMd5(self._expectedOutputByteLength)
 
     def testGenerate_givenPlaintextAsBytesType_shouldReturnHash(self):
         # Arrange
@@ -14,16 +15,23 @@ class HashMd5Tests(unittest.TestCase):
 
         # Act
         actualResult = self._md5HashUnderTest.generate(testPlaintext)
+        actualResultByteLength = len(actualResult)
 
         # Assert
         self.assertEqual(expectedResult, actualResult)
+        self.assertEqual(self._expectedOutputByteLength, actualResultByteLength)
 
     def testGenerate_givenPlaintextAsStringType_shouldThrowTypeException(self):
         # Arrange
         testPlaintext = 'test'
 
-        # Act & Assert
-        self.assertRaises(TypeError, self._md5HashUnderTest.generate, testPlaintext)
+        # Act
+        actualResult = self._md5HashUnderTest.generate(testPlaintext)
+        actualResultByteLength = len(actualResult)
+
+        # Assert
+        self.assertIsInstance(actualResult, bytes)
+        self.assertEqual(self._expectedOutputByteLength, actualResultByteLength)
 
     def testGenerate_givenEmptyByteTypeAsPlaintext_shouldReturnHash(self):
         # Arrange

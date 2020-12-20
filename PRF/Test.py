@@ -47,11 +47,10 @@ print('v= ', v)
 #DES3
 l1 = 384
 key = get_random_bytes(24)
+print(key, len(key))
 plaintext = b'000000000000000000000000000000000000000000000001'
 w = 633
 m = 16777216
 v = computeOPrfValue(plaintext, key, l1, w, m, 'DES3')
 print('v= ', v)
-
-
 

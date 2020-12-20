@@ -5,7 +5,9 @@ from Hash.HashBlake2b import HashBlake2b
 
 class HashBlake2bTests(unittest.TestCase):
     def setUp(self):
-        self._blake2bHashUnderTest = HashBlake2b()
+        self._expectedOutputByteLength = 64
+        self._blake2bHashUnderTest = HashBlake2b(self._expectedOutputByteLength)
+
 
     def testGenerate_givenPlaintextAsBytesType_shouldReturnHashOfBytesType(self):
         # Arrange
@@ -13,16 +15,22 @@ class HashBlake2bTests(unittest.TestCase):
 
         # Act
         actualResult = self._blake2bHashUnderTest.generate(testPlaintext)
+        actualResultByteLength = len(actualResult)
 
         # Assert
         self.assertIsInstance(actualResult, bytes)
+        self.assertEqual(self._expectedOutputByteLength, actualResultByteLength)
 
-    def testGenerate_givenPlaintextAsStringType_shouldThrowTypeException(self):
-        # Arrange
+    def testGenerate_givenPlaintextAsStringType_shouldReturnHashOfBytesType(self):
         testPlaintext = 'test'
 
-        # Act & Assert
-        self.assertRaises(TypeError, self._blake2bHashUnderTest.generate, testPlaintext)
+        # Act
+        actualResult = self._blake2bHashUnderTest.generate(testPlaintext)
+        actualResultByteLength = len(actualResult)
+
+        # Assert
+        self.assertIsInstance(actualResult, bytes)
+        self.assertEqual(self._expectedOutputByteLength, actualResultByteLength)
 
     def testGenerate_givenEmptyByteTypeAsPlaintext_shouldReturnHashOfBytesType(self):
         # Arrange

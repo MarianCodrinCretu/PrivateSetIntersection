@@ -21,6 +21,9 @@ class PRFCreator(ABC):
         elif prfType == PrfTypeEnum.DES3:
             self._prf = DES3Prf(self._key, self._iv)
 
+    def getPrf(self):
+        return self._prf
+
     def computePrf(self, plaintext, scope=PrfScopeEnum.GENERIC):
-        return self._prf.computePrf(plaintext, scope)
+        return self.getPrf().computePrf(plaintext, scope)
 

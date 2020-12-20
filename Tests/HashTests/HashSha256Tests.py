@@ -5,7 +5,8 @@ from Hash.HashSha256 import HashSha256
 
 class HashSha256Tests(unittest.TestCase):
     def setUp(self):
-        self._sha256HashUnderTest = HashSha256()
+        self._expectedOutputByteLength = 32
+        self._sha256HashUnderTest = HashSha256(self._expectedOutputByteLength)
 
     def testGenerate_givenPlaintextAsBytesType_shouldReturnHash(self):
         # Arrange
@@ -14,16 +15,22 @@ class HashSha256Tests(unittest.TestCase):
 
         # Act
         actualResult = self._sha256HashUnderTest.generate(testPlaintext)
+        actualResultByteLength = len(actualResult)
 
         # Assert
         self.assertEqual(expectedResult, actualResult)
+        self.assertEqual(self._expectedOutputByteLength, actualResultByteLength)
 
     def testGenerate_givenPlaintextAsStringType_shouldThrowTypeException(self):
         # Arrange
         testPlaintext = 'test'
 
-        # Act & Assert
-        self.assertRaises(TypeError, self._sha256HashUnderTest.generate, testPlaintext)
+        actualResult = self._sha256HashUnderTest.generate(testPlaintext)
+        actualResultByteLength = len(actualResult)
+
+        # Assert
+        self.assertIsInstance(actualResult, bytes)
+        self.assertEqual(self._expectedOutputByteLength, actualResultByteLength)
 
     def testGenerate_givenEmptyByteTypeAsPlaintext_shouldReturnHash(self):
         # Arrange
