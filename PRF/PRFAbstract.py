@@ -1,11 +1,11 @@
 from abc import ABC
 
 from AOP.DataInterceptor import logCipherDetailsErrors, changePlaintextValidity
-from PRF.PrfScopeEnum import PrfScopeEnum
+from Shared.Enums.PrfScopeEnum import PrfScopeEnum
 
 
 class PRFAbstract(ABC):
-    def __init__(self, iv, key):
+    def __init__(self, key, iv=b''):
         self._iv = iv
         self._key = key
         self.setAlgorithm()
@@ -25,7 +25,8 @@ class PRFAbstract(ABC):
     @logCipherDetailsErrors
     def setEncryptionAlgorithms(self):
         self._modesScopeDictionary = {
-            PrfScopeEnum.PRG: self._algorithm.new(self._key, self._algorithm.MODE_CTR, nonce=b''),
-            PrfScopeEnum.GENERATOR: self._algorithm.new(self._key, self._algorithm.MODE_ECB),
-            PrfScopeEnum.GENERIC: self._algorithm.new(self._key, self._algorithm.MODE_CBC)
+            PrfScopeEnum.PRG: self.getAlgorithm().new(self._key, self.getAlgorithm().MODE_CTR, nonce=b''),
+            PrfScopeEnum.GENERATOR: self.getAlgorithm().new(self._key, self.getAlgorithm().MODE_ECB),
+            PrfScopeEnum.GENERIC: self.getAlgorithm().new(self._key, self.getAlgorithm().MODE_CFB)
         }
+

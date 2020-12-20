@@ -1,13 +1,11 @@
 from Crypto.Cipher import DES3
-from Crypto.Util.Padding import pad
 from aspectlib import Aspect, Proceed
 from datetime import datetime
 
 import logging
 
-from PRF.PrfScopeEnum import PrfScopeEnum
 
-logging.basicConfig(filename='../LOG/logs.log', level=logging.DEBUG)
+# logging.basicConfig(filename='../LOG/logs.log', level=logging.DEBUG)
 
 
 @Aspect
@@ -17,11 +15,11 @@ def changePlaintextValidity(classInstance, plaintext, scope):
         plaintext = plaintext.encode("utf-8")
         loggingInfo = '[ ' + getCurrentTime() + ' ] The plaintext type has been changed to bytes so it can be computed'
         logging.info(loggingInfo)
-        raise TypeError('The prf cannot be computed on this type of value')
+        # raise TypeError('The prf cannot be computed on this type of value')
     elif not isinstance(plaintext, bytes):
         loggingError = '[ ' + getCurrentTime() + ' ] The prf cannot be computed on this type of value' + str(type(plaintext))
         logging.error(loggingError)
-        raise TypeError('The prf cannot be computed on this type of value')
+        # raise TypeError('The prf cannot be computed on this type of value')
 
     yield Proceed(classInstance, plaintext, scope)
 
@@ -42,7 +40,7 @@ def logCipherDetailsErrors(classInstance):
         logging.error(loggingError)
         raise TypeError('Please instantiate your PRF function with an initialization vector of byte type')
 
-    if len(key) != blockSize:
+    if len(key) != getBlockSize(classInstance):
         loggingError = '[ ' + getCurrentTime() + ' ] The prf was instantiated with a key of invalid length'
         logging.error(loggingError)
         raise TypeError('Please instantiate your PRF function with a key of length: ' + str(blockSize))

@@ -11,11 +11,11 @@ from Hash.Sha3_512 import HashSha3_512
 
 plaintext='jhdgsjdfb'
 
-blake2bHashRandomResultFrom1To64 = HashBlake2b(2)
+blake2bHashRandomResultFrom1To64 = HashBlake2b(48)
 result = blake2bHashRandomResultFrom1To64.generate(plaintext)
 # print(result, len(result))
 
-blake2bHash64BytesResult = HashBlake2b(64)
+blake2bHash64BytesResult = HashBlake2b(32)
 result = blake2bHash64BytesResult.generate(plaintext)
 # print(result, len(result))
 

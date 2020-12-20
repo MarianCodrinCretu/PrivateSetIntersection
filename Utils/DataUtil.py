@@ -60,4 +60,5 @@ def convertBitsIntoString(binaryInput):
         temporary = int(binaryInput[i:i + 8])
         decimal = int(str(temporary), 2)
         stringValue = stringValue + chr(decimal)
+    print(stringValue)
     return stringValue

@@ -1,8 +1,10 @@
 from aspectlib import Aspect, Proceed, Return
 
+from Shared.Enums.PrfTypeEnum import PrfTypeEnum
+
 
 @Aspect
-def checkKey(plaintext, key, l1, w, m, prfType='AES', isKeyAsBitString=False, isPlaintextAsBits=False):
+def checkKey(plaintext, key, l1, w, m, prfType=PrfTypeEnum.AES, isKeyAsBitString=False, isPlaintextAsBits=False):
     lambdaValue = l1 // 2
 
     if isKeyAsBitString and len(key) != lambdaValue:
@@ -34,7 +36,7 @@ def checkResultValidity(plaintext, key, l1, w, m, prfType='AES', isKeyAsBitStrin
         yield Return
 
     for index in range(0, len(v)):
-        if v[index] > m-1:
+        if v[index] > m-1 or v[index] < 0:
             print('The result does not have correct values')
             yield Return
 
