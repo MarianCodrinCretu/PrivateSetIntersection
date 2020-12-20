@@ -9,14 +9,14 @@ from Shared.Enums.PrfScopeEnum import PrfScopeEnum
 
 @Aspect
 def changePlaintextValidity(classInstance, plaintext, scope=PrfScopeEnum.GENERIC):
-
     if isinstance(plaintext, str):
         plaintext = plaintext.encode("utf-8")
         loggingInfo = '[ ' + getCurrentTime() + ' ] The plaintext type has been changed to bytes so it can be computed'
         logging.info(loggingInfo)
         # raise TypeError('The prf cannot be computed on this type of value')
     elif not isinstance(plaintext, bytes):
-        loggingError = '[ ' + getCurrentTime() + ' ] The prf cannot be computed on this type of value' + str(type(plaintext))
+        loggingError = '[ ' + getCurrentTime() + ' ] The prf cannot be computed on this type of value' + str(
+            type(plaintext))
         logging.error(loggingError)
         # raise TypeError('The prf cannot be computed on this type of value')
 
@@ -51,12 +51,14 @@ def logCipherDetailsErrors(classInstance):
         loggingError = '[ ' + getCurrentTime() + ' ] ' + str(exception)
         logging.error(loggingError)
 
+
 def getBlockSize(classInstance):
     blockSize = classInstance.getAlgorithm().block_size
 
     if classInstance.getAlgorithm() == DES3:
         blockSize = 24
     return blockSize
+
 
 @Aspect
 def checkHashPlaintextValidity(*args):

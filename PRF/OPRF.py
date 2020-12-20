@@ -6,7 +6,6 @@ from PRF.PRFCreator import PRFCreator
 from Shared.Enums.PrfScopeEnum import PrfScopeEnum
 from Shared.Enums.PrfTypeEnum import PrfTypeEnum
 from Utils.DataUtil import convertBytesIntoBits, splitTextIntoHalves, convertBinaryToDecimal, splitIntoNBlocks, xorStrings
-import os
 
 
 @checkKey

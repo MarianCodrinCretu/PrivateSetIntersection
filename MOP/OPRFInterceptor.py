@@ -13,7 +13,6 @@ def checkKey(plaintext, key, l1, w, m, prfType=PrfTypeEnum.AES, isKeyAsBitString
     if not isKeyAsBitString and len(key) != lambdaValue // 8:
         raise ValueError('Wrong key, please provide another key')
 
-
     yield Proceed(plaintext, key, l1, w, m, prfType, isKeyAsBitString, isPlaintextAsBits)
 
 
@@ -24,6 +23,9 @@ def checkPlaintextForF(plaintext, key, l1, w, m, prfType='AES', isKeyAsBitString
 
     if not isPlaintextAsBits and len(plaintext) != l1 // 8:
         raise ValueError('Wrong input for F, please provide another input!')
+
+    if isinstance(plaintext, str):
+        plaintext = plaintext.encode('utf-8')
 
     yield Proceed(plaintext, key, l1, w, m, prfType, isKeyAsBitString, isPlaintextAsBits)
 
@@ -37,7 +39,7 @@ def checkResultValidity(plaintext, key, l1, w, m, prfType='AES', isKeyAsBitStrin
         yield Return
 
     for index in range(0, len(v)):
-        if v[index] > m-1 or v[index] < 0:
+        if v[index] > m - 1 or v[index] < 0:
             print('The result does not have correct values')
             yield Return
 
