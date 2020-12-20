@@ -39,16 +39,18 @@ class NegotiateParametersUtils:
 
     @aspectlib.Aspect
     def tunedValidateFirstHashFunction(self, dictParameters):
+        lambdax = dictParameters['lambda']
         yield aspectlib.Proceed(self, dictParameters)
-        if dictParameters['hash1'].upper() in NegotiationParameters.Constants.HASH_LIST:
+        if dictParameters['hash1'].upper() in NegotiationParameters.Constants.HASHES[lambdax]:
             dictParameters['hash1'] = dictParameters['hash1'].upper()
         else:
-            dictParameters['hash1'] = NegotiationParameters.Constants.DEFAULT_HASH
+            dictParameters['hash1'] = NegotiationParameters.Constants.DEFAULT_HASH[lambdax]
 
     def validateFirstHashFunction(self, dictParameters):
-        if dictParameters['hash1'] not in NegotiationParameters.Constants.HASH_LIST:
-            print('First hash function is not valid')
-            logging.info(LogMessaging.firstHashWrong()[0])
+        lambdax = dictParameters['lambda']
+        if dictParameters['hash1'].upper() not in NegotiationParameters.Constants.HASHES[lambdax]:
+            print('First hash function is not corresponding with lambda '+str(lambdax)+' chosen')
+            logging.info(LogMessaging.firstHashWrong(lambdax)[0])
 
     @aspectlib.Aspect
     def tunedValidateSecondHashFunction(self, dictParameters):
@@ -56,7 +58,7 @@ class NegotiateParametersUtils:
         if dictParameters['hash2'].upper() in NegotiationParameters.Constants.HASH_LIST:
             dictParameters['hash2'] = dictParameters['hash2'].upper()
         else:
-            dictParameters['hash2'] = NegotiationParameters.Constants.DEFAULT_HASH
+            dictParameters['hash2'] = NegotiationParameters.Constants.DEFAULT_HASH_SINGLE
 
     def validateSecondHashFunction(self, dictParameters):
         if dictParameters['hash2'] not in NegotiationParameters.Constants.HASH_LIST:
@@ -65,16 +67,18 @@ class NegotiateParametersUtils:
 
     @aspectlib.Aspect
     def tunedValidatePRF(self, dictParameters):
+        lambdax = dictParameters['lambda']
         yield aspectlib.Proceed(self, dictParameters)
-        if dictParameters['prf'].upper() in NegotiationParameters.Constants.HASH_LIST:
+        if dictParameters['prf'].upper() in NegotiationParameters.Constants.PRFS[lambdax]:
             dictParameters['prf'] = dictParameters['prf'].upper()
         else:
-            dictParameters['prf'] = NegotiationParameters.Constants.DEFAULT_PRF
+            dictParameters['prf'] = NegotiationParameters.Constants.DEFAULT_PRF[lambdax]
 
     def validatePRF(self, dictParameters):
-        if dictParameters['prf'] not in NegotiationParameters.Constants.PRF_LIST:
-            print('PRF is not valid')
-            logging.info(LogMessaging.prfWrong()[0])
+        lambdax = dictParameters['lambda']
+        if dictParameters['prf'] not in NegotiationParameters.Constants.PRFS[lambdax]:
+            print('PRF is not valid for '+str(lambdax)+' selected')
+            logging.info(LogMessaging.prfWrong(lambdax)[0])
 
     @aspectlib.Aspect
     def tunedValidateOTVariant(self, dictParameters):
@@ -91,21 +95,27 @@ class NegotiateParametersUtils:
 
     @aspectlib.Aspect
     def tunedValidateLambda(self, dictParameters):
+        listx = NegotiationParameters.Constants.LAMBDAS
         yield aspectlib.Proceed(self, dictParameters)
-        if isinstance(dictParameters['lambda'], int) or dictParameters['lambda'].isnumeric():
-            dictParameters['lambda'] = max(NegotiationParameters.Constants.LAMBDA, int(dictParameters['lambda']))
+        if (isinstance(dictParameters['lambda'], int) or dictParameters['lambda'].isnumeric()):
+            if int(dictParameters['lambda']) in listx:
+                dictParameters['lambda'] = int(dictParameters['lambda'])
+            else:
+                dictParameters['lambda'] = NegotiationParameters.Constants.LAMBDA
         else:
             dictParameters['lambda'] = NegotiationParameters.Constants.LAMBDA
 
     def validateLambda(self, dictParameters):
+        listx = NegotiationParameters.Constants.LAMBDAS
         if isinstance(dictParameters['lambda'], int) or dictParameters['lambda'].isnumeric():
-            if int(dictParameters['lambda']) < NegotiationParameters.Constants.LAMBDA:
-                print('Lambda too low; please select a value higher than 128')
-                logging.info(LogMessaging.lambdaLow()[0])
+
+            if int(dictParameters['lambda']) not in listx:
+                print('Lambda is not an accepted value! Please insert a value from '+str(listx))
+                logging.info(LogMessaging.lambdaWrong(listx)[0])
 
         else:
             print('Invalid lambda')
-            logging.info(LogMessaging.lambdaWrong()[0])
+            logging.info(LogMessaging.lambdaWrong(listx)[0])
 
     @aspectlib.Aspect
     def tunedValidateSigma(self, dictParameters):
@@ -124,39 +134,15 @@ class NegotiateParametersUtils:
             print('Invalid sigma')
             logging.info(LogMessaging.sigmaWrong()[0])
 
-    @aspectlib.Aspect
-    def tunedValidateL1(self, dictParameters):
-        yield aspectlib.Proceed(self, dictParameters)
-        if isinstance(dictParameters['l1'], int) or dictParameters['l1'].isnumeric():
-            dictParameters['l1'] = max(NegotiationParameters.Constants.L1 // 2, int(dictParameters['l1']))
-        else:
-            dictParameters['l1'] = NegotiationParameters.Constants.L1
-
     def validateL1(self, dictParameters):
-        if isinstance(dictParameters['l1'], int) or dictParameters['l1'].isnumeric():
-            if int(dictParameters['l1']) < NegotiationParameters.Constants.L1 / 2:
-                print('L1 too low; please select a value higher than 128')
-                logging.info(LogMessaging.l1Low()[0])
-        else:
-            print('Invalid L1')
-            logging.info(LogMessaging.l1Wrong()[0])
-
-    @aspectlib.Aspect
-    def tunedValidateL2(self, dictParameters):
-        yield aspectlib.Proceed(self, dictParameters)
-        if isinstance(dictParameters['l2'], int) or dictParameters['l2'].isnumeric():
-            dictParameters['l2'] = max(NegotiationParameters.Constants.L2, int(dictParameters['l2']))
-        else:
-            dictParameters['l2'] = NegotiationParameters.Constants.L2
+        dictParameters['l1'] = int(dictParameters['lambda']*2)
 
     def validateL2(self, dictParameters):
-        if isinstance(dictParameters['l2'], int) or dictParameters['l2'].isnumeric():
-            if int(dictParameters['l2']) < NegotiationParameters.Constants.L2:
-                print('L2 too low; please select a value higher than 50')
-                logging.info(LogMessaging.l2Low()[0])
-        else:
-            print('Invalid L2')
-            logging.info(LogMessaging.l2Wrong()[0])
+        hash2 = dictParameters['hash2']
+        for key in NegotiationParameters.Constants.DEFAULT_HASH:
+            if hash2 in NegotiationParameters.Constants.DEFAULT_HASH[key]:
+                dictParameters['l2']=2*key
+                break
 
 
     @aspectlib.Aspect
@@ -201,34 +187,48 @@ class NegotiateParametersUtils:
 
     def validateParameters(self, dictParameters):
 
-        with aspectlib.weave(self.validateFirstHashFunction, self.tunedValidateFirstHashFunction):
-            self.validateFirstHashFunction(dictParameters)
+        # lambda validation
+        with aspectlib.weave(self.validateLambda, self.tunedValidateLambda):
+            self.validateLambda(dictParameters)
 
-        with aspectlib.weave(self.validateSecondHashFunction, self.tunedValidateSecondHashFunction):
-            self.validateSecondHashFunction(dictParameters)
+        #sigma validation
+        with aspectlib.weave(self.validateSigma, self.tunedValidateSigma):
+            self.validateSigma(dictParameters)
 
-        with aspectlib.weave(self.validatePRF, self.tunedValidatePRF):
-            self.validatePRF(dictParameters)
+        #otVariantValidation
 
         with aspectlib.weave(self.validateOTVariant, self.tunedValidateOTVariant):
             self.validateOTVariant(dictParameters)
 
-        with aspectlib.weave(self.validateLambda, self.tunedValidateLambda):
-            self.validateLambda(dictParameters)
+        #l1 Validation
 
-        with aspectlib.weave(self.validateSigma, self.tunedValidateSigma):
-            self.validateSigma(dictParameters)
+        self.validateL1(dictParameters)
 
-        with aspectlib.weave(self.validateL1, self.tunedValidateL1):
-            self.validateL1(dictParameters)
+        #first Hash validation
 
-        with aspectlib.weave(self.validateL2, self.tunedValidateL2):
-            self.validateL2(dictParameters)
+        with aspectlib.weave(self.validateFirstHashFunction, self.tunedValidateFirstHashFunction):
+            self.validateFirstHashFunction(dictParameters)
 
+        #prf validation
+        with aspectlib.weave(self.validatePRF, self.tunedValidatePRF):
+            self.validatePRF(dictParameters)
+
+        #second hash validation
+        with aspectlib.weave(self.validateSecondHashFunction, self.tunedValidateSecondHashFunction):
+            self.validateSecondHashFunction(dictParameters)
+
+        #l2 validation
+
+        self.validateL2(dictParameters)
+
+        # w validation
+        with aspectlib.weave(self.validateW, self.tunedValidateW):
+            self.validateW(dictParameters)
+
+        # m validation
         with aspectlib.weave(self.validateM, self.tunedValidateM):
             self.validateM(dictParameters)
 
-        with aspectlib.weave(self.validateW, self.tunedValidateW):
-            self.validateW(dictParameters)
+
 
         return dictParameters

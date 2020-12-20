@@ -37,7 +37,7 @@ class NegotiateParametersUtilsTest(TestCase):
         # execute
         resultedDict = self.negotiateParametersUtils.validateParameters(copyDict)
         # verify
-        self.assertEqual(NegotiationParameters.Constants.DEFAULT_HASH, resultedDict['hash1'])
+        self.assertEqual(NegotiationParameters.Constants.DEFAULT_HASH[copyDict['lambda']], resultedDict['hash1'])
 
     def test_ifValidTypeOfHash2ThenTypeNotModified(self):
         # setup
@@ -55,7 +55,7 @@ class NegotiateParametersUtilsTest(TestCase):
         resultedDict = self.negotiateParametersUtils.validateParameters(copyDict)
         # verify
         print(resultedDict)
-        self.assertEqual(NegotiationParameters.Constants.DEFAULT_HASH, resultedDict['hash2'])
+        self.assertEqual(NegotiationParameters.Constants.DEFAULT_HASH_SINGLE, resultedDict['hash2'])
 
     def test_ifValidTypeOfPRFThenTypeNotModified(self):
         # setup
@@ -72,8 +72,7 @@ class NegotiateParametersUtilsTest(TestCase):
         # execute
         resultedDict = self.negotiateParametersUtils.validateParameters(copyDict)
         # verify
-        print(resultedDict)
-        self.assertEqual(NegotiationParameters.Constants.DEFAULT_PRF, resultedDict['prf'])
+        self.assertEqual(NegotiationParameters.Constants.DEFAULT_PRF[copyDict['lambda']], resultedDict['prf'])
 
     def test_ifValidTypeOfOtVariantThenTypeNotModified(self):
         # setup
@@ -90,7 +89,6 @@ class NegotiateParametersUtilsTest(TestCase):
         # execute
         resultedDict = self.negotiateParametersUtils.validateParameters(copyDict)
         # verify
-        print(resultedDict)
         self.assertEqual(NegotiationParameters.Constants.DEFAULT_OT, int(resultedDict['otVariant']))
 
     def test_ifValidLambdaThenNotModified(self):
@@ -108,7 +106,6 @@ class NegotiateParametersUtilsTest(TestCase):
         # execute
         resultedDict = self.negotiateParametersUtils.validateParameters(copyDict)
         # verify
-        print(resultedDict)
         self.assertEqual(NegotiationParameters.Constants.LAMBDA, resultedDict['lambda'])
 
     def test_ifNotValidLambdaThenModified(self):
@@ -118,7 +115,6 @@ class NegotiateParametersUtilsTest(TestCase):
         # execute
         resultedDict = self.negotiateParametersUtils.validateParameters(copyDict)
         # verify
-        print(resultedDict)
         self.assertEqual(NegotiationParameters.Constants.LAMBDA, resultedDict['lambda'])
 
     def test_ifValidSigmaThenNotModified(self):
@@ -136,7 +132,6 @@ class NegotiateParametersUtilsTest(TestCase):
         # execute
         resultedDict = self.negotiateParametersUtils.validateParameters(copyDict)
         # verify
-        print(resultedDict)
         self.assertEqual(NegotiationParameters.Constants.SIGMA, resultedDict['sigma'])
 
     def test_ifNotValidSigmaThenModified(self):
@@ -146,7 +141,6 @@ class NegotiateParametersUtilsTest(TestCase):
         # execute
         resultedDict = self.negotiateParametersUtils.validateParameters(copyDict)
         # verify
-        print(resultedDict)
         self.assertEqual(NegotiationParameters.Constants.SIGMA, resultedDict['sigma'])
 
     def test_ifValidL1ThenNotModified(self):
@@ -155,27 +149,7 @@ class NegotiateParametersUtilsTest(TestCase):
         # execute
         resultedDict = self.negotiateParametersUtils.validateParameters(copyDict)
         # verify
-        self.assertEqual(copyDict['l1'], resultedDict['l1'])
-
-    def test_ifLowerL1ThenModified(self):
-        # setup
-        copyDict = dictParameters.copy()
-        copyDict['l1'] = NegotiationParameters.Constants.L1//2-1
-        # execute
-        resultedDict = self.negotiateParametersUtils.validateParameters(copyDict)
-        # verify
-        print(resultedDict)
-        self.assertEqual(NegotiationParameters.Constants.L1//2, resultedDict['l1'])
-
-    def test_ifNotValidL1ThenModified(self):
-        # setup
-        copyDict = dictParameters.copy()
-        copyDict['l1'] = 'MyL1'
-        # execute
-        resultedDict = self.negotiateParametersUtils.validateParameters(copyDict)
-        # verify
-        print(resultedDict)
-        self.assertEqual(NegotiationParameters.Constants.L1, resultedDict['l1'])
+        self.assertEqual(copyDict['lambda']*2, resultedDict['l1'])
 
 
     def test_ifValidL2ThenNotModified(self):
@@ -184,27 +158,11 @@ class NegotiateParametersUtilsTest(TestCase):
         # execute
         resultedDict = self.negotiateParametersUtils.validateParameters(copyDict)
         # verify
-        self.assertEqual(copyDict['l2'], resultedDict['l2'])
-
-    def test_ifLowerL2ThenModified(self):
-        # setup
-        copyDict = dictParameters.copy()
-        copyDict['l2'] = NegotiationParameters.Constants.L2-1
-        # execute
-        resultedDict = self.negotiateParametersUtils.validateParameters(copyDict)
-        # verify
-        print(resultedDict)
-        self.assertEqual(NegotiationParameters.Constants.L2, resultedDict['l2'])
-
-    def test_ifNotValidL2ThenModified(self):
-        # setup
-        copyDict = dictParameters.copy()
-        copyDict['l2'] = 'MyL2'
-        # execute
-        resultedDict = self.negotiateParametersUtils.validateParameters(copyDict)
-        # verify
-        print(resultedDict)
-        self.assertEqual(NegotiationParameters.Constants.L2, resultedDict['l2'])
+        result = 0
+        for key in NegotiationParameters.Constants.DEFAULT_HASH:
+            if copyDict['hash2'] in NegotiationParameters.Constants.DEFAULT_HASH[key]:
+                result = key * 2
+        self.assertEqual(result, resultedDict['l2'])
 
 
     def test_ifValidWThenNotModified(self):
@@ -222,7 +180,6 @@ class NegotiateParametersUtilsTest(TestCase):
         # execute
         resultedDict = self.negotiateParametersUtils.validateParameters(copyDict)
         # verify
-        print(resultedDict)
         self.assertEqual(NegotiationParameters.Constants.W, resultedDict['w'])
 
     def test_ifNotValidWThenModified(self):
@@ -232,7 +189,6 @@ class NegotiateParametersUtilsTest(TestCase):
         # execute
         resultedDict = self.negotiateParametersUtils.validateParameters(copyDict)
         # verify
-        print(resultedDict)
         self.assertEqual(NegotiationParameters.Constants.W, resultedDict['w'])
 
     def test_ifValidMThenNotModified(self):
@@ -250,7 +206,6 @@ class NegotiateParametersUtilsTest(TestCase):
         # execute
         resultedDict = self.negotiateParametersUtils.validateParameters(copyDict)
         # verify
-        print(resultedDict)
         self.assertEqual(NegotiationParameters.Constants.mMin*resultedDict['lenDataset'], resultedDict['m'])
 
     def test_ifHigherMThenModified(self):
@@ -260,7 +215,6 @@ class NegotiateParametersUtilsTest(TestCase):
         # execute
         resultedDict = self.negotiateParametersUtils.validateParameters(copyDict)
         # verify
-        print(resultedDict)
         self.assertEqual(NegotiationParameters.Constants.mMax*resultedDict['lenDataset'], resultedDict['m'])
 
     def test_ifNotValidMThenModified(self):
@@ -270,7 +224,6 @@ class NegotiateParametersUtilsTest(TestCase):
         # execute
         resultedDict = self.negotiateParametersUtils.validateParameters(copyDict)
         # verify
-        print(resultedDict)
         self.assertEqual(NegotiationParameters.Constants.m*resultedDict['lenDataset'], resultedDict['m'])
 
 
