@@ -7,4 +7,4 @@ class HashSha384(HashFunction):
         self._hash = hashlib.sha384()
 
     def displayResult(self):
-        print('Hashed function with SHA256: ' + str(self._result))
+        print('Hashed function with SHA384:' + str(self._result))

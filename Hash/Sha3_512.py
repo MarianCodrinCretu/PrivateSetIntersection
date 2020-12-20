@@ -7,4 +7,4 @@ class HashSha3_512(HashFunction):
         self._hash = hashlib.sha3_512()
 
     def displayResult(self):
-        print('Hashed function with SHA256: ' + str(self._result))
+        print('Hashed function with SHA3_512: ' + str(self._result))

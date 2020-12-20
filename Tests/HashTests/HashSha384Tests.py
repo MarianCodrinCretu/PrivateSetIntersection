@@ -1,19 +1,19 @@
-import _blake2
+import _hashlib
 import unittest
-from Hash.HashBlake2b import HashBlake2b
+from Hash.HashSha384 import HashSha384
 
 
-class HashBlake2bTests(unittest.TestCase):
+class HashSha384Tests(unittest.TestCase):
     def setUp(self):
-        self._expectedOutputByteLength = 64
-        self._blake2bHashUnderTest = HashBlake2b(self._expectedOutputByteLength)
+        self._expectedOutputByteLength = 48
+        self._sha384HashUnderTest = HashSha384(self._expectedOutputByteLength)
 
-    def testGenerate_givenPlaintextAsBytesType_shouldReturnHashOfBytesType(self):
+    def testGenerate_givenPlaintextAsBytesType_shouldReturnHash(self):
         # Arrange
         testPlaintext = b'test'
 
         # Act
-        actualResult = self._blake2bHashUnderTest.generate(testPlaintext)
+        actualResult = self._sha384HashUnderTest.generate(testPlaintext)
         actualResultByteLength = len(actualResult)
 
         # Assert
@@ -21,30 +21,33 @@ class HashBlake2bTests(unittest.TestCase):
         self.assertEqual(self._expectedOutputByteLength, actualResultByteLength)
 
     def testGenerate_givenPlaintextAsStringType_shouldReturnHashOfBytesType(self):
+        # Arrange
         testPlaintext = 'test'
 
         # Act
-        actualResult = self._blake2bHashUnderTest.generate(testPlaintext)
+        actualResult = self._sha384HashUnderTest.generate(testPlaintext)
         actualResultByteLength = len(actualResult)
 
         # Assert
         self.assertIsInstance(actualResult, bytes)
         self.assertEqual(self._expectedOutputByteLength, actualResultByteLength)
 
-    def testGenerate_givenEmptyByteTypeAsPlaintext_shouldReturnHashOfBytesType(self):
+    def testGenerate_givenEmptyByteTypeAsPlaintext_shouldReturnHash(self):
         # Arrange
         testPlaintext = b''
 
         # Act
-        actualResult = self._blake2bHashUnderTest.generate(testPlaintext)
+        actualResult = self._sha384HashUnderTest.generate(testPlaintext)
+        actualResultByteLength = len(actualResult)
 
         # Assert
         self.assertIsInstance(actualResult, bytes)
+        self.assertEqual(self._expectedOutputByteLength, actualResultByteLength)
 
     def testInitialize_shouldSetTheHashProperty(self):
         # Arrange
         # Act
-        self._blake2bHashUnderTest.initialize()
+        self._sha384HashUnderTest.initialize()
 
         # Assert
-        self.assertIsInstance(self._blake2bHashUnderTest._hash, _blake2.blake2b)
+        self.assertIsInstance(self._sha384HashUnderTest._hash, _hashlib.HASH)

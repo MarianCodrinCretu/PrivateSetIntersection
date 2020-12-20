@@ -32,7 +32,7 @@ def getVAsAWLengthVector(FkValueAsBitArray):
 
 
 def getExtendedKey(t, prfType, key):
-    seed = os.urandom(len(key))
+    seed = key
     prg = PRFCreator(prfType, seed)
     extendedKey = []
     for index in range(0, t + 1):

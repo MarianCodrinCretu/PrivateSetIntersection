@@ -13,6 +13,7 @@ def checkKey(plaintext, key, l1, w, m, prfType=PrfTypeEnum.AES, isKeyAsBitString
     if not isKeyAsBitString and len(key) != lambdaValue // 8:
         raise ValueError('Wrong key, please provide another key')
 
+
     yield Proceed(plaintext, key, l1, w, m, prfType, isKeyAsBitString, isPlaintextAsBits)
 
 

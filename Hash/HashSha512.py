@@ -7,6 +7,6 @@ class HashSha512(HashFunction):
         self._hash = hashlib.sha512()
 
     def displayResult(self):
-        print('Hashed function with SHA256: ' + str(self._result))
+        print('Hashed function with SHA512: ' + str(self._result))
 
 

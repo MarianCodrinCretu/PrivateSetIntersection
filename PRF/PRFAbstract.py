@@ -19,8 +19,11 @@ class PRFAbstract(ABC):
             return self._algorithm
 
     @changePlaintextValidity
-    def computePrf(self, plaintext, scope):
+    def computePrf(self, plaintext, scope=PrfScopeEnum.GENERIC):
         return self._modesScopeDictionary[scope].encrypt(plaintext)
+
+    def getEncryptionAlgorithms(self):
+        return self._modesScopeDictionary
 
     @logCipherDetailsErrors
     def setEncryptionAlgorithms(self):

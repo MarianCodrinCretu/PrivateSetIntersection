@@ -1,5 +1,5 @@
 from Crypto.Util.Padding import pad
-from aspectlib import Aspect, Proceed, Return
+from aspectlib import Aspect, Proceed
 
 
 @Aspect

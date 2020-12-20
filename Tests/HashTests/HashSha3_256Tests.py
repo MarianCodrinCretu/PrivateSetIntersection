@@ -1,20 +1,20 @@
-import _hashlib
+import hashlib
 import unittest
-from Hash.HashSha256 import HashSha256
+from Hash.HashSha3_256 import HashSha3_256
 
 
-class HashSha256Tests(unittest.TestCase):
+class HashSha3_256Tests(unittest.TestCase):
     def setUp(self):
         self._expectedOutputByteLength = 32
-        self._sha256HashUnderTest = HashSha256(self._expectedOutputByteLength)
+        self._sha3_256HashUnderTest = HashSha3_256(self._expectedOutputByteLength)
 
     def testGenerate_givenPlaintextAsBytesType_shouldReturnHash(self):
         # Arrange
         testPlaintext = b'test'
-        expectedResult = b'\x9f\x86\xd0\x81\x88L}e\x9a/\xea\xa0\xc5Z\xd0\x15\xa3\xbfO\x1b+\x0b\x82,\xd1]l\x15\xb0\xf0\n\x08'
+        expectedResult = b"6\xf0(X\x0b\xb0,\xc8'*\x9a\x02\x0fB\x00\xe3F\xe2v\xaefNE\xee\x80tUt\xe2\xf5\xab\x80"
 
         # Act
-        actualResult = self._sha256HashUnderTest.generate(testPlaintext)
+        actualResult = self._sha3_256HashUnderTest.generate(testPlaintext)
         actualResultByteLength = len(actualResult)
 
         # Assert
@@ -25,7 +25,8 @@ class HashSha256Tests(unittest.TestCase):
         # Arrange
         testPlaintext = 'test'
 
-        actualResult = self._sha256HashUnderTest.generate(testPlaintext)
+        # Act
+        actualResult = self._sha3_256HashUnderTest.generate(testPlaintext)
         actualResultByteLength = len(actualResult)
 
         # Assert
@@ -35,10 +36,10 @@ class HashSha256Tests(unittest.TestCase):
     def testGenerate_givenEmptyByteTypeAsPlaintext_shouldReturnHash(self):
         # Arrange
         testPlaintext = b''
-        expectedResult = b"\xe3\xb0\xc4B\x98\xfc\x1c\x14\x9a\xfb\xf4\xc8\x99o\xb9$'\xaeA\xe4d\x9b\x93L\xa4\x95\x99\x1bxR\xb8U"
+        expectedResult = b'\xa7\xff\xc6\xf8\xbf\x1e\xd7fQ\xc1GV\xa0a\xd6b\xf5\x80\xffM\xe4;I\xfa\x82\xd8\nK\x80\xf8CJ'
 
         # Act
-        actualResult = self._sha256HashUnderTest.generate(testPlaintext)
+        actualResult = self._sha3_256HashUnderTest.generate(testPlaintext)
 
         # Assert
         self.assertEqual(expectedResult, actualResult)
@@ -46,7 +47,8 @@ class HashSha256Tests(unittest.TestCase):
     def testInitialize_shouldSetTheHashProperty(self):
         # Arrange
         # Act
-        self._sha256HashUnderTest.initialize()
+        self._sha3_256HashUnderTest.initialize()
 
         # Assert
-        self.assertIsInstance(self._sha256HashUnderTest._hash, _hashlib.HASH)
+        print()
+        self.assertIsInstance(self._sha3_256HashUnderTest._hash, hashlib.sha3_256)

@@ -4,12 +4,11 @@ from datetime import datetime
 
 import logging
 
-
-# logging.basicConfig(filename='../LOG/logs.log', level=logging.DEBUG)
+from Shared.Enums.PrfScopeEnum import PrfScopeEnum
 
 
 @Aspect
-def changePlaintextValidity(classInstance, plaintext, scope):
+def changePlaintextValidity(classInstance, plaintext, scope=PrfScopeEnum.GENERIC):
 
     if isinstance(plaintext, str):
         plaintext = plaintext.encode("utf-8")

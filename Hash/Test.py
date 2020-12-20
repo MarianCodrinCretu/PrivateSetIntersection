@@ -9,7 +9,7 @@ from Hash.HashSha512 import HashSha512
 from Hash.Sha3_384 import HashSha3_384
 from Hash.Sha3_512 import HashSha3_512
 
-plaintext='jhdgsjdfb'
+plaintext = b'test'
 
 blake2bHashRandomResultFrom1To64 = HashBlake2b(48)
 result = blake2bHashRandomResultFrom1To64.generate(plaintext)
