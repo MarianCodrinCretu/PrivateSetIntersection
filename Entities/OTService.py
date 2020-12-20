@@ -13,7 +13,7 @@ class OTService:
                 A_column.append(A[line][i])
                 B_column.append(B[line][i])
             data = {"A": A_column, "B": B_column}
-            self.transfer_protocol.sendOT(data)
+            self.transfer_protocol.send_OT(data)
 
     def receiver_randomOT(self, A, B, w, m):
         for i in range(w):
@@ -25,13 +25,13 @@ class OTService:
             r_i1 = [random.randint(0, 1) for c in range(m)]
             delta_i = [int(bool(r_i1[i]) ^ bool(B_column[i])) for i in range(m)]
             data = {"r_0": A_column, "r_1": r_i1, "delta": delta_i}
-            self.transfer_protocol.sendOT(data)
+            self.transfer_protocol.send_OT(data)
 
     def senderOT(self, s, w, m):
         C = [[0 for c in range(w)] for l in range(m)]
         for it in range(w):
             data = self.transfer_protocol.receiveOT()
-            # print(data)
+            print(data)
             if s[it] == "0":
                 selected = data["A"]
             else:
@@ -44,7 +44,7 @@ class OTService:
         C = [[0 for c in range(w)] for l in range(m)]
         for it in range(w):
             data = self.transfer_protocol.receiveOT()
-            # print(data)
+            print(data)
             if s[it] == "0":
                 selected = data["r_0"]
             else:
