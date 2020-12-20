@@ -1,0 +1,682 @@
+INFO:root:[WARNING] SENDER 2020-12-06 17:15:31 First hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 17:15:31 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 17:37:03 First hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 17:37:03 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 17:37:03 PRF is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 17:38:25 First hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 17:38:25 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 17:38:25 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-06 17:38:25 PRF is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 17:48:28 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 17:48:28 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 17:48:28 First hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 17:48:28 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 17:48:28 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-06 17:48:28 PRF is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 17:54:15 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 17:54:15 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-06 17:54:15 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 17:54:15 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-06 17:54:15 First hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 17:54:15 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 17:54:15 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-06 17:54:15 PRF is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:16:55 L1 too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:16:55 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:16:55 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-06 18:16:55 Invalid L1
+INFO:root:[WARNING] SENDER 2020-12-06 18:16:55 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:16:55 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-06 18:16:55 First hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:16:55 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:16:55 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-06 18:16:55 PRF is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:17:56 L1 too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:17:56 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:17:56 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-06 18:17:56 Invalid L1
+INFO:root:[WARNING] SENDER 2020-12-06 18:17:56 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:17:56 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-06 18:17:56 First hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:17:56 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:17:56 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-06 18:17:56 PRF is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:18:04 L1 too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:18:04 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:18:04 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-06 18:18:04 Invalid L1
+INFO:root:[WARNING] SENDER 2020-12-06 18:18:04 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:18:04 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-06 18:18:04 First hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:18:04 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:18:04 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-06 18:18:04 PRF is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:19:29 L1 too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:19:29 L2 too low; please select a value higher than 50
+INFO:root:[WARNING] SENDER 2020-12-06 18:19:29 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:19:29 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-06 18:19:29 Invalid L1
+INFO:root:[WARNING] SENDER 2020-12-06 18:19:29 Invalid L2
+INFO:root:[WARNING] SENDER 2020-12-06 18:19:29 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:19:29 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-06 18:19:29 First hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:19:29 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:19:29 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-06 18:19:29 PRF is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 L1 too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 L2 too low; please select a value higher than 50
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 W too low; please select a value higher at least than 10
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 Invalid L1
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 Invalid L2
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 First hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 PRF is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:29:52 Invalid W
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 L1 too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 L2 too low; please select a value higher than 50
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 W too low; please select a value higher at least than 10
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 Invalid L1
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 Invalid L2
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 Invalid M
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 First hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 PRF is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:33:04 Invalid W
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 L1 too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 L2 too low; please select a value higher than 50
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 W too low; please select a value higher at least than 10
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 Invalid L1
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 Invalid L2
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 Invalid M
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 First hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 PRF is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 18:34:43 Invalid W
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 L1 too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 L2 too low; please select a value higher than 50
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 W too low; please select a value higher at least than 10
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 Invalid L1
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 Invalid L2
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 Lambda too low; please select a value higher than 128
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 Invalid M
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 First hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 PRF is not valid
+INFO:root:[WARNING] SENDER 2020-12-06 19:01:23 Invalid W
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 W too low; please select a value higher at least than 10
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 Invalid M
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 Invalid W
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:34:09 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 W too low; please select a value higher at least than 10
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 Invalid M
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 PRF is not valid for 128selected
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 Invalid W
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:35:01 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 W too low; please select a value higher at least than 10
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 Invalid M
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 PRF is not valid for 128selected
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 Invalid W
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:46:23 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 W too low; please select a value higher at least than 10
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 Invalid M
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 PRF is not valid for 128selected
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 Invalid W
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:50:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 W too low; please select a value higher at least than 10
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 Invalid M
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 PRF is not valid for 128selected
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 Invalid W
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:12 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 W too low; please select a value higher at least than 10
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 Invalid M
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 PRF is not valid for 128selected
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 Invalid W
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:51:34 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 W too low; please select a value higher at least than 10
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 Invalid M
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 PRF is not valid for 128selected
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 Invalid W
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:52:59 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 W too low; please select a value higher at least than 10
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 Invalid M
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 PRF is not valid for 128selected
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 Invalid W
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:53:17 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 W too low; please select a value higher at least than 10
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 Invalid M
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 PRF is not valid for 128selected
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 Invalid W
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:54:02 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 W too low; please select a value higher at least than 10
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 Invalid M
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 PRF is not valid for 128selected
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 Invalid W
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 12:55:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 W too low; please select a value higher at least than 10
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 Invalid M
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 PRF is not valid for 128selected
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 Invalid W
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 13:10:05 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 W too low; please select a value higher at least than 10
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 Invalid M
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 PRF is not valid for 128selected
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 Invalid W
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 14:21:24 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 W too low; please select a value higher at least than 10
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 Invalid M
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 PRF is not valid for 128selected
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 Invalid W
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 15:45:08 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 W too low; please select a value higher at least than 10
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 Invalid M
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 PRF is not valid for 128selected
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 Invalid W
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:24:04 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:35:15 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:35:42 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 16:35:42 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-20 16:35:42 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:37:05 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 16:37:05 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-20 16:37:05 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:38:45 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 16:38:45 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-20 16:38:45 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:44:30 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 16:44:30 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-20 16:44:30 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:44:30 PRF is not valid for 128selected
+INFO:root:[WARNING] SENDER 2020-12-20 16:46:55 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 16:46:55 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-20 16:46:55 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:46:55 PRF is not valid for 128selected
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 M not between 0.25 and 1.25
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 Sigma too low; please select a value higher than 40
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 W too low; please select a value higher at least than 10
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 Lambda is not an accepted value! Please insert a value from [64, 128, 192]
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 Invalid M
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 Invalid sigma
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 Second hash function is not valid
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 OT Variants not valid; please select 1 or 2
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 PRF is not valid for 128selected
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 Invalid W
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 First hash function is not corresponding with lambda 128 chosen
+INFO:root:[WARNING] SENDER 2020-12-20 16:56:07 First hash function is not corresponding with lambda 128 chosen
