@@ -1,7 +1,10 @@
-import NegotiationParameters.Constants
-import aspectlib
 import logging
+
+import aspectlib
+
+import NegotiationParameters.Constants
 from Logs import LogMessaging
+
 logging.basicConfig(filename='../Logs/logs.log', level=logging.DEBUG)
 
 """""@author mcretu"""
@@ -49,7 +52,7 @@ class NegotiateParametersUtils:
     def validateFirstHashFunction(self, dictParameters):
         lambdax = dictParameters['lambda']
         if dictParameters['hash1'].upper() not in NegotiationParameters.Constants.HASHES[lambdax]:
-            print('First hash function is not corresponding with lambda '+str(lambdax)+' chosen')
+            print('First hash function is not corresponding with lambda ' + str(lambdax) + ' chosen')
             logging.info(LogMessaging.firstHashWrong(lambdax)[0])
 
     @aspectlib.Aspect
@@ -77,7 +80,7 @@ class NegotiateParametersUtils:
     def validatePRF(self, dictParameters):
         lambdax = dictParameters['lambda']
         if dictParameters['prf'] not in NegotiationParameters.Constants.PRFS[lambdax]:
-            print('PRF is not valid for '+str(lambdax)+' selected')
+            print('PRF is not valid for ' + str(lambdax) + ' selected')
             logging.info(LogMessaging.prfWrong(lambdax)[0])
 
     @aspectlib.Aspect
@@ -110,7 +113,7 @@ class NegotiateParametersUtils:
         if isinstance(dictParameters['lambda'], int) or dictParameters['lambda'].isnumeric():
 
             if int(dictParameters['lambda']) not in listx:
-                print('Lambda is not an accepted value! Please insert a value from '+str(listx))
+                print('Lambda is not an accepted value! Please insert a value from ' + str(listx))
                 logging.info(LogMessaging.lambdaWrong(listx)[0])
 
         else:
@@ -135,15 +138,14 @@ class NegotiateParametersUtils:
             logging.info(LogMessaging.sigmaWrong()[0])
 
     def validateL1(self, dictParameters):
-        dictParameters['l1'] = int(dictParameters['lambda']*2)
+        dictParameters['l1'] = int(dictParameters['lambda'] * 2)
 
     def validateL2(self, dictParameters):
         hash2 = dictParameters['hash2']
         for key in NegotiationParameters.Constants.DEFAULT_HASH:
-            if hash2 in NegotiationParameters.Constants.DEFAULT_HASH[key]:
-                dictParameters['l2']=2*key
+            if hash2 in NegotiationParameters.Constants.HASHES[key]:
+                dictParameters['l2'] = 2 * key
                 break
-
 
     @aspectlib.Aspect
     def tunedValidateW(self, dictParameters):
@@ -165,21 +167,15 @@ class NegotiateParametersUtils:
     @aspectlib.Aspect
     def tunedValidateM(self, dictParameters):
         yield aspectlib.Proceed(self, dictParameters)
-        if isinstance(dictParameters['m'], float) or isfloat(dictParameters['m']):
-            dictParameters['m'] = max(NegotiationParameters.Constants.mMin, float(dictParameters['m']))
-            if dictParameters['m'] > NegotiationParameters.Constants.mMax:
-                dictParameters['m'] = NegotiationParameters.Constants.mMax
+        if isinstance(dictParameters['m'], int) or isfloat(dictParameters['m']):
+            dictParameters['m'] = max(NegotiationParameters.Constants.mMin, int(dictParameters['m']))
         else:
-            dictParameters['m'] = NegotiationParameters.Constants.m
-
-        dictParameters['m'] *= dictParameters['lenDataset']
-        dictParameters['m']=int(dictParameters['m'])
+            dictParameters['m'] = NegotiationParameters.Constants.mMin
 
     def validateM(self, dictParameters):
         if isinstance(dictParameters['m'], float) or isfloat(dictParameters['m']):
-            if float(dictParameters['m']) < NegotiationParameters.Constants.mMin \
-                    or float(dictParameters['m']) > NegotiationParameters.Constants.mMax:
-                print('M not between 0.25 and 1.25')
+            if float(dictParameters['m']) < NegotiationParameters.Constants.mMin:
+                print('M not higher than 64')
                 logging.info(LogMessaging.mLow()[0])
         else:
             print('Invalid M')
@@ -191,33 +187,33 @@ class NegotiateParametersUtils:
         with aspectlib.weave(self.validateLambda, self.tunedValidateLambda):
             self.validateLambda(dictParameters)
 
-        #sigma validation
+        # sigma validation
         with aspectlib.weave(self.validateSigma, self.tunedValidateSigma):
             self.validateSigma(dictParameters)
 
-        #otVariantValidation
+        # otVariantValidation
 
         with aspectlib.weave(self.validateOTVariant, self.tunedValidateOTVariant):
             self.validateOTVariant(dictParameters)
 
-        #l1 Validation
+        # l1 Validation
 
         self.validateL1(dictParameters)
 
-        #first Hash validation
+        # first Hash validation
 
         with aspectlib.weave(self.validateFirstHashFunction, self.tunedValidateFirstHashFunction):
             self.validateFirstHashFunction(dictParameters)
 
-        #prf validation
+        # prf validation
         with aspectlib.weave(self.validatePRF, self.tunedValidatePRF):
             self.validatePRF(dictParameters)
 
-        #second hash validation
+        # second hash validation
         with aspectlib.weave(self.validateSecondHashFunction, self.tunedValidateSecondHashFunction):
             self.validateSecondHashFunction(dictParameters)
 
-        #l2 validation
+        # l2 validation
 
         self.validateL2(dictParameters)
 
@@ -228,7 +224,5 @@ class NegotiateParametersUtils:
         # m validation
         with aspectlib.weave(self.validateM, self.tunedValidateM):
             self.validateM(dictParameters)
-
-
 
         return dictParameters
