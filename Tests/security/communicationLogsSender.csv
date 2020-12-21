@@ -27,3 +27,6 @@
 [INFO],SENDER,2020-12-20 01:14:57,"Received parameters from RECEIVER (127.0.0.1, 5585)"
 [INFO],SENDER,2020-12-20 01:14:57,"Received OT data from RECEIVER (127.0.0.1, 5585)"
 [INFO],SENDER,2020-12-20 01:14:57,"Received PRF key data from RECEIVER (127.0.0.1, 5585)"
+[INFO],SENDER,2020-12-21 09:58:03,"Received parameters from RECEIVER (127.0.0.1, 5585)"
+[INFO],SENDER,2020-12-21 09:58:03,"Received OT data from RECEIVER (127.0.0.1, 5585)"
+[INFO],SENDER,2020-12-21 09:58:03,"Received PRF key data from RECEIVER (127.0.0.1, 5585)"

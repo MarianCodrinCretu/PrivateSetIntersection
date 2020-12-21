@@ -1,9 +1,8 @@
 import random
-from CommunicationService.TransferProtocol import TransferProtocol
 
 
 class OTService:
-    def __init__(self, transfer_protocol : TransferProtocol):
+    def __init__(self, transfer_protocol):
         self.transfer_protocol = transfer_protocol
 
     def receiverOT(self, A, B, w, m):
@@ -32,7 +31,7 @@ class OTService:
         C = [[0 for c in range(w)] for l in range(m)]
         for it in range(w):
             data = self.transfer_protocol.receiveOT()
-            print(data)
+            # print(data)
             if s[it] == "0":
                 selected = data["A"]
             else:
@@ -45,7 +44,7 @@ class OTService:
         C = [[0 for c in range(w)] for l in range(m)]
         for it in range(w):
             data = self.transfer_protocol.receiveOT()
-            print(data)
+            # print(data)
             if s[it] == "0":
                 selected = data["r_0"]
             else:

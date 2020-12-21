@@ -65,8 +65,8 @@ def run_fake_client(address, port, message, key, iv, HEADERSIZE, flag, index):
 
 pubKeyClient = RSA.importKey(open(os.path.join("client_rsa_public.pem")).read())
 privKeyClient = RSA.importKey(open(os.path.join("client_rsa_private.pem")).read())
-pubKeyServer = RSA.importKey(open(os.path.join("client_rsa_public.pem")).read())
-privKeyServer = RSA.importKey(open(os.path.join("client_rsa_private.pem")).read())
+pubKeyServer = RSA.importKey(open(os.path.join("server_rsa_public.pem")).read())
+privKeyServer = RSA.importKey(open(os.path.join("server_rsa_private.pem")).read())
 
 
 class TransferProtocolShould(TestCase):

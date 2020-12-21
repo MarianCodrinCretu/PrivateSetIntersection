@@ -167,21 +167,15 @@ class NegotiateParametersUtils:
     @aspectlib.Aspect
     def tunedValidateM(self, dictParameters):
         yield aspectlib.Proceed(self, dictParameters)
-        if isinstance(dictParameters['m'], float) or isfloat(dictParameters['m']):
-            dictParameters['m'] = max(NegotiationParameters.Constants.mMin, float(dictParameters['m']))
-            if dictParameters['m'] > NegotiationParameters.Constants.mMax:
-                dictParameters['m'] = NegotiationParameters.Constants.mMax
+        if isinstance(dictParameters['m'], int) or isfloat(dictParameters['m']):
+            dictParameters['m'] = max(NegotiationParameters.Constants.mMin, int(dictParameters['m']))
         else:
-            dictParameters['m'] = NegotiationParameters.Constants.m
-
-        dictParameters['m'] *= dictParameters['lenDataset']
-        dictParameters['m'] = int(dictParameters['m'])
+            dictParameters['m'] = NegotiationParameters.Constants.mMin
 
     def validateM(self, dictParameters):
         if isinstance(dictParameters['m'], float) or isfloat(dictParameters['m']):
-            if float(dictParameters['m']) < NegotiationParameters.Constants.mMin \
-                    or float(dictParameters['m']) > NegotiationParameters.Constants.mMax:
-                print('M not between 0.25 and 1.25')
+            if float(dictParameters['m']) < NegotiationParameters.Constants.mMin:
+                print('M not higher than 64')
                 logging.info(LogMessaging.mLow()[0])
         else:
             print('Invalid M')
@@ -228,7 +222,7 @@ class NegotiateParametersUtils:
             self.validateW(dictParameters)
 
         # m validation
-        # with aspectlib.weave(self.validateM, self.tunedValidateM):
-        #     self.validateM(dictParameters)
+        with aspectlib.weave(self.validateM, self.tunedValidateM):
+            self.validateM(dictParameters)
 
         return dictParameters

@@ -1,5 +1,4 @@
 from Crypto.Random import random
-# import random
 from Entities.AOP_specifications import logMatricesBitsErrors, logNotReturnedBitsErrors
 
 

@@ -206,16 +206,7 @@ class NegotiateParametersUtilsTest(TestCase):
         # execute
         resultedDict = self.negotiateParametersUtils.validateParameters(copyDict)
         # verify
-        self.assertEqual(NegotiationParameters.Constants.mMin*resultedDict['lenDataset'], resultedDict['m'])
-
-    def test_ifHigherMThenModified(self):
-        # setup
-        copyDict = dictParameters.copy()
-        copyDict['m'] = 100
-        # execute
-        resultedDict = self.negotiateParametersUtils.validateParameters(copyDict)
-        # verify
-        self.assertEqual(NegotiationParameters.Constants.mMax*resultedDict['lenDataset'], resultedDict['m'])
+        self.assertEqual(NegotiationParameters.Constants.mMin, resultedDict['m'])
 
     def test_ifNotValidMThenModified(self):
         # setup
@@ -224,7 +215,7 @@ class NegotiateParametersUtilsTest(TestCase):
         # execute
         resultedDict = self.negotiateParametersUtils.validateParameters(copyDict)
         # verify
-        self.assertEqual(NegotiationParameters.Constants.m*resultedDict['lenDataset'], resultedDict['m'])
+        self.assertEqual(NegotiationParameters.Constants.mMin, resultedDict['m'])
 
 
 
