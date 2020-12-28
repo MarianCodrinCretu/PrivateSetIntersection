@@ -3,6 +3,7 @@ import pickle
 import aspectlib
 
 from CommunicationService.Communication import Communication
+from Exceptions.Utils import exceptionDict
 
 
 class ComReceive(Communication):
@@ -28,6 +29,12 @@ class ComReceive(Communication):
                 filex.write(str(data))
                 filex.write('\n--------------------\n')
                 yield aspectlib.Proceed
+
+    def checkForExceptions(self, data, flag):
+        if flag != 'NoAES':
+            for key in exceptionDict:
+                if key in data:
+                    raise exceptionDict[key](data.replace(key, ''))
 
     def processData(self, data, aesCipher, flag):
 
@@ -62,6 +69,8 @@ class ComReceive(Communication):
 
                 # with aspectlib.weave(self.securityTesting, self.securityTestingTune):
                 #     self.securityTesting(data, flag)
-                with aspectlib.weave(self.processData, self.decryptDataAES):
 
-                    return self.processData(data, aesCipher, flag)
+                with aspectlib.weave(self.processData, self.decryptDataAES):
+                    data = self.processData(data, aesCipher, flag)
+                    #self.checkForExceptions(data, flag)
+                    return data

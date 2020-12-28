@@ -114,8 +114,7 @@ class TransferProtocol:
 
     def sendIVByRSA(self, iv, rsaKey):
 
-        self._comSend.aesIV = iv
-        self._comReceive.aesIV = iv
+        self.aesIV = iv
         iv = CryptoUtils.CryptoUtils.rsaEncrypt(rsaKey, iv)
         self._comSend.send(iv, self._connectionParams['Server IP'],
                            int(self._connectionParams['Server Port']),
@@ -136,13 +135,11 @@ class TransferProtocol:
         with aspectlib.weave(self.processMessage, self.log_results):
             self.processMessage(message)
         result = CryptoUtils.CryptoUtils.rsaDecrypt(rsaKey, result)
-        self._comSend.aesIV = result.encode('utf8')
-        self._comReceive.aesIV = result.encode('utf8')
+        self.aesIV = result.encode('utf8')
         return result
 
     def sendAESKeyByRSA(self, aesKey, rsaKey):
-        self._comSend.aesKey = aesKey
-        self._comReceive.aesKey = aesKey
+        self.aesKey = aesKey
         aesKey = CryptoUtils.CryptoUtils.rsaEncrypt(rsaKey, aesKey)
         self._comSend.send(aesKey, self._connectionParams['Client IP'],
                            int(self._connectionParams['Client Port']),
@@ -161,8 +158,7 @@ class TransferProtocol:
         with aspectlib.weave(self.processMessage, self.log_results):
             self.processMessage(message)
         result = CryptoUtils.CryptoUtils.rsaDecrypt(rsaKey, result)
-        self._comSend.aesKey = result.encode('utf8')
-        self._comReceive.aesKey = result.encode('utf8')
+        self.aesKey = result.encode('utf8')
         return result
 
     def sendNegotiateParameters(self, paramsDictionary):
@@ -283,36 +279,47 @@ class TransferProtocol:
         return result
 
     ######################################## ERROR MESSAGING MANAGING ###################################################
-    def sendErrorMessageFromSender(self, e):
-        self._comSend.send("EXCEPTION FROM SENDER: " + str(e), self._connectionParams['Client IP'],
+    def sendErrorMessageFromSender(self, e, headersize=10):
+        self._comSend.send("EXCEPTION FROM SENDER: " +str(e), self._connectionParams['Client IP'],
                            int(self._connectionParams['Client Port']),
-                           HEADERSIZE=10, flag='NoAES')
+                           HEADERSIZE=10, aesCipher=AES.new(self.aesKey, AES.MODE_CFB, self.aesIV))
         message = Logs.LogMessaging.exceptionSender(str(e))
         with aspectlib.weave(self.processMessage, self.log_results):
             self.processMessage(message)
 
-    def receiveErrorMessageFromSender(self):
+    def receiveErrorMessageFromSender(self, headersize=10):
         result = self._comReceive.receive(self._connectionParams['Client IP'],
                                           int(self._connectionParams['Client Port']),
-                                          HEADERSIZE=10, flag='NoAES')
+                                          HEADERSIZE=headersize, aesCipher=AES.new(self.aesKey, AES.MODE_CFB, self.aesIV))
         message = Logs.LogMessaging.receivedExceptionFromSender(str(result))
         with aspectlib.weave(self.processMessage, self.log_results):
             self.processMessage(message)
         return result
 
-    def sendErrorMessageFromReceiver(self, e):
-        self._comSend.send("EXCEPTION FROM RECEIVER: " + str(e), self._connectionParams['Server IP'],
+    def sendErrorMessageFromReceiver(self, e, headersize=10):
+        self._comSend.send("EXCEPTION FROM RECEIVER: "+ str(e), self._connectionParams['Server IP'],
                            int(self._connectionParams['Server Port']),
-                           HEADERSIZE=10, flag="NoAES")
+                           HEADERSIZE=headersize, aesCipher=AES.new(self.aesKey, AES.MODE_CFB, self.aesIV))
         message = Logs.LogMessaging.exceptionReceiver(str(e))
         with aspectlib.weave(self.processMessage, self.log_results):
             self.processMessage(message)
 
-    def receiveErrorMessageFromReceiver(self):
+    def receiveErrorMessageFromReceiver(self, headersize=10):
         result = self._comReceive.receive(self._connectionParams['Server IP'],
                                           int(self._connectionParams['Server Port']),
-                                          HEADERSIZE=10, flag="NoAES")
+                                          HEADERSIZE=headersize, aesCipher=AES.new(self.aesKey, AES.MODE_CFB, self.aesIV))
         message = Logs.LogMessaging.receivedExceptionFromReceiver(str(result))
         with aspectlib.weave(self.processMessage, self.log_results):
             self.processMessage(message)
+        return result
+
+    def sendFinalOk(self):
+        self._comSend.send("RECEIVER: ALGORITHM FINISHED!", self._connectionParams['Server IP'],
+                           int(self._connectionParams['Server Port']),
+                           HEADERSIZE=10, aesCipher=AES.new(self.aesKey, AES.MODE_CFB, self.aesIV))
+
+    def receiveFinalOk(self):
+        result = self._comReceive.receive(self._connectionParams['Server IP'],
+                                          int(self._connectionParams['Server Port']),
+                                          HEADERSIZE=10, aesCipher=AES.new(self.aesKey, AES.MODE_CFB, self.aesIV))
         return result

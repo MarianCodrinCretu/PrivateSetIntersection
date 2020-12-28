@@ -1,4 +1,8 @@
 import Utils.Utils as randomUtils
+from Exceptions.ParametersException import ParametersException
+from Exceptions.PrecomputationOTException import PrecomputationOTException
+from Exceptions.PsiException import PsiException
+from Exceptions.ValidationPsiException import ValidationPsiException
 from Hash.HashBlake2b import HashBlake2b
 from Hash.HashMd5 import HashMd5
 from Hash.HashSha256 import HashSha256
@@ -72,18 +76,16 @@ class NucleusAlgorithm:
         self.negotiateParameters.sendParametersToServer(self.dictParameters)
         modifiedDict = self.negotiateParameters.receiveModifiedParametersFromServer()
 
-        print(modifiedDict)
-
         dictFunctions = generateDictFunctions(modifiedDict)
 
         # precomputation side
-        # ---------------------- TO BE COMPLETED -------------------------
 
+        #try:
         D = randomUtils.RandomUtils.initMatrixDReceiver(modifiedDict['m'], modifiedDict['w'])
         key = randomUtils.RandomUtils.generateKey(modifiedDict['lambda']//8)
         vList = self.precomputation.compute_v_list(self.data, key, modifiedDict, dictFunctions[modifiedDict['hash1']],
                                                    dictFunctions['FK'])
-        print(vList)
+
         D = self.precomputation.update_d(vList, D)
 
         # ot
@@ -95,32 +97,50 @@ class NucleusAlgorithm:
             self.otService.receiverOT(A, B, modifiedDict['w'], modifiedDict['m'])
         else:
             self.otService.receiver_randomOT(A, B, modifiedDict['w'], modifiedDict['m'])
+        # except Exception as e:
+        #     exception = PrecomputationOTException(str(e))
+        #     self.oprfEvaluation.transferProtocol.sendErrorMessageFromReceiver(exception)
+        #     raise exception
 
         # oprf evaluation
+        #try:
         self.oprfEvaluation.sendKeyToSender(key)
         senderPsiValues = self.oprfEvaluation.receiveSenderPsiValues()
         result = self.oprfEvaluation.evaluatePsiValues(key, senderPsiValues, A, self.data, modifiedDict,
                                                        dictFunctions[modifiedDict['hash1']],
                                                        dictFunctions[modifiedDict['hash2']],
                                                        dictFunctions['FK'])
-
+        # except Exception as e:
+        #     exception = ValidationPsiException(str(e))
+        #     self.oprfEvaluation.transferProtocol.sendErrorMessageFromReceiver(exception)
+        #     raise exception
+        #
+        # else:
+        #     self.oprfEvaluation.transferProtocol.sendFinalOk()
         return result
 
     def senderAlgorithmSide(self):
         # negociation parameters side
+
+        #try:
         receivedDict = self.negotiateParameters.receiveParametersFromClient()
         modifiedDict = self.negotiateParameters.validateParameters(receivedDict)
 
-        print(modifiedDict)
+
         dictFunctions = generateDictFunctions(modifiedDict)
         self.negotiateParameters.sendModifiedParametersToClient(modifiedDict)
 
-        # precomputation side
-        # ---------------------- TO BE COMPLETED -------------------------
-        s = randomUtils.RandomUtils.generateSSender(receivedDict['w'])
+        # except Exception as e:
+        #     exception = ParametersException(str(e))
+        #     self.oprfEvaluation.transferProtocol.sendErrorMessageFromSender(exception)
+        #     raise exception
 
+        # precomputation side
+
+
+
+        s = randomUtils.RandomUtils.generateSSender(receivedDict['w'])
         # ot
-        # ---------------------- TO BE COMPLETED -------------------------
         if (modifiedDict['otVariant']) == 1:
             C = self.otService.senderOT(s, modifiedDict['w'], modifiedDict['m'])
         else:
@@ -128,9 +148,17 @@ class NucleusAlgorithm:
 
         # oprf evaluation
         key = self.oprfEvaluation.receiveKeyFromReceiver()
-        print(key)
+        #try:
         senderPsiValues = self.oprfEvaluation.generateSenderPsiValues(key, C, self.data, modifiedDict,
                                                                       dictFunctions[modifiedDict['hash1']],
                                                                       dictFunctions[modifiedDict['hash2']],
                                                                       dictFunctions['FK'])
         self.oprfEvaluation.sendSenderPsiValuesToReceiver(senderPsiValues)
+        # except Exception as e:
+        #     print('Ajung in exceptie')
+        #     exception = PsiException(str(e))
+        #     self.oprfEvaluation.transferProtocol.sendErrorMessageFromSender(exception, headersize=100)
+        #     raise exception
+        # else:
+        #     finalOK = self.oprfEvaluation.transferProtocol.receiveFinalOk()
+        #     print(finalOK)
