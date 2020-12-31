@@ -29,7 +29,7 @@ class TransferProtocolShouldUnit(TestCase):
         if index == 1:
             return self._connectionParams['Server IP'], \
                    int(self._connectionParams['Server Port']), \
-                   [], str, str(self._connectionParams['Client IP'])+' '+str(self._connectionParams['Client Port']), 10, None, 'NoAES'
+                   [], str, self._connectionParams['Client IP']+' '+str(self._connectionParams['Client Port']), 10, None, 'NoAES'
         if index == 2:
             return self._connectionParams['Client IP'], \
                    int(self._connectionParams['Client Port']), \
@@ -322,8 +322,6 @@ class TransferProtocolShouldUnit(TestCase):
         comReceive = mock(ComReceive)
         ip, port, data, datatype, toReceive, headersize, aesCipher, flag = self.parametersMapper(index)
 
-        if index==1:
-            toReceive = tuple(toReceive.split(' '))
 
         if flag is None:
             when(comReceive).receive(ip, port, HEADERSIZE=headersize, aesCipher=ANY).thenReturn(toReceive)
@@ -348,7 +346,12 @@ class TransferProtocolShouldUnit(TestCase):
             response = self.receiverMethodMapper(index, transferProtocol)(data[0])
 
         # verify
-        self.assertEqual(toReceive, response)
+        if index != 1:
+            self.assertEqual(toReceive, response)
+        else:
+            split = toReceive.split(' ')
+            toReceive = tuple((split[0], int(split[1])))
+            self.assertEqual(toReceive, response)
         if flag == None:
             verify(comReceive).receive(ip, port, HEADERSIZE=headersize, aesCipher=ANY)
         else:

@@ -218,8 +218,11 @@ class TransferProtocol:
         with aspectlib.weave(self.processMessage, self.log_results):
             self.processMessage(message)
 
+        result = result.split(' ')
         ip = result[0]
-        port = result[1]
+        port = int(result[1])
+        # self._connectionParams['Client IP']=ip
+        # self._connectionParams['Client Port']=port
         return ip,port
 
     def receiveConfirmationInitiateConnection(self):

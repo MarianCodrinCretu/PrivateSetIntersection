@@ -217,7 +217,7 @@ class TransferProtocolShould(TestCase):
         parameter = ""
         receiveParameter = None
         if index == 1:
-            parameter = str(self._connectionParams['Client IP']),str(self._connectionParams['Client Port'])
+            parameter = str(self._connectionParams['Client IP'])+' '+str(self._connectionParams['Client Port'])
         elif index == 2:
             parameter = "Received connection attempting! All ok!"
         elif index == 9:
@@ -243,8 +243,15 @@ class TransferProtocolShould(TestCase):
         else:
             data = receiverFunction(receiveParameter)
 
-        if index not in (9, 10):
+
+        if index==1:
+            split = parameter.split(' ')
+            toReceive = tuple((split[0], int(split[1])))
+            self.assertEqual(data, toReceive)
+
+        elif index not in (9, 10):
             self.assertEqual(data, parameter)
+
         else:
             self.assertEqual(data, parameter.decode())
         client_thread.join()
