@@ -127,11 +127,11 @@ class TransferProtocolShould(TestCase):
         if index == 12:
             return self._connectionParams['Client IP'], \
                    int(self._connectionParams['Client Port']), \
-                   [str(Exception('Dummy exception'))], 10, 'NoAES'
+                   [str(Exception('Dummy exception'))], 10, None
         if index == 13:
             return self._connectionParams['Server IP'], \
                    int(self._connectionParams['Server Port']), \
-                   [str(Exception('Dummy exception'))], 10, 'NoAES'
+                   [str(Exception('Dummy exception'))], 10, None
 
     def senderMethodMapper(self, index):
         if index == 1:
@@ -217,7 +217,7 @@ class TransferProtocolShould(TestCase):
         parameter = ""
         receiveParameter = None
         if index == 1:
-            parameter = "Connection attempting!"
+            parameter = str(self._connectionParams['Client IP']),str(self._connectionParams['Client Port'])
         elif index == 2:
             parameter = "Received connection attempting! All ok!"
         elif index == 9:

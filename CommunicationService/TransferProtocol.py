@@ -48,7 +48,8 @@ class TransferProtocol:
     # {'lambda': int, 'sigma':int, 'm':int, 'w':int, 'l1':int, 'l2':int, 'hash1':string, 'hash2':string, 'PRF':string}
 
     def initiateConnection(self):
-        self._comSend.send("Connection attempting!", self._connectionParams['Server IP'],
+        self._comSend.send(str(self._connectionParams['Client IP'])+' '+str(self._connectionParams['Client Port']),
+                           self._connectionParams['Server IP'],
                            int(self._connectionParams['Server Port']),
                            HEADERSIZE=10, flag='NoAES')
         message = Logs.LogMessaging.createLogInitiateMessage(self._connectionParams['Server IP'],
@@ -216,7 +217,10 @@ class TransferProtocol:
                                                                    self._connectionParams['Client Port'])
         with aspectlib.weave(self.processMessage, self.log_results):
             self.processMessage(message)
-        return result
+
+        ip = result[0]
+        port = result[1]
+        return ip,port
 
     def receiveConfirmationInitiateConnection(self):
         result = self._comReceive.receive(self._connectionParams['Client IP'],

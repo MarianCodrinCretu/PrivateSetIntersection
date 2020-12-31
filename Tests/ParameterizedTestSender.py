@@ -40,7 +40,7 @@ class ParamSender(TestCase):
             'lambda': lambdas,
             'sigma': 60,
             'm': 64,
-            'w': 633,
+            'w': 487,
             'l1': 1284,
             'l2': 50,
             'hash1': hash1,

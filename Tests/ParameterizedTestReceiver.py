@@ -39,7 +39,7 @@ class ParamTestReceiver(TestCase):
             'lambda': lambdas,
             'sigma': 60,
             'm': 64,
-            'w': 633,
+            'w': 487,
             'l1': 1284,
             'l2': 50,
             'hash1': hash1,
@@ -76,4 +76,9 @@ class ParamTestReceiver(TestCase):
         nucleusAlgorithm = NucleusAlgorithm(data, dictParameters, negotiateParameters, precomputation, otService,
                                             oprfEvaluation)
 
-        print(nucleusAlgorithm.receiverAlgorithmSide())
+        result = nucleusAlgorithm.receiverAlgorithmSide()
+
+        print(result)
+
+        for element in ['Marian', 'Adrian Iftene', 'FLT']:
+            self.assertTrue(element in result)

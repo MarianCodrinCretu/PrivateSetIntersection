@@ -29,7 +29,7 @@ class TransferProtocolShouldUnit(TestCase):
         if index == 1:
             return self._connectionParams['Server IP'], \
                    int(self._connectionParams['Server Port']), \
-                   [], str, "Connection attempting!", 10, None, 'NoAES'
+                   [], str, str(self._connectionParams['Client IP'])+' '+str(self._connectionParams['Client Port']), 10, None, 'NoAES'
         if index == 2:
             return self._connectionParams['Client IP'], \
                    int(self._connectionParams['Client Port']), \
@@ -82,12 +82,12 @@ class TransferProtocolShouldUnit(TestCase):
             return self._connectionParams['Client IP'], \
                    int(self._connectionParams['Client Port']), \
                    [Exception('Dummy exception')], str, "EXCEPTION FROM SENDER: " + str(Exception('Dummy exception')), \
-                   10, None, 'NoAES'
+                   10, self.aesMock, None
         if index == 13:
             return self._connectionParams['Server IP'], \
                    int(self._connectionParams['Server Port']), \
                    [Exception('Dummy exception')], str, "EXCEPTION FROM RECEIVER: " + str(Exception('Dummy exception')), \
-                   10, None, 'NoAES'
+                   10, self.aesMock, None
 
     def senderMethodMapper(self, index, transferProtocol):
         if index == 1:
@@ -321,6 +321,9 @@ class TransferProtocolShouldUnit(TestCase):
         comSend = mock(ComSend)
         comReceive = mock(ComReceive)
         ip, port, data, datatype, toReceive, headersize, aesCipher, flag = self.parametersMapper(index)
+
+        if index==1:
+            toReceive = tuple(toReceive.split(' '))
 
         if flag is None:
             when(comReceive).receive(ip, port, HEADERSIZE=headersize, aesCipher=ANY).thenReturn(toReceive)
