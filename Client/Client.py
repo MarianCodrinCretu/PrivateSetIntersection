@@ -2,9 +2,24 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 import sys
-import socket
 
-sock = 0
+import os
+
+from Crypto.PublicKey import RSA
+
+import Constants
+from CommunicationService.ComReceive import ComReceive
+from CommunicationService.ComSend import ComSend
+from CommunicationService.SocketPool import SocketPool
+from CommunicationService.TransferProtocol import TransferProtocol
+from NegotiationParameters.NegotiateParameters import NegociateParameters
+from NegotiationParameters.NegotiateParametersUtils import NegotiateParametersUtils
+from NegotiationParameters.Constants import *
+from NucleusAlgorithm.NucleusAlgorithm import NucleusAlgorithm
+from OPRFEvaluation.OPRFEvaluation import OPRFEvaluation
+from OTService.OTService import OTService
+from Precomputation.Precomputation import Precomputation
+from DataEngineeringService import DataEngineering
 
 
 class ConnectWindow(QWidget):
@@ -15,7 +30,6 @@ class ConnectWindow(QWidget):
         self.setMinimumSize(QSize(400, 400))
         self.setMaximumSize(QSize(400, 400))
         self.move(775, 250)
-        self.appWindow = AppWindow()
         self.init_UI()
 
     def init_UI(self):
@@ -39,7 +53,7 @@ class ConnectWindow(QWidget):
         self.port.setStyleSheet("background-color:white")
         self.port.setFixedWidth(170)
         self.port.setPlaceholderText("Port")
-        self.port.setText("1234") # TO BE REMOVED
+        self.port.setText("5586") # TO BE REMOVED
         self.port.setContentsMargins(-1, -1, -1, 50)
 
         self.connection_button = QPushButton("Connect", self)
@@ -56,11 +70,19 @@ class ConnectWindow(QWidget):
         self.show()
 
     def passingInformation(self):
-        # address = ('127.0.0.1', 1234)
-        global sock
-        address = (self.address.text(), int(self.port.text()))
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.connect(address)
+
+        comSend = ComSend(SocketPool(20))
+        comReceive = ComReceive(SocketPool(20))
+
+        transferProtocol = TransferProtocol(
+            {'Server IP': self.address.text(), 'Server Port': int(self.port.text()),
+             'Client IP': Constants.RECEIVER_ADDRESS, 'Client Port': 5585}
+            , comSend, comReceive, "Thats my Kung Fu", "ABCDE FG HIJK LM")
+
+        transferProtocol.initiateConnection()
+        transferProtocol.receiveConfirmationInitiateConnection()
+
+        self.appWindow = AppWindow(transferProtocol)
         self.appWindow.address_value_label.setText(self.address.text())
         self.appWindow.port_label_value.setText(self.port.text())
         self.appWindow.show()
@@ -68,10 +90,11 @@ class ConnectWindow(QWidget):
 
 
 class AppWindow(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, transferProtocol, parent=None):
         super(AppWindow, self).__init__(parent)
         # super().__init__(sys.argv)
-
+        self.transferProtocol = transferProtocol
+        self.data = {}
         self.setMinimumSize(QSize(900, 600))
         self.setMaximumSize(QSize(900, 400))
         self.setWindowTitle("Client")
@@ -108,24 +131,27 @@ class AppWindow(QWidget):
         self.port_layout.addWidget(self.port_label_value)
         self.left_layout.addLayout(self.port_layout)
 
-        # Hash Line
-        self.hash_layout = QHBoxLayout()
-        self.hash_label = QLabel("Hash:")
-        self.hash_layout.addWidget(self.hash_label)
-        self.hash_combobox = QComboBox()
-        self.hash_combobox.addItem("MD5")
-        self.hash_combobox.addItem("SHA1")
-        self.hash_combobox.addItem("SHA256")
-        self.hash_layout.addWidget(self.hash_combobox)
-        self.left_layout.addLayout(self.hash_layout)
+        # Hash1 Line
+        self.hash1_layout = QHBoxLayout()
+        self.hash1_label = QLabel("Hash1:")
+        self.hash1_layout.addWidget(self.hash1_label)
+        self.hash1_combobox = QComboBox()
+        self.hash1_layout.addWidget(self.hash1_combobox)
+        self.left_layout.addLayout(self.hash1_layout)
+
+        # Hash2 Line
+        self.hash2_layout = QHBoxLayout()
+        self.hash2_label = QLabel("Hash2:")
+        self.hash2_layout.addWidget(self.hash2_label)
+        self.hash2_combobox = QComboBox()
+        self.hash2_layout.addWidget(self.hash2_combobox)
+        self.left_layout.addLayout(self.hash2_layout)
 
         # PRF Line
         self.prf_layout = QHBoxLayout()
         self.prf_label = QLabel("PRF:")
         self.prf_layout.addWidget(self.prf_label)
         self.prf_combobox = QComboBox()
-        self.prf_combobox.addItem("PRF1")
-        self.prf_combobox.addItem("PRF2")
         self.prf_layout.addWidget(self.prf_combobox)
         self.left_layout.addLayout(self.prf_layout)
 
@@ -146,10 +172,9 @@ class AppWindow(QWidget):
         self.lambda_layout = QHBoxLayout()
         self.lambda_label = QLabel("Lambda:")
         self.lambda_layout.addWidget(self.lambda_label)
-        self.lambda_value = QLineEdit()
-        self.lambda_value.setValidator(self.onlyInt)
-        self.lambda_value.setFixedWidth(205)
-        self.lambda_layout.addWidget(self.lambda_value)
+        self.lambda_combobox = QComboBox()
+        self.lambda_combobox.currentIndexChanged.connect(self.change_lambda_options)
+        self.lambda_layout.addWidget(self.lambda_combobox)
         self.left_layout.addLayout(self.lambda_layout)
 
         # Sigma Line
@@ -158,7 +183,8 @@ class AppWindow(QWidget):
         self.sigma_layout.addWidget(self.sigma_label)
         self.sigma_value = QLineEdit()
         self.sigma_value.setValidator(self.onlyInt)
-        self.sigma_value.setFixedWidth(205)
+        self.sigma_value.setFixedWidth(200)
+        self.sigma_value.setText("60")
         self.sigma_layout.addWidget(self.sigma_value)
         self.left_layout.addLayout(self.sigma_layout)
 
@@ -168,7 +194,8 @@ class AppWindow(QWidget):
         self.m_layout.addWidget(self.m_label)
         self.m_value = QLineEdit()
         self.m_value.setValidator(self.onlyInt)
-        self.m_value.setFixedWidth(205)
+        self.m_value.setFixedWidth(200)
+        self.m_value.setText("64")
         self.m_layout.addWidget(self.m_value)
         self.left_layout.addLayout(self.m_layout)
 
@@ -178,29 +205,10 @@ class AppWindow(QWidget):
         self.w_layout.addWidget(self.w_label)
         self.w_value = QLineEdit()
         self.w_value.setValidator(self.onlyInt)
-        self.w_value.setFixedWidth(205)
+        self.w_value.setFixedWidth(200)
+        self.w_value.setText("633")
         self.w_layout.addWidget(self.w_value)
         self.left_layout.addLayout(self.w_layout)
-
-        # L1 Line
-        self.l1_layout = QHBoxLayout()
-        self.l1_label = QLabel("L1:")
-        self.l1_layout.addWidget(self.l1_label)
-        self.l1_value = QLineEdit()
-        self.l1_value.setValidator(self.onlyInt)
-        self.l1_value.setFixedWidth(205)
-        self.l1_layout.addWidget(self.l1_value)
-        self.left_layout.addLayout(self.l1_layout)
-
-        # L2 Line
-        self.l2_layout = QHBoxLayout()
-        self.l2_label = QLabel("L2:")
-        self.l2_layout.addWidget(self.l2_label)
-        self.l2_value = QLineEdit()
-        self.l2_value.setValidator(self.onlyInt)
-        self.l2_value.setFixedWidth(205)
-        self.l2_layout.addWidget(self.l2_value)
-        self.left_layout.addLayout(self.l2_layout)
 
         # Add File Line
         self.file_layout = QHBoxLayout()
@@ -211,6 +219,14 @@ class AppWindow(QWidget):
         self.choose_file_button.clicked.connect(self.choose_file_clicked)
         self.file_layout.addWidget(self.choose_file_button)
         self.left_layout.addLayout(self.file_layout)
+
+        # Choose column
+        self.column_layout = QHBoxLayout()
+        self.column_label = QLabel("Choose column:")
+        self.column_layout.addWidget(self.column_label)
+        self.column_name = QComboBox()
+        self.column_layout.addWidget(self.column_name)
+        self.left_layout.addLayout(self.column_layout)
 
         # Run Button
         self.start_button_layout = QHBoxLayout()
@@ -250,18 +266,131 @@ class AppWindow(QWidget):
         self.splitter.addWidget(self.right_widget)
         self.tab_layout.addWidget(self.splitter)
 
+        self.fill_comboboxes()
+
+    def fill_comboboxes(self):
+
+        for i in HASHES.get(LAMBDAS[0]):
+            self.hash1_combobox.addItem(i)
+
+        for i in sorted(HASH_LIST):
+            self.hash2_combobox.addItem(i)
+
+        for i in LAMBDAS:
+            self.lambda_combobox.addItem(str(i))
+
+        for i in PRFS.get(LAMBDAS[0]):
+            self.prf_combobox.addItem(i)
+
+    def change_lambda_options(self):
+        # Hashes options are updated
+        new_hashes = HASHES.get(int(self.lambda_combobox.currentText()))
+        self.hash1_combobox.clear()
+        for i in new_hashes:
+            self.hash1_combobox.addItem(i)
+
+        # PRF options are updated:
+        new_prf = PRFS.get(int(self.lambda_combobox.currentText()))
+        self.prf_combobox.clear()
+        for i in new_prf:
+            self.prf_combobox.addItem(i)
+
+
     def choose_file_clicked(self):
         self.choose_file_isClicked = True
 
-        filename, _ = QFileDialog.getOpenFileName(filter='CSV(*.csv)')
+        filename, _ = QFileDialog.getOpenFileName(filter="Format(*.csv *.xlsx)")
         if filename is not '':
             self.file_name.setText(filename)
+            data_service = DataEngineering.DataEngineering(DataEngineering.CSVParser.CSVParser(), DataEngineering.XLSParser.XLSParser())
+            self.data = data_service.parse(filename)
+            for key in self.data.keys():
+                self.column_name.addItem(key)
+
+    def build_parameters_dict(self):
+        dictParameters = {'lambda': str(self.lambda_combobox.currentText()),
+                          'sigma': int(self.sigma_value.text()),
+                          'm': int(self.m_value.text()),
+                          'w': int(self.w_value.text()),
+                          'l1': L1,
+                          'l2': L2,
+                          'hash1': str(self.hash1_combobox.currentText()),
+                          'hash2': str(self.hash2_combobox.currentText()),
+                          'prf': str(self.prf_combobox.currentText()),
+                          'otVariant': str(self.ot_combobox.currentIndex() + 1),
+                          }
+
+        return dictParameters
+
+    def check_if_fields_are_filled(self):
+        if self.sigma_value.text() == '':
+            return False
+        elif self.m_value.text() == '':
+            return False
+        elif self.w_value.text() == '':
+            return False
+        elif self.file_name.text() == '':
+            return False
+        else:
+            return True
 
     def start_clicked(self):
-        self.start_isClicked = True
+        if self.check_if_fields_are_filled() is False:
+            return 0
+
+        current_data_list = self.data.get(str(self.column_name.currentText()))
+        dictParameters = self.build_parameters_dict()
+        print(dictParameters)
+
+        self.worker = WorkerThread(transferProtocol=self.transferProtocol, dictParameters=dictParameters, data=current_data_list)
+        self.worker.start()
+        self.worker.update_data.connect(self.update_textbox)
+
+    def update_textbox(self, result):
+        print(result)
+        text = ''
+        for i in result:
+            text += i + "\n"
+        self.result_textbox.setText(text)
 
     def export_clicked(self):
         self.export_isClicked = True
+
+
+class WorkerThread(QThread):
+    transferProtocol = ''
+    dictParameters = {}
+    data = []
+    update_data = pyqtSignal(list)
+
+    def __init__(self, transferProtocol, dictParameters, data, parent=None):
+        QThread.__init__(self, parent)
+        self.transferProtocol = transferProtocol
+        self.dictParameters = dictParameters
+        self.data = data
+
+    def run(self):
+
+        pubKeyClient = RSA.importKey(open(os.path.join("../client_rsa_public.pem")).read())
+        privKeyClient = RSA.importKey(open(os.path.join("../client_rsa_private.pem")).read())
+
+        negociateParametersUtils = NegotiateParametersUtils()
+        negotiateParameters = NegociateParameters(self.transferProtocol, negociateParametersUtils)
+        precomputation = Precomputation()
+        otService = OTService(self.transferProtocol)
+        oprfEvaluation = OPRFEvaluation(self.transferProtocol)
+
+        # execute
+        self.transferProtocol.sendRSAReceiverPublicKey(pubKeyClient)
+        pubKeyServer = self.transferProtocol.receiveRSASenderPublicKey()
+        self.transferProtocol.sendIVByRSA(self.transferProtocol.aesIV, pubKeyServer)
+        self.transferProtocol.receiveAESKeyByRSA(privKeyClient)
+
+        nucleusAlgorithm = NucleusAlgorithm(self.data, self.dictParameters, negotiateParameters, precomputation, otService,
+                                            oprfEvaluation)
+
+
+        self.update_data.emit(nucleusAlgorithm.receiverAlgorithmSide())
 
 
 if __name__ == "__main__":
