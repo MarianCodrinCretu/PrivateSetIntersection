@@ -7,4 +7,5 @@ class InvalidFileExtensionException(Exception):
 
     def __init__(self, arg):
         self.args = arg
+        super().__init__(self.args)
 

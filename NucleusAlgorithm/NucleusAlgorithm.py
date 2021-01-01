@@ -1,5 +1,6 @@
 import Utils.Utils as randomUtils
 from CryptoUtils.CryptoUtils import generateAESKey
+from Exceptions.PrecomputationOTException import PrecomputationOTException
 from Hash.HashBlake2b import HashBlake2b
 from Hash.HashMd5 import HashMd5
 from Hash.HashSha256 import HashSha256
@@ -95,26 +96,23 @@ class NucleusAlgorithm:
             self.otService.receiverOT(A, B, modifiedDict['w'], modifiedDict['m'])
         else:
             self.otService.receiver_randomOT(A, B, modifiedDict['w'], modifiedDict['m'])
+
+
         # except Exception as e:
+        #     from Exceptions.PrecomputationOTException import PrecomputationOTException
         #     exception = PrecomputationOTException(str(e))
         #     self.oprfEvaluation.transferProtocol.sendErrorMessageFromReceiver(exception)
         #     raise exception
 
         # oprf evaluation
-        # try:
+
         self.oprfEvaluation.sendKeyToSender(key)
         senderPsiValues = self.oprfEvaluation.receiveSenderPsiValues()
         result = self.oprfEvaluation.evaluatePsiValues(key, senderPsiValues, A, self.data, modifiedDict,
                                                        dictFunctions[modifiedDict['hash1']],
                                                        dictFunctions[modifiedDict['hash2']],
                                                        dictFunctions['FK'])
-        # except Exception as e:
-        #     exception = ValidationPsiException(str(e))
-        #     self.oprfEvaluation.transferProtocol.sendErrorMessageFromReceiver(exception)
-        #     raise exception
-        #
-        # else:
-        #     self.oprfEvaluation.transferProtocol.sendFinalOk()
+
         return result
 
     def senderAlgorithmSide(self):
@@ -122,17 +120,23 @@ class NucleusAlgorithm:
 
         # try:
         receivedDict = self.negotiateParameters.receiveParametersFromClient()
+
         modifiedDict = self.negotiateParameters.validateParameters(receivedDict)
 
         dictFunctions = generateDictFunctions(modifiedDict)
+
         self.negotiateParameters.sendModifiedParametersToClient(modifiedDict)
 
         # except Exception as e:
+        #     from Exceptions.ParametersException import ParametersException
+        #     print('STRING EXCEPTION '+str(e))
         #     exception = ParametersException(str(e))
         #     self.oprfEvaluation.transferProtocol.sendErrorMessageFromSender(exception)
         #     raise exception
 
         # precomputation side
+
+        # try:
 
         s = randomUtils.RandomUtils.generateSSender(receivedDict['w'])
         # ot
@@ -143,14 +147,18 @@ class NucleusAlgorithm:
 
         # oprf evaluation
         key = self.oprfEvaluation.receiveKeyFromReceiver()
-        # try:
+
         senderPsiValues = self.oprfEvaluation.generateSenderPsiValues(key, C, self.data, modifiedDict,
                                                                       dictFunctions[modifiedDict['hash1']],
                                                                       dictFunctions[modifiedDict['hash2']],
                                                                       dictFunctions['FK'])
         self.oprfEvaluation.sendSenderPsiValuesToReceiver(senderPsiValues)
+
+        # except PrecomputationOTException as e:
+        #     raise e
+
         # except Exception as e:
-        #     print('Ajung in exceptie')
+        #     from Exceptions.PsiException import PsiException
         #     exception = PsiException(str(e))
         #     self.oprfEvaluation.transferProtocol.sendErrorMessageFromSender(exception, headersize=100)
         #     raise exception

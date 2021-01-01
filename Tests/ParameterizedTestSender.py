@@ -46,7 +46,7 @@ class ParamSender(TestCase):
             'hash1': hash1,
             'hash2': hash2,
             'prf': prf,
-            'otVariant': '2',
+            'otVariant': '1',
             'lenDataset': len(data)
         }
 
