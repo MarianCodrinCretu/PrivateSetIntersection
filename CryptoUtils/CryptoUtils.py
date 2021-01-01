@@ -43,9 +43,9 @@ def generateServerRSAKeys():
 
     return (pubKey, privKey)
 
-def generateAESKey():
+def generateAESKey(n=16):
     letters = string.ascii_letters
-    return ''.join(random.choice(letters) for i in range(16))
+    return ''.join(random.choice(letters) for i in range(n))
 
 def generateAESIv():
     letters = string.ascii_letters

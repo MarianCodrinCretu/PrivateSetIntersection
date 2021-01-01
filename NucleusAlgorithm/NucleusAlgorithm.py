@@ -1,8 +1,5 @@
 import Utils.Utils as randomUtils
-from Exceptions.ParametersException import ParametersException
-from Exceptions.PrecomputationOTException import PrecomputationOTException
-from Exceptions.PsiException import PsiException
-from Exceptions.ValidationPsiException import ValidationPsiException
+from CryptoUtils.CryptoUtils import generateAESKey
 from Hash.HashBlake2b import HashBlake2b
 from Hash.HashMd5 import HashMd5
 from Hash.HashSha256 import HashSha256
@@ -80,9 +77,10 @@ class NucleusAlgorithm:
 
         # precomputation side
 
-        #try:
+        # try:
         D = randomUtils.RandomUtils.initMatrixDReceiver(modifiedDict['m'], modifiedDict['w'])
-        key = randomUtils.RandomUtils.generateKey(modifiedDict['lambda']//8)
+        key = generateAESKey(modifiedDict['lambda'] // 8)
+
         vList = self.precomputation.compute_v_list(self.data, key, modifiedDict, dictFunctions[modifiedDict['hash1']],
                                                    dictFunctions['FK'])
 
@@ -103,7 +101,7 @@ class NucleusAlgorithm:
         #     raise exception
 
         # oprf evaluation
-        #try:
+        # try:
         self.oprfEvaluation.sendKeyToSender(key)
         senderPsiValues = self.oprfEvaluation.receiveSenderPsiValues()
         result = self.oprfEvaluation.evaluatePsiValues(key, senderPsiValues, A, self.data, modifiedDict,
@@ -122,10 +120,9 @@ class NucleusAlgorithm:
     def senderAlgorithmSide(self):
         # negociation parameters side
 
-        #try:
+        # try:
         receivedDict = self.negotiateParameters.receiveParametersFromClient()
         modifiedDict = self.negotiateParameters.validateParameters(receivedDict)
-
 
         dictFunctions = generateDictFunctions(modifiedDict)
         self.negotiateParameters.sendModifiedParametersToClient(modifiedDict)
@@ -137,8 +134,6 @@ class NucleusAlgorithm:
 
         # precomputation side
 
-
-
         s = randomUtils.RandomUtils.generateSSender(receivedDict['w'])
         # ot
         if (modifiedDict['otVariant']) == 1:
@@ -148,7 +143,7 @@ class NucleusAlgorithm:
 
         # oprf evaluation
         key = self.oprfEvaluation.receiveKeyFromReceiver()
-        #try:
+        # try:
         senderPsiValues = self.oprfEvaluation.generateSenderPsiValues(key, C, self.data, modifiedDict,
                                                                       dictFunctions[modifiedDict['hash1']],
                                                                       dictFunctions[modifiedDict['hash2']],
