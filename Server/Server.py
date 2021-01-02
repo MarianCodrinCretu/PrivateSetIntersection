@@ -48,6 +48,30 @@ class ServerWindow(QWidget):
         self.log_textbox = QTextBrowser()
         self.tab_layout.addWidget(self.log_textbox)
 
+        # Int Validator
+        self.onlyInt = QIntValidator()
+
+        self.server_address_layout = QHBoxLayout()
+        self.server_address_label = QLabel()
+        self.server_address_label.setText("Server address: ")
+        self.server_address_value = QLineEdit()
+        self.server_address_value.setFixedWidth(185)
+        self.server_address_value.setText("127.0.0.1")
+        self.server_address_layout.addWidget(self.server_address_label)
+        self.server_address_layout.addWidget(self.server_address_value)
+        self.tab_layout.addLayout(self.server_address_layout)
+
+        self.server_port_layout = QHBoxLayout()
+        self.server_port_label = QLabel()
+        self.server_port_label.setText("Server port: ")
+        self.server_port_value = QLineEdit()
+        self.server_port_value.setValidator(self.onlyInt)
+        self.server_port_value.setFixedWidth(185)
+        self.server_port_value.setText("5586")
+        self.server_port_layout.addWidget(self.server_port_label)
+        self.server_port_layout.addWidget(self.server_port_value)
+        self.tab_layout.addLayout(self.server_port_layout)
+
         self.add_file_layot = QHBoxLayout()
         self.add_file_value = QLineEdit()
         self.add_file_value.setReadOnly(True)
@@ -81,14 +105,25 @@ class ServerWindow(QWidget):
             for key in self.data.keys():
                 self.column_name.addItem(key)
 
-    def start_button_clicked(self):
+    def check_if_fields_are_filled(self):
         if self.add_file_value.text() == '':
+            return False
+        elif self.server_address_value.text() == '':
+            return False
+        elif self.server_port_value.text() == '':
+            return False
+
+        return True
+
+    def start_button_clicked(self):
+        if self.check_if_fields_are_filled() is False:
             return 0
 
         self.start_button.setEnabled(False)
         self.log_textbox.setText("Server started...\n")
         self.log_textbox.setText(self.log_textbox.toPlainText() + "\n" + "Waiting for connection..")
-        self.worker = WorkerThread(self.data.get(self.column_name.currentText()))
+        self.worker = WorkerThread(self.data.get(self.column_name.currentText()),
+                                   (str(self.server_address_value.text()), int(self.server_port_value.text())))
         self.worker.start()
         self.worker.update_data.connect(self.update_textbox)
 
@@ -100,10 +135,12 @@ class ServerWindow(QWidget):
 class WorkerThread(QThread):
     update_data = pyqtSignal(tuple)
     data = []
+    server_info = ()
 
-    def __init__(self, data):
+    def __init__(self, data, server_info):
         super().__init__()
         self.data = data
+        self.server_info = server_info
 
     @Aspect
     def log_results(self, value):
@@ -138,7 +175,7 @@ class WorkerThread(QThread):
         comReceive = ComReceive(SocketPool(20))
 
         transferProtocol = TransferProtocol(
-            {'Server IP': Constants.SENDER_ADDRESS, 'Server Port': Constants.SENDER_PORT,
+            {'Server IP': self.server_info[0], 'Server Port': self.server_info[1],
              'Client IP': None, 'Client Port': None}
             , comSend, comReceive, "Thats my Kung Fu", "ABCDE FG HIJK LM")
 

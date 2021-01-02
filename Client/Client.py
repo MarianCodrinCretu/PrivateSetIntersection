@@ -42,30 +42,62 @@ class ConnectWindow(QWidget):
         self.label.setStyleSheet("font-weight: bold; font-size: 20px")
         self.label.setAlignment(Qt.AlignCenter)
         self.label.setContentsMargins(-1, -1, -1, 75)
+        self.tab_layout.addWidget(self.label)
 
-        self.address = QLineEdit()
-        self.address.setStyleSheet("background-color:white")
-        self.address.setFixedWidth(170)
-        self.address.setPlaceholderText("Address")
-        self.address.setText("127.0.0.1") # TO BE REMOVED
+        # Int Validator
+        self.onlyInt = QIntValidator()
 
-        self.port = QLineEdit()
-        self.port.setStyleSheet("background-color:white")
-        self.port.setFixedWidth(170)
-        self.port.setPlaceholderText("Port")
-        self.port.setText("5586") # TO BE REMOVED
-        self.port.setContentsMargins(-1, -1, -1, 50)
+        self.client_address_layout = QHBoxLayout()
+        self.client_address_label = QLabel()
+        self.client_address_label.setText("Client address: ")
+        self.client_address_value = QLineEdit()
+        self.client_address_value.setFixedWidth(170)
+        self.client_address_value.setText("127.0.0.1")
+        self.client_address_layout.addWidget(self.client_address_label)
+        self.client_address_layout.addWidget(self.client_address_value)
+        self.tab_layout.addLayout(self.client_address_layout)
 
+        self.client_port_layout = QHBoxLayout()
+        self.client_port_label = QLabel()
+        self.client_port_label.setText("Client port: ")
+        self.client_port_value = QLineEdit()
+        self.client_port_value.setValidator(self.onlyInt)
+        self.client_port_value.setFixedWidth(170)
+        self.client_port_value.setText("5585")
+        self.client_port_layout.addWidget(self.client_port_label)
+        self.client_port_layout.addWidget(self.client_port_value)
+        self.tab_layout.addLayout(self.client_port_layout)
+
+        self.server_address_layout = QHBoxLayout()
+        self.server_address_label = QLabel()
+        self.server_address_label.setText("Server address: ")
+        self.server_address_value = QLineEdit()
+        self.server_address_value.setFixedWidth(170)
+        self.server_address_value.setText("127.0.0.1") # TO BE REMOVED
+        self.server_address_layout.addWidget(self.server_address_label)
+        self.server_address_layout.addWidget(self.server_address_value)
+        self.tab_layout.addLayout(self.server_address_layout)
+
+        self.server_port_layout = QHBoxLayout()
+        self.server_port_label = QLabel()
+        self.server_port_label.setText("Server port: ")
+        self.server_port_value = QLineEdit()
+        self.server_port_value.setFixedWidth(170)
+        self.server_port_value.setText("5586") # TO BE REMOVED
+        self.server_port_value.setValidator(self.onlyInt)
+        self.server_port_layout.setContentsMargins(-1, -1, -1, 50)
+        self.server_port_layout.addWidget(self.server_port_label)
+        self.server_port_layout.addWidget(self.server_port_value)
+        self.tab_layout.addLayout(self.server_port_layout)
+
+        self.button_layout = QVBoxLayout()
+        self.button_layout.setAlignment(Qt.AlignCenter)
         self.connection_button = QPushButton("Connect", self)
         self.connection_button.setFixedHeight(40)
         self.connection_button.setFixedWidth(170)
-        self.connection_button.setStyleSheet("background-color:#FDD20E")
         self.connection_button.clicked.connect(self.passingInformation)
-
-        self.tab_layout.addWidget(self.label)
-        self.tab_layout.addWidget(self.address)
-        self.tab_layout.addWidget(self.port)
-        self.tab_layout.addWidget(self.connection_button)
+        self.button_layout.addWidget(self.connection_button)
+        self.tab_layout.addLayout(self.button_layout)
 
         self.show()
 
@@ -75,16 +107,18 @@ class ConnectWindow(QWidget):
         comReceive = ComReceive(SocketPool(20))
 
         transferProtocol = TransferProtocol(
-            {'Server IP': self.address.text(), 'Server Port': int(self.port.text()),
-             'Client IP': Constants.RECEIVER_ADDRESS, 'Client Port': 5585}
+            {'Server IP': self.server_address_value.text(), 'Server Port': int(self.server_port_value.text()),
+             'Client IP': self.client_address_value.text(), 'Client Port': int(self.client_port_value.text())}
             , comSend, comReceive, "Thats my Kung Fu", "ABCDE FG HIJK LM")
 
         transferProtocol.initiateConnection()
         transferProtocol.receiveConfirmationInitiateConnection()
 
         self.appWindow = AppWindow(transferProtocol)
-        self.appWindow.address_value_label.setText(self.address.text())
-        self.appWindow.port_label_value.setText(self.port.text())
+        self.appWindow.client_address_value.setText(self.client_address_value.text())
+        self.appWindow.client_port_value.setText(self.client_port_value.text())
+        self.appWindow.server_address_value.setText(self.server_address_value.text())
+        self.appWindow.server_port_value.setText(self.server_port_value.text())
         self.appWindow.show()
         self.close()
 
@@ -114,22 +148,39 @@ class AppWindow(QWidget):
         self.right_layout = QVBoxLayout()
         self.right_layout.setAlignment(Qt.AlignCenter)
 
-        # Address line
-        self.address_layout = QHBoxLayout()
-        self.address_label = QLabel("Server Address:")
-        self.address_layout.addWidget(self.address_label)
-        self.address_value_label = QLabel("Default")
-        self.address_layout.addWidget(self.address_value_label)
-        self.address_layout.setContentsMargins(-1, 75, -1, -1)
-        self.left_layout.addLayout(self.address_layout)
+        # Client Address line
+        self.client_address_layout = QHBoxLayout()
+        self.client_address_label = QLabel("Client address:")
+        self.client_address_layout.addWidget(self.client_address_label)
+        self.client_address_value = QLabel("Default")
+        self.client_address_layout.addWidget(self.client_address_value)
+        # self.client_address_layout.setContentsMargins(-1, 25, -1, -1)
+        self.left_layout.addLayout(self.client_address_layout)
 
-        # Port Line
-        self.port_layout = QHBoxLayout()
-        self.port_label = QLabel("Port:")
-        self.port_layout.addWidget(self.port_label)
-        self.port_label_value = QLabel("Default")
-        self.port_layout.addWidget(self.port_label_value)
-        self.left_layout.addLayout(self.port_layout)
+        # Client Port Line
+        self.client_port_layout = QHBoxLayout()
+        self.client_port_label = QLabel("Client port:")
+        self.client_port_layout.addWidget(self.client_port_label)
+        self.client_port_value = QLabel("Default")
+        self.client_port_layout.addWidget(self.client_port_value)
+        self.left_layout.addLayout(self.client_port_layout)
+
+        # Server Address line
+        self.server_address_layout = QHBoxLayout()
+        self.server_address_label = QLabel("Server address: ")
+        self.server_address_layout.addWidget(self.server_address_label)
+        self.server_address_value = QLabel("Default")
+        self.server_address_layout.addWidget(self.server_address_value)
+        self.left_layout.addLayout(self.server_address_layout)
+
+        # Server Port Line
+        self.server_port_layout = QHBoxLayout()
+        self.server_port_label = QLabel("Server port: ")
+        self.server_port_layout.addWidget(self.server_port_label)
+        self.server_port_value = QLabel("Default")
+        self.server_port_layout.setContentsMargins(-1, -1, -1, 50)
+        self.server_port_layout.addWidget(self.server_port_value)
+        self.left_layout.addLayout(self.server_port_layout)
 
         # Hash1 Line
         self.hash1_layout = QHBoxLayout()
@@ -234,27 +285,27 @@ class AppWindow(QWidget):
         self.start_button.clicked.connect(self.start_clicked)
         self.start_button_layout.addWidget(self.start_button)
         self.start_button_layout.setAlignment(Qt.AlignCenter)
-        self.start_button_layout.setContentsMargins(-1, 75, -1, -1)
+        self.start_button_layout.setContentsMargins(-1, 50, -1, -1)
         self.left_layout.addLayout(self.start_button_layout)
 
         # Right Layout Design
         # Textbox layout
         self.result_textbox_layout = QHBoxLayout()
         self.result_textbox = QTextBrowser()
-        self.result_textbox.setMaximumSize(500, 400)
+        self.result_textbox.setMaximumSize(500, 700) # was 400 with export butto
         self.result_textbox_layout.addWidget(self.result_textbox)
         self.result_textbox_layout.setAlignment(Qt.AlignCenter)
         self.right_layout.addLayout(self.result_textbox_layout)
 
         # Export Layout
-        self.export_button_layout = QHBoxLayout()
-        self.export_button = QPushButton("Export")
-        self.export_button.setMaximumSize(150, 50)
-        self.export_button.clicked.connect(self.export_clicked)
-        self.export_button_layout.addWidget(self.export_button)
-        self.export_button_layout.setAlignment(Qt.AlignCenter)
-        self.export_button_layout.setContentsMargins(-1, -1, -1, 5)
-        self.right_layout.addLayout(self.export_button_layout)
+        # self.export_button_layout = QHBoxLayout()
+        # self.export_button = QPushButton("Export")
+        # self.export_button.setMaximumSize(150, 50)
+        # self.export_button.clicked.connect(self.export_clicked)
+        # self.export_button_layout.addWidget(self.export_button)
+        # self.export_button_layout.setAlignment(Qt.AlignCenter)
+        # self.export_button_layout.setContentsMargins(-1, -1, -1, 5)
+        # self.right_layout.addLayout(self.export_button_layout)
 
         # Splitter
         self.left_widget = QWidget()
