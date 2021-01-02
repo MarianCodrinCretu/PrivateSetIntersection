@@ -20,6 +20,7 @@ from OPRFEvaluation.OPRFEvaluation import OPRFEvaluation
 from OTService.OTService import OTService
 from Precomputation.Precomputation import Precomputation
 from DataEngineeringService import DataEngineering
+from ConnectionValidation.ConnectionValidation import ConnectionValidation
 
 
 class ConnectWindow(QWidget):
@@ -41,8 +42,17 @@ class ConnectWindow(QWidget):
         self.label.setText("Connect to server: ")
         self.label.setStyleSheet("font-weight: bold; font-size: 20px")
         self.label.setAlignment(Qt.AlignCenter)
-        self.label.setContentsMargins(-1, -1, -1, 75)
+        self.label.setContentsMargins(-1, -1, -1, 25)
         self.tab_layout.addWidget(self.label)
+
+        self.error_layout = QVBoxLayout()
+        self.error_label = QLabel()
+        self.error_label.setStyleSheet("font-weight: bold; font-size: 20px; color: red")
+        self.error_label.setDisabled(True)
+        self.error_label.setContentsMargins(-1, -1, -1, 25)
+        self.error_layout.setAlignment(Qt.AlignCenter)
+        self.error_layout.addWidget(self.error_label)
+        self.tab_layout.addLayout(self.error_layout)
 
         # Int Validator
         self.onlyInt = QIntValidator()
@@ -101,7 +111,41 @@ class ConnectWindow(QWidget):
 
         self.show()
 
+    def verify_client_connection_info(self):
+
+        validation_check = ConnectionValidation(self.client_address_value.text(), int(self.client_port_value.text()))
+
+        if validation_check.check_address() is False and validation_check.check_port() is False:
+            self.error_label.setText("Incorrect client address and port")
+            return False
+        elif validation_check.check_address() is False:
+            self.error_label.setText("Incorrect client address")
+            return False
+        elif validation_check.check_port() is False:
+            self.error_label.setText("Incorrect client port")
+            return False
+
+        return True
+
+    def verify_server_connection_info(self):
+        validation_check = ConnectionValidation(self.server_address_value.text(), int(self.server_port_value.text()))
+
+        if validation_check.check_address() is False and validation_check.check_port() is False:
+            self.error_label.setText("Incorrect server address and port")
+            return False
+        elif validation_check.check_address() is False:
+            self.error_label.setText("Incorrect server address")
+            return False
+        elif validation_check.check_port() is False:
+            self.error_label.setText("Incorrect server port")
+            return False
+
+        return True
+
     def passingInformation(self):
+        if self.verify_client_connection_info() is False or self.verify_server_connection_info() is False:
+            self.error_label.setDisabled(False)
+            return 0
 
         comSend = ComSend(SocketPool(20))
         comReceive = ComReceive(SocketPool(20))
