@@ -25,6 +25,7 @@ from OPRFEvaluation.OPRFEvaluation import OPRFEvaluation
 from OTService.OTService import OTService
 from Precomputation.Precomputation import Precomputation
 from DataEngineeringService import DataEngineering
+from ConnectionValidation.ConnectionValidation import ConnectionValidation
 
 
 class ServerWindow(QWidget):
@@ -32,8 +33,8 @@ class ServerWindow(QWidget):
         super(ServerWindow, self).__init__(parent)
 
         self.data = {}
-        self.setMinimumSize(QSize(400, 500))
-        self.setMaximumSize(QSize(400, 500))
+        self.setMinimumSize(QSize(400, 600))
+        self.setMaximumSize(QSize(400, 600))
         self.setWindowTitle("Server")
         QApplication.setStyle("fusion")
         self.move(500, 250)
@@ -47,6 +48,14 @@ class ServerWindow(QWidget):
 
         self.log_textbox = QTextBrowser()
         self.tab_layout.addWidget(self.log_textbox)
+
+        self.error_label = QLabel()
+        self.error_label.setStyleSheet("font-weight: bold; font-size: 20px; color: red")
+        self.error_label.setDisabled(True)
+        self.error_label.setContentsMargins(-1, 10, -1, 10)
+        self.error_label.setAlignment(Qt.AlignCenter)
+        self.tab_layout.addWidget(self.error_label)
+
 
         # Int Validator
         self.onlyInt = QIntValidator()
@@ -115,10 +124,30 @@ class ServerWindow(QWidget):
 
         return True
 
+    def verify_server_connection_info(self):
+        validation_check = ConnectionValidation(self.server_address_value.text(), int(self.server_port_value.text()))
+
+        if validation_check.check_address() is False and validation_check.check_port() is False:
+            self.error_label.setText("Incorrect server address and port")
+            return False
+        elif validation_check.check_address() is False:
+            self.error_label.setText("Incorrect server address")
+            return False
+        elif validation_check.check_port() is False:
+            self.error_label.setText("Incorrect server port")
+            return False
+
+        return True
+
     def start_button_clicked(self):
         if self.check_if_fields_are_filled() is False:
             return 0
 
+        if self.verify_server_connection_info() is False:
+            self.error_label.setDisabled(False)
+            return 0
+
+        self.error_label.setDisabled(True)
         self.start_button.setEnabled(False)
         self.log_textbox.setText("Server started...\n")
         self.log_textbox.setText(self.log_textbox.toPlainText() + "\n" + "Waiting for connection..")

@@ -142,8 +142,20 @@ class ConnectWindow(QWidget):
 
         return True
 
+    def verify_server_client_connection_info(self):
+        validation_check = ConnectionValidation(None, None)
+        server_info = (self.server_address_value.text(), self.server_port_value.text())
+        client_info = (self.client_address_value.text(), self.client_port_value.text())
+
+        if validation_check.check_server_client_difference(server_info, client_info) is False:
+            self.error_label.setText("Identical info for server and client")
+            return False
+
+        return True
+
     def passingInformation(self):
-        if self.verify_client_connection_info() is False or self.verify_server_connection_info() is False:
+        if self.verify_client_connection_info() is False or self.verify_server_connection_info() is False \
+                or self.verify_server_client_connection_info() is False:
             self.error_label.setDisabled(False)
             return 0
 
@@ -432,6 +444,8 @@ class AppWindow(QWidget):
     def start_clicked(self):
         if self.check_if_fields_are_filled() is False:
             return 0
+
+        self.start_button.setDisabled(True)
 
         current_data_list = self.data.get(str(self.column_name.currentText()))
         dictParameters = self.build_parameters_dict()

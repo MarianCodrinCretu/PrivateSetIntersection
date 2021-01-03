@@ -21,3 +21,9 @@ class ConnectionValidation:
             return False
         return True
 
+    def check_server_client_difference(self, server_info, client_info):
+        if server_info == client_info:
+            return False
+        return True
+
+
