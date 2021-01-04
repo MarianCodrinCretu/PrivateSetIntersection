@@ -7,6 +7,7 @@ import string
 
 def generateClientRSAKeys():
 
+    print('GENERATE CLIENT RSA KEYS')
     if (not os.path.isfile('client_rsa_public.pem') and not os.path.isfile('client_rsa_private.pem')):
         key = RSA.generate(4096)
         f = open('client_rsa_public.pem', 'wb')
@@ -25,7 +26,7 @@ def generateClientRSAKeys():
     return (pubKey, privKey)
 
 def generateServerRSAKeys():
-
+    print('GENERATE SERVER RSA KEYS')
     if (not os.path.isfile('server_rsa_public.pem') and not os.path.isfile('server_rsa_private.pem')):
         key = RSA.generate(4096)
         f = open('server_rsa_public.pem', 'wb')

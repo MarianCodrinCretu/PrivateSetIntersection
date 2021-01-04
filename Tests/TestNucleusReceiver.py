@@ -38,7 +38,7 @@ comReceive = ComReceive(SocketPool(20))
 
 transferProtocol = TransferProtocol({'Server IP': Constants.SENDER_ADDRESS, 'Server Port': Constants.SENDER_PORT,
                                      'Client IP': Constants.RECEIVER_ADDRESS, 'Client Port': Constants.RECEIVER_PORT}
-                                    , comSend, comReceive)
+                                    , comSend, comReceive, "Thats my Kung Fu", "ABCDE FG HIJK LM")
 
 negociateParametersUtils = NegotiateParametersUtils()
 negotiateParameters = NegociateParameters(transferProtocol, negociateParametersUtils)

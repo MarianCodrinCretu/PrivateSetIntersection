@@ -21,13 +21,14 @@ bufferZone = ""
 import binascii
 import numpy
 import math
+import CryptoUtils
 
 def convertToBytes(ini_string):
 
     # Code to convert hex to binary
     return bin(int.from_bytes(ini_string, byteorder="big")).strip('0b')
 
-def DFTStatisticalTest(sequence, confidence=0.99, decisionLevel=0.001):
+def DFTStatisticalTest(sequence, confidence=0.95, decisionLevel = 0.01 ):
 
     sequence = [int(x) for x in sequence]
     n=len(sequence)
@@ -48,29 +49,13 @@ def DFTStatisticalTest(sequence, confidence=0.99, decisionLevel=0.001):
 
     # return True if we have no clue that the sequence is not random
     # if pValue is less than decisionLevel, then we will return False
-    print(pValue)
     return pValue >= decisionLevel
 
-def run_fake_client(address, port, message, key, iv, HEADERSIZE, flag, index):
-    global bufferZone
-    try:
-        time.sleep(0.001)
-        server_sock = socket.socket()
-        server_sock.connect((address, port))
-        if flag!='NoAES':
-            cipher = AES.new(key, AES.MODE_CFB, iv)
-            message = pickle.dumps(message)
-            message = cipher.encrypt(message)
-        message = bytes(f"{len(message):<{HEADERSIZE}}", 'utf-8') + message
-        server_sock.send(message)
-        server_sock.close()
-    except ConnectionRefusedError:
-        bufferZone = "CONNECTION ERROR"
 
 pubKeyClient = RSA.importKey(open(os.path.join("client_rsa_public.pem")).read())
 privKeyClient = RSA.importKey(open(os.path.join("client_rsa_private.pem")).read())
-pubKeyServer = RSA.importKey(open(os.path.join("client_rsa_public.pem")).read())
-privKeyServer = RSA.importKey(open(os.path.join("client_rsa_private.pem")).read())
+pubKeyServer = RSA.importKey(open(os.path.join("server_rsa_private.pem")).read())
+privKeyServer = RSA.importKey(open(os.path.join("server_rsa_private.pem")).read())
 
 class TransferProtocolSecurity(TestCase):
     _connectionParams = {'Server IP': Constants.SENDER_ADDRESS,
@@ -86,75 +71,56 @@ class TransferProtocolSecurity(TestCase):
     transferProtocol = TransferProtocol(_connectionParams, comSend, comReceive, aesKey, aesIV)
 
     def test_statisticalNIST(self):
-        with open('security.txt', 'r') as filex:
-            totalData = filex.read()
-            data = totalData.split('\n--------------------\n')[:-1]
 
-            for dataElement in data:
-                databytes = convertToBytes(dataElement[1:].encode())
-                print(DFTStatisticalTest(databytes))
-                self.assertTrue(DFTStatisticalTest(databytes))
+        for fileName in ['aesAnalysis.txt']:
+            with open(fileName, 'r') as filex:
+                totalData = filex.read()
+                data = totalData.split('\n--------------------\n')[:-1]
 
-    def parametersMapper(self, index):
-        if index == 3:
-            return self._connectionParams['Server IP'], \
-                   int(self._connectionParams['Server Port']), \
-                   [{'message': 'I love Quantum Computing', 'message2': 'I love Superposition and Entanglement',
-                     'planck': 6.61e-2}], 10, None
-        if index == 4:
-            return self._connectionParams['Server IP'], \
-                   int(self._connectionParams['Server Port']), \
-                   [[[i for i in range(10)] for j in range(10)]], 10, None
-        if index == 5:
-            return self._connectionParams['Server IP'], \
-                   int(self._connectionParams['Server Port']), \
-                   ["keykeykeykeykey"], 10, None
-        if index == 6:
-            return self._connectionParams['Client IP'], \
-                   int(self._connectionParams['Client Port']), \
-                   [[[i for i in range(10)] for j in range(10)]], 100, None
-        if index == 11:
-            return self._connectionParams['Client IP'], \
-                   int(self._connectionParams['Client Port']), \
-                   [{'message': 'I love Quantum Computing', 'message2': 'I love Superposition and Entanglement',
-                     'planck': 6.61e-2}], 10, None
+                for dataElement in data:
+                    databytes = convertToBytes(dataElement[1:].encode())
+                    self.assertTrue(DFTStatisticalTest(databytes,confidence=0.991, decisionLevel=0.0001))
 
-    def receiverMethodMapper(self, index):
-        if index == 3:
-            return self.transferProtocol.receiveNegotiateParameters
-        if index == 4:
-            return self.transferProtocol.receiveOT
-        if index == 5:
-            return self.transferProtocol.receiveKey
-        if index == 6:
-            return self.transferProtocol.receivePsiValues
-        if index == 11:
-            return self.transferProtocol.receiveModifiedNegotiateParameters
+    def test_rsaStatisticalNIST(self):
+
+        for fileName in ['rsaAnalysisReceive.txt', 'rsaAnalysisSend.txt']:
+            with open(fileName, 'r') as filex:
+                totalData = filex.read()
+                data = totalData.split('\n--------------------\n')[:-1]
+
+                for dataElement in data:
+                    databytes = convertToBytes(dataElement[1:].encode())
+                    self.assertTrue(DFTStatisticalTest(databytes,confidence=0.99, decisionLevel=1.0e-8))
+
+    def test_aesCheck(self):
+        for fileName in ['aesAnalysis.txt']:
+            with open(fileName, 'r') as filex:
+                totalData = filex.read()
+                data = totalData.split('\n--------------------\n')[:-1]
+
+                for dataElement in data:
+                    cipher = AES.new(self.aesKey.encode('utf8'), AES.MODE_CFB, self.aesIV.encode('utf8'))
+
+                    cipher.decrypt(dataElement.encode('utf8'))
 
 
-    @parameterized.expand([ [3], [4], [5], [6], [11]])
-    def test_receiveDesiredDataForEachTestCase(self, index):
+    def test_rsaCheck(self):
 
-        global bufferZone
+        for fileName in ['rsaAnalysisIv', 'rsaAnalysisKey']:
+            with open(fileName, 'rb') as filex:
+                totalData = filex.read()
+                if fileName=='rsaAnalysisIv':
+                    datax = CryptoUtils.CryptoUtils.rsaDecrypt(privKeyServer, totalData)
+                    self.assertEqual(self.aesIV.encode('utf8'), datax.encode('utf8'))
+                else:
+                    datax = CryptoUtils.CryptoUtils.rsaDecrypt(privKeyClient, totalData)
+                    self.assertEqual(self.aesKey.encode('utf8'), datax.encode('utf8'))
 
-        receiverFunction = self.receiverMethodMapper(index)
-        print(self.parametersMapper(index))
-        ip, port, parametersList, HEADERSIZE, flag = self.parametersMapper(index)
 
-        parameter = parametersList[0]
 
-        client_thread = threading.Thread(target=run_fake_client, args=(
-        ip, port, parameter, self.transferProtocol.aesKey, self.transferProtocol.aesIV, HEADERSIZE, flag, index))
-        client_thread.start()
 
-        data = receiverFunction()
 
-        self.assertEqual(data, parameter)
 
-        client_thread.join()
 
-        if bufferZone == "CONNECTION ERROR":
-            self.fail()
 
-        time.sleep(0.01)
 
