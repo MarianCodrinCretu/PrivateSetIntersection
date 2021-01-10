@@ -9,7 +9,8 @@ def addPaddingToTheOutput(classInstance, plaintext):
     desiredByteLength = classInstance._desiredOutputByteLength
 
     if actualByteLength == desiredByteLength:
-        print('The hash output is already of length', str(classInstance._desiredOutputByteLength))
+        #print('The hash output is already of length', str(classInstance._desiredOutputByteLength))
+        pass
 
     elif actualByteLength < desiredByteLength:
         print('The output of hash has been padded')
