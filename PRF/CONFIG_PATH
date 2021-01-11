@@ -1,0 +1,4 @@
+ERROR:root:[ 16/11/2020 09:43:06 ] The prf cannot be computed on this type of value<class 'int'>
+ERROR:root:[ 16/11/2020 09:43:25 ] The prf cannot be computed on this type of value<class 'int'>
+ERROR:root:[ 16/11/2020 09:43:43 ] The prf cannot be computed on this type of value<class 'int'>
+ERROR:root:[ 16/11/2020 09:43:58 ] The prf cannot be computed on this type of value<class 'int'>
