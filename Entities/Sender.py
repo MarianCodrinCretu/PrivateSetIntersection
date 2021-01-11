@@ -16,7 +16,7 @@ class Sender(Entity):
         C = [[0 for c in range(self.w)] for l in range(self.m)]
         for it in range(self.w):
             data = transfer_protocol.receiveOT()
-            print(data)
+            #print(data)
             if s[it] == "0":
                 selected = data["A"]
             else:
@@ -29,7 +29,7 @@ class Sender(Entity):
         C = [[0 for c in range(self.w)] for l in range(self.m)]
         for it in range(self.w):
             data = transfer_protocol.receiveOT()
-            print(data)
+            #print(data)
             if s[it] == "0":
                 selected = data["r_0"]
             else:
@@ -43,7 +43,7 @@ class Sender(Entity):
         print("s: ", s)
         # C = self.OT(transfer_protocol, s)
         C = self.random_OT(transfer_protocol, s)
-        print(C)
+        #print(C)
 
     def get_data(self):
         print("Sender: get data")

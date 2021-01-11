@@ -27895,3 +27895,25 @@
 [INFO],SENDER,2021-01-04 10:00:13,Parameters corrected sent back to RECEIVER (127.0.0.1 5585)
 [INFO],SENDER,2021-01-04 10:00:28,"Received PRF key data from RECEIVER (127.0.0.1, 5585)"
 [INFO],SENDER,2021-01-04 10:00:28,Psi Values sent to RECEIVER (127.0.0.1 5585)
+[INFO],SENDER,2021-01-11 21:33:17,"Received connection from RECEIVER (None, None)"
+[INFO],SENDER,2021-01-11 21:33:17,Received connection from RECEIVER (127.0.0.1 5585) at (127.0.0.1 5586)
+[INFO],SENDER,2021-01-11 21:35:58,"Received connection from RECEIVER (None, None)"
+[INFO],SENDER,2021-01-11 21:35:59,Received connection from RECEIVER (127.0.0.1 5585) at (127.0.0.1 5586)
+[INFO],SENDER,2021-01-11 21:36:06,RSA key received by SENDER from (127.0.0.1 5585)
+[INFO],SENDER,2021-01-11 21:36:07,RSA key sent by SENDER to (127.0.0.1 5585)
+[INFO],SENDER,2021-01-11 21:36:07,IV received by SENDER from (127.0.0.1 5585)
+[INFO],SENDER,2021-01-11 21:36:07,AES KEY sent by SENDER to (127.0.0.1 5585)
+[INFO],SENDER,2021-01-11 21:36:07,"Received parameters from RECEIVER (127.0.0.1, 5585)"
+[INFO],SENDER,2021-01-11 21:36:08,Parameters corrected sent back to RECEIVER (127.0.0.1 5585)
+[INFO],SENDER,2021-01-11 21:36:22,"Received PRF key data from RECEIVER (127.0.0.1, 5585)"
+[INFO],SENDER,2021-01-11 21:36:23,Psi Values sent to RECEIVER (127.0.0.1 5585)
+[INFO],SENDER,2021-01-11 21:41:19,"Received connection from RECEIVER (None, None)"
+[INFO],SENDER,2021-01-11 21:41:19,Received connection from RECEIVER (127.0.0.1 5585) at (127.0.0.1 5586)
+[INFO],SENDER,2021-01-11 21:41:25,RSA key received by SENDER from (127.0.0.1 5585)
+[INFO],SENDER,2021-01-11 21:41:25,RSA key sent by SENDER to (127.0.0.1 5585)
+[INFO],SENDER,2021-01-11 21:41:26,IV received by SENDER from (127.0.0.1 5585)
+[INFO],SENDER,2021-01-11 21:41:26,AES KEY sent by SENDER to (127.0.0.1 5585)
+[INFO],SENDER,2021-01-11 21:41:26,"Received parameters from RECEIVER (127.0.0.1, 5585)"
+[INFO],SENDER,2021-01-11 21:41:26,Parameters corrected sent back to RECEIVER (127.0.0.1 5585)
+[INFO],SENDER,2021-01-11 21:41:48,"Received PRF key data from RECEIVER (127.0.0.1, 5585)"
+[INFO],SENDER,2021-01-11 21:41:58,Psi Values sent to RECEIVER (127.0.0.1 5585)

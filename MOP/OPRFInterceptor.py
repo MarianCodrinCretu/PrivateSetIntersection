@@ -33,7 +33,7 @@ def checkPlaintextForF(plaintext, key, l1, w, m, prfType='AES', isKeyAsBitString
 @Aspect
 def checkResultValidity(plaintext, key, l1, w, m, prfType='AES', isKeyAsBitString=False, isPlaintextAsBits=False):
     v = yield Proceed
-    print('******v='+str(v))
+    #print('******v='+str(v))
     if len(v) != w:
         print('The result does not have the required length')
         yield Return
@@ -43,5 +43,5 @@ def checkResultValidity(plaintext, key, l1, w, m, prfType='AES', isKeyAsBitStrin
             print('The result does not have correct values')
             yield Return
 
-    print('The result has been checked')
+    #print('The result has been checked')
     yield Return(v)

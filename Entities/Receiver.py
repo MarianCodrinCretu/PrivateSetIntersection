@@ -39,8 +39,8 @@ class Receiver(Entity):
         A = RandomUtils.initMatrixAReceiver(self.m, self.w)
         D = RandomUtils.initMatrixAReceiver(self.m, self.w)
         B = PSIAlgoUtils.computeBReceiver(D, A)
-        print(A)
-        print(B)
+        #print(A)
+        #print(B)
         # self.OT(transfer_protocol, A, B)
         self.random_OT(transfer_protocol, A, B)
 
