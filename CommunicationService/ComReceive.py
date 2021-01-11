@@ -25,7 +25,7 @@ class ComReceive(Communication):
             yield aspectlib.Proceed
         else:
             import os
-            with open(os.path.join('security.txt'), 'a') as filex:
+            with open(os.path.join('aesAnalysis.txt'), 'a') as filex:
                 filex.write(str(data))
                 filex.write('\n--------------------\n')
                 yield aspectlib.Proceed

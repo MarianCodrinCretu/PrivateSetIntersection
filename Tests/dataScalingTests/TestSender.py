@@ -28,7 +28,7 @@ from Precomputation.Precomputation import Precomputation
 
 class TestSender(TestCase):
 
-    @parameterized.expand([[10], [25], [50], [100], [200], [500], [1000], [2000], [5000], [10000]])
+    @parameterized.expand([[int(2**x)] for x in range(3,23)])
     def test_senderTest(self, size):
         data = generate_data(size)
         if size<64:

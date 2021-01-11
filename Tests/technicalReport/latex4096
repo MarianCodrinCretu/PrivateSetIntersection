@@ -1,0 +1,128 @@
+MD5 & MD5 & DES & \colorbox{orange}{58.19271230697632} & \colorbox{red}{60.49761748313904} \\
+\hline
+MD5 & BLAKE2B\_16 & DES & \colorbox{red}{58.25435709953308} & \colorbox{red}{58.903547048568726} \\
+\hline
+MD5 & SHA3\_256 & DES & \colorbox{red}{58.85389256477356} & \colorbox{orange}{57.826281785964966} \\
+\hline
+MD5 & SHA256 & DES & \colorbox{orange}{57.75263071060181} & \colorbox{red}{59.08253359794617} \\
+\hline
+MD5 & BLAKE2B\_32 & DES & \colorbox{red}{58.85891819000244} & \colorbox{red}{59.26866054534912} \\
+\hline
+MD5 & BLAKE2B\_48 & DES & \colorbox{red}{59.33717751502991} & \colorbox{red}{58.870731592178345} \\
+\hline
+MD5 & SHA384 & DES & \colorbox{red}{58.513051986694336} & \colorbox{red}{59.45649456977844} \\
+\hline
+MD5 & SHA3\_384 & DES & \colorbox{orange}{58.13161826133728} & \colorbox{red}{59.10706353187561} \\
+\hline
+BLAKE2B\_16 & MD5 & DES & \colorbox{red}{58.28734517097473} & \colorbox{orange}{58.5336971282959} \\
+\hline
+BLAKE2B\_16 & BLAKE2B\_16 & DES & \colorbox{red}{58.8207950592041} & \colorbox{orange}{58.52919387817383} \\
+\hline
+BLAKE2B\_16 & SHA3\_256 & DES & \colorbox{red}{58.59842276573181} & \colorbox{red}{59.27908802032471} \\
+\hline
+BLAKE2B\_16 & SHA256 & DES & \colorbox{red}{58.601120948791504} & \colorbox{red}{59.69383692741394} \\
+\hline
+BLAKE2B\_16 & BLAKE2B\_32 & DES & \colorbox{orange}{58.24229907989502} & \colorbox{orange}{58.50032448768616} \\
+\hline
+BLAKE2B\_16 & BLAKE2B\_48 & DES & \colorbox{red}{59.00385928153992} & \colorbox{red}{59.23209834098816} \\
+\hline
+BLAKE2B\_16 & SHA384 & DES & \colorbox{red}{58.90710806846619} & \colorbox{red}{59.01182579994202} \\
+\hline
+BLAKE2B\_16 & SHA3\_384 & DES & \colorbox{red}{59.26155662536621} & \colorbox{red}{59.726070165634155} \\
+\hline
+SHA3\_256 & MD5 & AES & \colorbox{yellow}{40.33641219139099} & \colorbox{yellow}{40.628509283065796} \\
+\hline
+SHA3\_256 & BLAKE2B\_16 & AES & \colorbox{yellow}{40.26899600028992} & \colorbox{cyan}{39.99667286872864} \\
+\hline
+SHA3\_256 & SHA3\_256 & AES & \colorbox{yellow}{41.89494180679321} & \colorbox{cyan}{40.25378203392029} \\
+\hline
+SHA3\_256 & SHA256 & AES & \colorbox{cyan}{40.17916560173035} & \colorbox{yellow}{40.52242398262024} \\
+\hline
+SHA3\_256 & BLAKE2B\_32 & AES & \colorbox{cyan}{40.15518641471863} & \colorbox{yellow}{40.427775144577026} \\
+\hline
+SHA3\_256 & BLAKE2B\_48 & AES & \colorbox{yellow}{40.259679317474365} & \colorbox{cyan}{39.98810434341431} \\
+\hline
+SHA3\_256 & SHA384 & AES & \colorbox{yellow}{40.955002307891846} & \colorbox{yellow}{40.89901638031006} \\
+\hline
+SHA3\_256 & SHA3\_384 & AES & \colorbox{yellow}{40.86719727516174} & \colorbox{cyan}{40.423604249954224} \\
+\hline
+SHA256 & MD5 & AES & \colorbox{cyan}{39.9898624420166} & \colorbox{yellow}{40.61107635498047} \\
+\hline
+SHA256 & BLAKE2B\_16 & AES & \colorbox{cyan}{39.96238589286804} & \colorbox{cyan}{40.39533734321594} \\
+\hline
+SHA256 & SHA3\_256 & AES & \colorbox{yellow}{40.46559715270996} & \colorbox{yellow}{40.452024936676025} \\
+\hline
+SHA256 & SHA256 & AES & \colorbox{cyan}{39.88452887535095} & \colorbox{yellow}{40.54161238670349} \\
+\hline
+SHA256 & BLAKE2B\_32 & AES & \colorbox{yellow}{40.32319211959839} & \colorbox{yellow}{40.424076318740845} \\
+\hline
+SHA256 & BLAKE2B\_48 & AES & \colorbox{cyan}{40.16559386253357} & \colorbox{cyan}{40.09137487411499} \\
+\hline
+SHA256 & SHA384 & AES & \colorbox{yellow}{40.45912432670593} & \colorbox{yellow}{40.59420394897461} \\
+\hline
+SHA256 & SHA3\_384 & AES & \colorbox{yellow}{40.3824508190155} & \colorbox{cyan}{40.22903656959534} \\
+\hline
+BLAKE2B\_32 & MD5 & AES & \colorbox{yellow}{40.284011363983154} & \colorbox{yellow}{40.476752281188965} \\
+\hline
+BLAKE2B\_32 & BLAKE2B\_16 & AES & \colorbox{yellow}{40.44367980957031} & \colorbox{green}{39.84769368171692} \\
+\hline
+BLAKE2B\_32 & SHA3\_256 & AES & \colorbox{green}{39.629249572753906} & \colorbox{yellow}{40.93134355545044} \\
+\hline
+BLAKE2B\_32 & SHA256 & AES & \colorbox{cyan}{39.930094957351685} & \colorbox{cyan}{40.31002736091614} \\
+\hline
+BLAKE2B\_32 & BLAKE2B\_32 & AES & \colorbox{cyan}{40.07827091217041} & \colorbox{yellow}{41.99993443489075} \\
+\hline
+BLAKE2B\_32 & BLAKE2B\_48 & AES & \colorbox{yellow}{40.55048131942749} & \colorbox{cyan}{40.38550662994385} \\
+\hline
+BLAKE2B\_32 & SHA384 & AES & \colorbox{cyan}{40.04999041557312} & \colorbox{yellow}{40.672343015670776} \\
+\hline
+BLAKE2B\_32 & SHA3\_384 & AES & \colorbox{yellow}{40.18826222419739} & \colorbox{yellow}{40.564993381500244} \\
+\hline
+BLAKE2B\_48 & MD5 & DES3 & \colorbox{orange}{57.5276517868042} & \colorbox{orange}{57.17940807342529} \\
+\hline
+BLAKE2B\_48 & BLAKE2B\_16 & DES3 & \colorbox{orange}{57.37957572937012} & \colorbox{yellow}{57.02113628387451} \\
+\hline
+BLAKE2B\_48 & SHA3\_256 & DES3 & \colorbox{orange}{57.28379702568054} & \colorbox{orange}{57.15096068382263} \\
+\hline
+BLAKE2B\_48 & SHA256 & DES3 & \colorbox{orange}{56.91145634651184} & \colorbox{orange}{57.16837954521179} \\
+\hline
+BLAKE2B\_48 & BLAKE2B\_32 & DES3 & \colorbox{yellow}{56.48204731941223} & \colorbox{orange}{57.11736488342285} \\
+\hline
+BLAKE2B\_48 & BLAKE2B\_48 & DES3 & \colorbox{orange}{56.89824175834656} & \colorbox{yellow}{56.92065119743347} \\
+\hline
+BLAKE2B\_48 & SHA384 & DES3 & \colorbox{yellow}{56.246726274490356} & \colorbox{orange}{57.469489336013794} \\
+\hline
+BLAKE2B\_48 & SHA3\_384 & DES3 & \colorbox{orange}{56.916229486465454} & \colorbox{orange}{57.18917655944824} \\
+\hline
+SHA384 & MD5 & DES3 & \colorbox{orange}{56.815810203552246} & \colorbox{yellow}{56.45619010925293} \\
+\hline
+SHA384 & BLAKE2B\_16 & DES3 & \colorbox{yellow}{56.71985602378845} & \colorbox{orange}{58.484485149383545} \\
+\hline
+SHA384 & SHA3\_256 & DES3 & \colorbox{red}{58.69017052650452} & \colorbox{orange}{57.198150396347046} \\
+\hline
+SHA384 & SHA256 & DES3 & \colorbox{red}{60.11647129058838} & \colorbox{orange}{58.7365505695343} \\
+\hline
+SHA384 & BLAKE2B\_32 & DES3 & \colorbox{yellow}{56.72756481170654} & \colorbox{orange}{57.06016397476196} \\
+\hline
+SHA384 & BLAKE2B\_48 & DES3 & \colorbox{orange}{57.15867900848389} & \colorbox{orange}{57.447484493255615} \\
+\hline
+SHA384 & SHA384 & DES3 & \colorbox{orange}{57.12779378890991} & \colorbox{red}{59.00008225440979} \\
+\hline
+SHA384 & SHA3\_384 & DES3 & \colorbox{orange}{57.04750728607178} & \colorbox{orange}{57.47371172904968} \\
+\hline
+SHA3\_384 & MD5 & DES3 & \colorbox{orange}{57.44695711135864} & \colorbox{yellow}{56.52378964424133} \\
+\hline
+SHA3\_384 & BLAKE2B\_16 & DES3 & \colorbox{orange}{57.287219762802124} & \colorbox{orange}{58.11640667915344} \\
+\hline
+SHA3\_384 & SHA3\_256 & DES3 & \colorbox{yellow}{56.68175411224365} & \colorbox{yellow}{56.589179039001465} \\
+\hline
+SHA3\_384 & SHA256 & DES3 & \colorbox{orange}{56.8877911567688} & \colorbox{orange}{57.2078058719635} \\
+\hline
+SHA3\_384 & BLAKE2B\_32 & DES3 & \colorbox{yellow}{56.18602442741394} & \colorbox{orange}{57.40674376487732} \\
+\hline
+SHA3\_384 & BLAKE2B\_48 & DES3 & \colorbox{orange}{57.09860587120056} & \colorbox{yellow}{56.68674969673157} \\
+\hline
+SHA3\_384 & SHA384 & DES3 & \colorbox{orange}{56.919158697128296} & \colorbox{orange}{57.263962507247925} \\
+\hline
+SHA3\_384 & SHA3\_384 & DES3 & \colorbox{orange}{56.791351079940796} & \colorbox{red}{59.98237466812134} \\
+\hline

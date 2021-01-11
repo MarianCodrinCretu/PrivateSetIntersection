@@ -18,7 +18,7 @@ from OPRFEvaluation.OPRFEvaluation import OPRFEvaluation
 from OTService.OTService import OTService
 from Precomputation.Precomputation import Precomputation
 
-data = ['Marian', 'Adrian Iftene', 'FLT', 'Radu Ionicioiu']
+data = ['Mama Corleone', 'Vito Corleone', 'Connie Corleone', 'Tom Hagen', 'Carmella Corleone', 'Fredy Corleone']
 
 def generateParameters():
     import NegotiationParameters.Constants
@@ -40,7 +40,7 @@ class ParamSender(TestCase):
             'lambda': lambdas,
             'sigma': 60,
             'm': 64,
-            'w': 487,
+            'w': 100,
             'l1': 1284,
             'l2': 50,
             'hash1': hash1,

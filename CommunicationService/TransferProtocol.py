@@ -117,6 +117,10 @@ class TransferProtocol:
 
         self.aesIV = iv
         iv = CryptoUtils.CryptoUtils.rsaEncrypt(rsaKey, iv)
+
+        # with open('rsaAnalysisIv', 'wb') as filex:
+        #     filex.write(iv)
+
         self._comSend.send(iv, self._connectionParams['Server IP'],
                            int(self._connectionParams['Server Port']),
                            HEADERSIZE=10, flag='NoAES')
@@ -130,6 +134,8 @@ class TransferProtocol:
         result = self._comReceive.receive(self._connectionParams['Server IP'],
                                           int(self._connectionParams['Server Port']),
                                           HEADERSIZE=10, flag='NoAES')
+
+
         message = Logs.LogMessaging.createLogReceiveIV(self._connectionParams['Client IP'],
                                                        self._connectionParams['Client Port'])
 
@@ -140,8 +146,13 @@ class TransferProtocol:
         return result
 
     def sendAESKeyByRSA(self, aesKey, rsaKey):
+
         self.aesKey = aesKey
         aesKey = CryptoUtils.CryptoUtils.rsaEncrypt(rsaKey, aesKey)
+
+        # with open('rsaAnalysisKey', 'wb') as filex:
+        #     filex.write(aesKey)
+
         self._comSend.send(aesKey, self._connectionParams['Client IP'],
                            int(self._connectionParams['Client Port']),
                            HEADERSIZE=10, flag='NoAES')
@@ -151,15 +162,18 @@ class TransferProtocol:
             self.processMessage(message)
 
     def receiveAESKeyByRSA(self, rsaKey):
+
         result = self._comReceive.receive(self._connectionParams['Client IP'],
                                           int(self._connectionParams['Client Port']),
                                           HEADERSIZE=10, flag='NoAES')
+
         message = Logs.LogMessaging.createLogReceiveIV(self._connectionParams['Server IP'],
                                                        self._connectionParams['Server Port'])
         with aspectlib.weave(self.processMessage, self.log_results):
             self.processMessage(message)
         result = CryptoUtils.CryptoUtils.rsaDecrypt(rsaKey, result)
         self.aesKey = result.encode('utf8')
+
         return result
 
     def sendNegotiateParameters(self, paramsDictionary):
@@ -186,8 +200,8 @@ class TransferProtocol:
                            HEADERSIZE=10, aesCipher=AES.new(self.aesKey, AES.MODE_CFB, self.aesIV))
         message = Logs.LogMessaging.createLogSendOT(self._connectionParams['Server IP'],
                                                     self._connectionParams['Server Port'])
-        with aspectlib.weave(self.processMessage, self.log_results):
-            self.processMessage(message)
+        # with aspectlib.weave(self.processMessage, self.log_results):
+        #     self.processMessage(message)
 
     def sendPRFKey(self, key):
 
@@ -261,8 +275,8 @@ class TransferProtocol:
                                           HEADERSIZE=10, aesCipher=AES.new(self.aesKey, AES.MODE_CFB, self.aesIV))
         message = Logs.LogMessaging.createLogReceiveOT(self._connectionParams['Client IP'],
                                                        self._connectionParams['Client Port'])
-        with aspectlib.weave(self.processMessage, self.log_results):
-            self.processMessage(message)
+        # with aspectlib.weave(self.processMessage, self.log_results):
+        #     self.processMessage(message)
         return result
 
     def receiveKey(self):

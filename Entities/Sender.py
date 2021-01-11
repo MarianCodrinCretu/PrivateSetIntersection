@@ -29,7 +29,6 @@ class Sender(Entity):
         C = [[0 for c in range(self.w)] for l in range(self.m)]
         for it in range(self.w):
             data = transfer_protocol.receiveOT()
-            print(data)
             if s[it] == "0":
                 selected = data["r_0"]
             else:
@@ -40,7 +39,6 @@ class Sender(Entity):
 
     def execute_protocol(self, ip: str, port: str, mapper, transfer_protocol):
         s = RandomUtils.generateSSender(self.w)
-        print("s: ", s)
         # C = self.OT(transfer_protocol, s)
         C = self.random_OT(transfer_protocol, s)
         print(C)

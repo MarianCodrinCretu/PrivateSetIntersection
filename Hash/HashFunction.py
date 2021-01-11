@@ -11,7 +11,7 @@ class HashFunction(ABC):
     def generate(self, plaintext):
         self.initialize()
         self.computeDigest(plaintext)
-        self.displayResult()
+        #self.displayResult()
         return self._result
 
     @abstractmethod
